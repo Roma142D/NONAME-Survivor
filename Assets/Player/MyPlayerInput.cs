@@ -37,6 +37,15 @@ namespace RomaDoliba.Player
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Test"",
+                    ""type"": ""Button"",
+                    ""id"": ""d5b93565-c285-4006-a384-af5b391db980"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -94,6 +103,17 @@ namespace RomaDoliba.Player
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""77878e0e-08e6-4f69-9c6c-e7d9c216cd55"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Test"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -115,6 +135,7 @@ namespace RomaDoliba.Player
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
+            m_Player_Test = m_Player.FindAction("Test", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -177,11 +198,13 @@ namespace RomaDoliba.Player
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
+        private readonly InputAction m_Player_Test;
         public struct PlayerActions
         {
             private @MyPlayerInput m_Wrapper;
             public PlayerActions(@MyPlayerInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
+            public InputAction @Test => m_Wrapper.m_Player_Test;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -194,6 +217,9 @@ namespace RomaDoliba.Player
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Test.started += instance.OnTest;
+                @Test.performed += instance.OnTest;
+                @Test.canceled += instance.OnTest;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -201,6 +227,9 @@ namespace RomaDoliba.Player
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
+                @Test.started -= instance.OnTest;
+                @Test.performed -= instance.OnTest;
+                @Test.canceled -= instance.OnTest;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -230,6 +259,7 @@ namespace RomaDoliba.Player
         public interface IPlayerActions
         {
             void OnMove(InputAction.CallbackContext context);
+            void OnTest(InputAction.CallbackContext context);
         }
     }
 }

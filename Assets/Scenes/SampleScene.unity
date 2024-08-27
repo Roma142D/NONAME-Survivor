@@ -539,7 +539,7 @@ MonoBehaviour:
   _moveSpeed: 200
   _playerAnimator: {fileID: 1453015398}
   _camera: {fileID: 519420032}
-  _cameraSpeed: 0.5
+  _cameraSpeed: 0.25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

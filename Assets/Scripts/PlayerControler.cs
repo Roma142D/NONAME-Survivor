@@ -31,25 +31,17 @@ namespace RomaDoliba.Player
             }
 
             _playerInput = new MyPlayerInput();
-            _playerInput.Player.Move.performed += OnMove;
         }
+
         private void Update()
         {
-            InputManager();
+            _moveDirection = _playerInput.Player.Move.ReadValue<Vector2>();
         }
         private void FixedUpdate()
         {
             Move();
         }
-
-        private void InputManager()
-        {
-            var moveX = Input.GetAxisRaw("Horizontal");
-            var moveY = Input.GetAxisRaw("Vertical");
-
-            _moveDirection = new Vector2(moveX, moveY).normalized;
-        }
-                
+                       
         private void Move()
         {
             var velocityByInput = new Vector2(_moveDirection.x, _moveDirection.y).normalized;
@@ -59,7 +51,6 @@ namespace RomaDoliba.Player
             if (_moveDirection != Vector2.zero)
             {
                 _playerAnimator.SetTrigger("Walk");
-                Debug.Log(_moveDirection.x);
                 if (_moveDirection.x > 0)
                 {
                     _playerRenderer.flipX = false;
@@ -71,12 +62,7 @@ namespace RomaDoliba.Player
             }
             StartCoroutine(CameraFolow(_player.transform.position, _cameraSpeed));
         }
-        private void OnMove(InputAction.CallbackContext context)
-        {
-            _moveDirection = context.ReadValue<Vector2>();   
-            Debug.Log("performed");   
-        }
-
+        
         private IEnumerator CameraFolow(Vector2 playerPosition, float delay)
         {
             var currentTime = 0f;
@@ -91,6 +77,15 @@ namespace RomaDoliba.Player
 
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        private void OnEnable()
+        {
+            _playerInput.Enable();
+        }
+        private void OnDisable()
+        {
+            _playerInput.Disable();
         }
     }
 }
