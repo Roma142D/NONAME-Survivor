@@ -19,6 +19,7 @@ namespace RomaDoliba.Player
         private MyPlayerInput _playerInput;
         private Vector2 _moveDirection;
 
+        public Vector2 MoveDirection => _moveDirection;
         private void Awake()
         {
             if (Instance == null)
@@ -29,10 +30,10 @@ namespace RomaDoliba.Player
             {
                 Destroy(gameObject);
             }
-
+            
             _playerInput = new MyPlayerInput();
         }
-
+        
         private void Update()
         {
             _moveDirection = _playerInput.Player.Move.ReadValue<Vector2>();
