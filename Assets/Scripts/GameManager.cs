@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
 using RomaDoliba.Player;
 using RomaDoliba.Terrain;
 using UnityEngine;
@@ -13,27 +12,26 @@ namespace RomaDoliba.Manager
         [SerializeField] private TerrainTilesData _terrainTilesData;
         [SerializeField] private GameObject _backgroundGrid;
         [SerializeField] private LayerMask _terrainMask;
-        private Vector3 _noTerrainPosition;
         private List<TileBase> _spawnedTiles;
+        [SerializeField] private float _checkRadius;
+        [SerializeField] private float _checkDistance;
+        [SerializeField] private float _distanceToDisable;
         [Space]
         [Header("Player")]
         [SerializeField] private PlayerControler _player;
-        [SerializeField] private float _checkRadius;
-        [SerializeField] private float _checkDistance;
         
         private void Awake()
         {
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
-            var spawnedTile = _terrainTilesData.SpawnTile(Vector3.zero);
-            _spawnedTiles.Add(spawnedTile);
+            SpawnTile(Vector3.zero);
         }
         private void Update()
         {
-            CheckTiles();
+            CheckTilesToSpawn();
         }
 
-        private void CheckTiles()
+        private void CheckTilesToSpawn()
         {
             var spawnDistance = new Vector3(_player.MoveDirection.x * 22f, _player.MoveDirection.y * 22f, 0);
             
@@ -42,9 +40,35 @@ namespace RomaDoliba.Manager
             {
                 var currentTile = Physics2D.OverlapPoint(_player.transform.position);
                 var nextPositionToSpawn = currentTile.transform.position + spawnDistance;
-                //_noTerrainPosition = _player.transform.position + spawnDistance;
-                SpawnTile(nextPositionToSpawn);
+                if (_spawnedTiles.Count < 15 || CheckTilesToPool() == null)
+                {
+                    SpawnTile(nextPositionToSpawn);
+                }
+                else if (CheckTilesToPool() != null)
+                {
+                    var poolTile = CheckTilesToPool();
+                    poolTile.gameObject.SetActive(true);
+                    poolTile.gameObject.transform.position = nextPositionToSpawn;
+                }
             }
+        }
+        private TileBase CheckTilesToPool()
+        {
+            if (_spawnedTiles.Count > 10)
+            {
+                foreach (var tileToDisable in _spawnedTiles)
+                {
+                    var distanceToPlayer = Vector3.Distance(_player.transform.position, tileToDisable.transform.position);
+                    if (distanceToPlayer > _distanceToDisable)
+                    {
+                        _spawnedTiles.Remove(tileToDisable);
+                        tileToDisable.gameObject.SetActive(false);
+                        _spawnedTiles.Add(tileToDisable);
+                        return tileToDisable;
+                    }
+                }
+            }
+            return null;
         }
         private void SpawnTile(Vector3 spawnPosition)
         {

@@ -156,9 +156,10 @@ MonoBehaviour:
   _terrainMask:
     serializedVersion: 2
     m_Bits: 8
-  _player: {fileID: 1453015400}
   _checkRadius: 0.2
   _checkDistance: 22
+  _distanceToDisable: 44
+  _player: {fileID: 1453015400}
 --- !u!4 &348076218
 Transform:
   m_ObjectHideFlags: 0
