@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using RomaDoliba.Weapon;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static RomaDoliba.Player.MyPlayerInput;
@@ -79,7 +80,8 @@ namespace RomaDoliba.Player
                 yield return new WaitForEndOfFrame();
             }
         }
-
+        
+        
         private void OnEnable()
         {
             _playerInput.Enable();
