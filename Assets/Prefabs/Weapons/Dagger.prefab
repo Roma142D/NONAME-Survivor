@@ -97,4 +97,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e0410fd06a5e648951fd90bfd11ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayToDestroy: 10
+  _delayToDestroy: 3
+  _daggerData: {fileID: 11400000, guid: 0dcf64a69a2c35140b4af7225318cf8c, type: 2}

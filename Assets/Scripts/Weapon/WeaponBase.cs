@@ -4,29 +4,27 @@ using UnityEngine;
 
 namespace RomaDoliba.Weapon
 {
-    public class WeaponBase : MonoBehaviour
+    [CreateAssetMenu]
+    public class WeaponBase : ScriptableObject
     {
         [SerializeField] protected GameObject _weaponPrefab;
         [SerializeField] protected float _damage;
         [SerializeField] protected float _speed;
-        [SerializeField] protected float _rotationSpeed;
         [SerializeField] protected float _cooldown;
-        private float _currentCooldown;
-        public float CurrentCooldown => _currentCooldown;
+        protected WeaponHolderControler _weaponHolder;
         public float Speed => _speed;
-        public float RotationSpeed => _rotationSpeed;
+        public float Cooldown => _cooldown;
         
-        protected virtual void Start()
+        
+        public GameObject Init(WeaponHolderControler weaponHolder)
         {
-            _currentCooldown = _cooldown;
+            _weaponHolder = weaponHolder;
+            return Execute();
         }
-        protected virtual void Update()
+        protected virtual GameObject Execute()
         {
-            _currentCooldown -= Time.deltaTime;
-        }
-        protected virtual void Execute()
-        {
-            _currentCooldown = _cooldown;
+            //_currentCooldown = _cooldown;
+            return null;
         }
     }
 }
