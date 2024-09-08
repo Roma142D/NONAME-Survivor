@@ -23,7 +23,6 @@ namespace RomaDoliba.Weapon
         }
         protected virtual GameObject Execute()
         {
-            //_currentCooldown = _cooldown;
             return null;
         }
     }

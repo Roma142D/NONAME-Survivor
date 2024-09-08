@@ -2,39 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RomaDoliba.Player;
+using System;
 
 namespace RomaDoliba.Weapon
 {
     public class ProjectileWeapon : MonoBehaviour
     {
         [SerializeField] protected float _delayToDestroy;
-        protected Vector3 _fireDirection;
+        private Vector3 _fireDirection;
 
 
         protected virtual void Start()
         {
-            Destroy(this.gameObject, _delayToDestroy);
+            //Destroy(this.gameObject, _delayToDestroy);
+            StartCoroutine(DelayToEnable());
         }
-        public Vector3 CalculateDirection(Vector3 lastDirection)
+        protected virtual void OnEnable()
         {
-             _fireDirection = PlayerControler.Instance.transform.position;
+            StartCoroutine(DelayToEnable());
+        }
+        public Vector3 CalculateDirection()
+        {
+            _fireDirection = PlayerControler.Instance.transform.position;
             _fireDirection += new Vector3(PlayerControler.Instance.MoveDirection.x, PlayerControler.Instance.MoveDirection.y, 0f) * 44f;
+            var lastMoveDirection = PlayerControler.Instance.LastMoveDirection;
             
             if (_fireDirection == PlayerControler.Instance.transform.position)
             {
-                /*
-                if (_lastDirection != Vector3.zero)
+                if (lastMoveDirection != Vector2.zero)
                 {
-                    _fireDirection = _lastDirection;
+                    _fireDirection += new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0f) * 44f;
                 }
                 else
                 {
                     _fireDirection += Vector3.right * 44f;
                 }
-                */
             }
             return _fireDirection;
+        }
 
+        protected virtual IEnumerator DelayToEnable()
+        {           
+            yield return new WaitForSeconds(_delayToDestroy);
+            ToggleWeapon();
+        }
+        protected virtual void ToggleWeapon()
+        {
+            if (this.gameObject.activeSelf == true)
+            {
+                this.gameObject.SetActive(false);
+            }
+            else
+            {
+                this.gameObject.SetActive(true);
+            }
         }
     }
 }

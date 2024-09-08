@@ -19,7 +19,9 @@ namespace RomaDoliba.Player
         [SerializeField] private float _cameraSpeed;
         private MyPlayerInput _playerInput;
         private Vector2 _moveDirection;
+        private Vector2 _lastMoveDirection;
 
+        public Vector2 LastMoveDirection => _lastMoveDirection;
         public Vector2 MoveDirection => _moveDirection;
         private void Awake()
         {
@@ -52,6 +54,7 @@ namespace RomaDoliba.Player
             _player.velocity = new Vector2(modifiedVelocity.x, modifiedVelocity.y);
             if (_moveDirection != Vector2.zero)
             {
+                _lastMoveDirection = _moveDirection;
                 _playerAnimator.SetTrigger("Walk");
                 if (_moveDirection.x > 0)
                 {

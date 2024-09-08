@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _terrainTilesBackground:
   - {fileID: 2740060920588526411, guid: 9457e4a878d24124bac019831a720309, type: 3}
-  - {fileID: 2740060920588526411, guid: 9457e4a878d24124bac019831a720309, type: 3}
   _propPrefabs:
   - {fileID: 8776940551495301216, guid: 82afecc641a536a42945a4afda718a90, type: 3}
   - {fileID: 121095249597746743, guid: 194a5d39e12d0ea4181b2db964a9feb7, type: 3}

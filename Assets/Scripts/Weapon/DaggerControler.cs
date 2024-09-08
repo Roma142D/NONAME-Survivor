@@ -11,18 +11,15 @@ namespace RomaDoliba.Weapon
         
         protected override void Start()
         {
+            StartCoroutine(FireDaggerCorotine(this.gameObject, _daggerData.Speed, CalculateDirection()));
+            //StartCoroutine(DelayToEnable());
             base.Start();
-            //_daggerData = FindAnyObjectByType<DaggerSpawner>();
-            _fireDirection = PlayerControler.Instance.transform.position;
-            _fireDirection += new Vector3(PlayerControler.Instance.MoveDirection.x, PlayerControler.Instance.MoveDirection.y, 0f) * 44f;
-            
-            if (_fireDirection == PlayerControler.Instance.transform.position)
-            {
-                
-                _fireDirection += Vector3.right * 44f;
-            
-            }
-            StartCoroutine(FireDaggerCorotine(this.gameObject, _daggerData.Speed, _fireDirection));
+        }
+        protected override void OnEnable()
+        {
+            StartCoroutine(FireDaggerCorotine(this.gameObject, _daggerData.Speed, CalculateDirection()));
+            //StartCoroutine(DelayToEnable());
+            base.OnEnable();
         }
 
         private IEnumerator FireDaggerCorotine(GameObject dagger, float speed, Vector3 direction)
@@ -40,6 +37,10 @@ namespace RomaDoliba.Weapon
 
                 yield return new WaitForEndOfFrame();
             }
+        }
+        protected override IEnumerator DelayToEnable()
+        {
+            return base.DelayToEnable();
         }
     }
 }

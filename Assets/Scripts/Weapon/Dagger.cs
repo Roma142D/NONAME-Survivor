@@ -13,7 +13,7 @@ namespace RomaDoliba.Weapon
     {
         protected override GameObject Execute()
         {
-            var rotZ = Mathf.Atan2(PlayerControler.Instance.MoveDirection.y, PlayerControler.Instance.MoveDirection.x) * Mathf.Rad2Deg;
+            var rotZ = Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
             var daggerRotation = Quaternion.Euler(0f, 0f, rotZ - 45f);
             var spawnedDagger = Instantiate(_weaponPrefab, _weaponHolder.transform.position, daggerRotation);
             
