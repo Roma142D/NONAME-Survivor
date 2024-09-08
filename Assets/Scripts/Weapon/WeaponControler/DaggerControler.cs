@@ -7,17 +7,17 @@ namespace RomaDoliba.Weapon
 {
     public class DaggerControler : ProjectileWeapon
     {
-        [SerializeField] private DaggerSpawner _daggerData;
+        //[SerializeField] private WeaponBase _weaponData;
         
         protected override void Start()
         {
-            StartCoroutine(FireDaggerCorotine(this.gameObject, _daggerData.Speed, CalculateDirection()));
+            StartCoroutine(FireDaggerCorotine(this.gameObject, _weaponData.Speed, CalculateDirection()));
             //StartCoroutine(DelayToEnable());
             base.Start();
         }
         protected override void OnEnable()
         {
-            StartCoroutine(FireDaggerCorotine(this.gameObject, _daggerData.Speed, CalculateDirection()));
+            StartCoroutine(FireDaggerCorotine(this.gameObject, _weaponData.Speed, CalculateDirection()));
             //StartCoroutine(DelayToEnable());
             base.OnEnable();
         }

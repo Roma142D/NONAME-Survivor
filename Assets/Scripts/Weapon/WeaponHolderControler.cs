@@ -9,42 +9,67 @@ namespace RomaDoliba.Weapon
     public class WeaponHolderControler : MonoBehaviour
     {
         [SerializeField] private WeaponBase _currentWeapon1;
-        private List<GameObject> _spawnedWeapons1;
+        private WeaponBase _daggerWeapon;
+        private WeaponBase _auraWeapon;
+        private List<GameObject> _spawnedDaggers;
         private float _currentCooldown;
-        //private WeaponBase _currentWeapon1;
+        
 
         private void Awake()
         {
-            _spawnedWeapons1 = new List<GameObject>();
-            //_currentWeapon1 = WeaponBase.CreateInstance<WeaponBase>();
+            _spawnedDaggers = new List<GameObject>();
+            
         }
         private void Start()
         {
-            _currentCooldown = _currentWeapon1.Cooldown;
+            switch (_currentWeapon1.WeaponType)  //TODO перенести цей світч в метод який буде спрацьовувати коли ми підбераємо нову зброю
+            {
+                case WeaponType.dagger: 
+                    _daggerWeapon = _currentWeapon1;
+                    _currentCooldown = _daggerWeapon.Cooldown;
+                    break;
+                case WeaponType.aura:
+                    _auraWeapon = _currentWeapon1;
+                    AuraWeaponBehavior(_auraWeapon);
+                    break;
+                default: 
+                    Debug.Log("Not a weapon");
+                    break;
+            }
         }
 
         private void Update()
         {
             _currentCooldown -= Time.deltaTime;
-            if (_currentCooldown <= 0)
+
+            if (_currentCooldown <= 0 && _daggerWeapon != null)
             {
-                if (_spawnedWeapons1.Count < 5)
-                {
-                    var spawnedWeapon = _currentWeapon1.Init(this);
-                    _spawnedWeapons1.Add(spawnedWeapon);
-                }
-                else
-                {
-                    var pooledWeapon = _spawnedWeapons1[0];
-                    _spawnedWeapons1.Remove(pooledWeapon);
-                    pooledWeapon.transform.position = this.transform.position;
-                    var rotZ = Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
-                    pooledWeapon.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 45f);
-                    pooledWeapon.SetActive(true);
-                    _spawnedWeapons1.Add(pooledWeapon);
-                }
-                _currentCooldown = _currentWeapon1.Cooldown;
+                DaggerWeaponBehavior(_daggerWeapon);
+                _currentCooldown = _daggerWeapon.Cooldown;
             }
+        }
+
+        private void DaggerWeaponBehavior(WeaponBase weapon)
+        {
+            if (_spawnedDaggers.Count < 5)
+            {
+                var spawnedWeapon = weapon.Init(this);
+                _spawnedDaggers.Add(spawnedWeapon);
+            }
+            else
+            {
+                var pooledWeapon = _spawnedDaggers[0];
+                _spawnedDaggers.Remove(pooledWeapon);
+                pooledWeapon.transform.position = this.transform.position;
+                var rotZ = Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
+                pooledWeapon.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 45f);
+                pooledWeapon.SetActive(true);
+                _spawnedDaggers.Add(pooledWeapon);
+            }
+        }
+        private void AuraWeaponBehavior(WeaponBase weapon)
+        {
+            weapon.Init(this);
         }
     }
 

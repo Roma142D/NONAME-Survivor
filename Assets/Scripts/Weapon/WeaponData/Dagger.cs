@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using RomaDoliba.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +12,7 @@ namespace RomaDoliba.Weapon
         {
             var rotZ = Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
             var daggerRotation = Quaternion.Euler(0f, 0f, rotZ - 45f);
-            var spawnedDagger = Instantiate(_weaponPrefab, _weaponHolder.transform.position, daggerRotation);
+            var spawnedDagger = Instantiate(_weaponPrefab, _weaponHolder.transform.position, daggerRotation, _weaponHolder.transform);
             
             return spawnedDagger;
         }

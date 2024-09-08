@@ -8,9 +8,10 @@ namespace RomaDoliba.Weapon
 {
     public class ProjectileWeapon : MonoBehaviour
     {
+        [SerializeField] protected WeaponBase _weaponData;
         [SerializeField] protected float _delayToDestroy;
         private Vector3 _fireDirection;
-
+        public WeaponBase WeaponData => _weaponData;
 
         protected virtual void Start()
         {
