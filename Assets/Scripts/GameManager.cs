@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RomaDoliba.Enemy;
 using RomaDoliba.Player;
 using RomaDoliba.Terrain;
 using UnityEngine;
@@ -17,6 +18,11 @@ namespace RomaDoliba.Manager
         [SerializeField] private float _checkDistance;
         [SerializeField] private float _distanceToDisable;
         [Space]
+        [Header("EnemySpawn")]
+        [SerializeField] private EnemyGroupControler _enemiesSpawner;
+        [SerializeField] private Transform _spawnEnemiesPoint; //TEST 
+        private List<EnemyMovement> _spawnedEnemies;
+        [Space]
         [Header("Player")]
         [SerializeField] private PlayerControler _player;
         
@@ -25,6 +31,9 @@ namespace RomaDoliba.Manager
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
             SpawnTile(Vector3.zero);
+
+            _spawnedEnemies = new List<EnemyMovement>();
+            _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, 5);
         }
         private void Update()
         {
