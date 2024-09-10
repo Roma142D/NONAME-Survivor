@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf514bd412fd8474886ac148f734d223, type: 3}
-  m_Name: DaggerData
+  m_Name: DaggerData 1
   m_EditorClassIdentifier: 
-  _weaponPrefab: {fileID: 6406712524275714416, guid: e6cf5f6b0891285449a97cd94898eb6b, type: 3}
+  _weaponPrefab: {fileID: 6406712524275714416, guid: 160537d58e605fa4d9ff070b77c2b8ef, type: 3}
   _weaponType: 0
-  _damage: 1
-  _speed: 5
-  _cooldown: 3
+  _damage: 1.2
+  _speed: 6
+  _cooldown: 2.5

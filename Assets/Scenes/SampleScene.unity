@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 2692853846338964489, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3808087472270055031, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: m_Name
       value: Player
@@ -550,6 +554,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7019587070505589946, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7019587070505589946, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7456584431598404759, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: _currentSlot1
       value: 
@@ -557,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 7456584431598404759, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: _currentWeapon1
       value: 
-      objectReference: {fileID: 11400000, guid: e1fc373c27e61b743a29e4c3debb79f5, type: 2}
+      objectReference: {fileID: 11400000, guid: 310fe241bf0cfa143bd48041bf323115, type: 2}
     - target: {fileID: 8824453230072639120, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4912643
