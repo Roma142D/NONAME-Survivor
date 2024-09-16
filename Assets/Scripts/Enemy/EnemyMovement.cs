@@ -7,7 +7,7 @@ namespace RomaDoliba.Enemy
 {
     public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField] private float _moveSpeed;
+        [SerializeField] private EnemyData _enemyData;
         [SerializeField] private LayerMask _targetLayer;
         [SerializeField] private SpriteRenderer _enemyRenderer;
         [SerializeField] private SpriteDirection _enemySprites;
@@ -20,7 +20,7 @@ namespace RomaDoliba.Enemy
             {
                 if (_followCoroutine == null)
                 {
-                    _followCoroutine = StartCoroutine(FollowTarget(_moveSpeed));
+                    _followCoroutine = StartCoroutine(FollowTarget(_enemyData.MoveSpeed));
                 }
             }
         }

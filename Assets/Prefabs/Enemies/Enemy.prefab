@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 7203271283584374757}
   - component: {fileID: 1578732410967955193}
   - component: {fileID: 173805913191724658}
-  m_Layer: 0
+  - component: {fileID: 1127038692964157564}
+  m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c1d1049d314624fb610b73293cfd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
+  _enemyData: {fileID: 11400000, guid: b7d765c1f01b0f34eb9509909fbb566e, type: 2}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -171,3 +172,16 @@ MonoBehaviour:
     LookLeft: {fileID: 21300020, guid: bb0ee878a904fe7478a2d8cef533b829, type: 3}
     LookDown: {fileID: 21300018, guid: bb0ee878a904fe7478a2d8cef533b829, type: 3}
     LookUp: {fileID: 21300016, guid: bb0ee878a904fe7478a2d8cef533b829, type: 3}
+--- !u!114 &1127038692964157564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e7e7c6def318b64fb27495d78c7ccf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyData: {fileID: 11400000, guid: b7d765c1f01b0f34eb9509909fbb566e, type: 2}

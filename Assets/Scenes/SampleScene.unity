@@ -569,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 7456584431598404759, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: _currentWeapon1
       value: 
-      objectReference: {fileID: 11400000, guid: 310fe241bf0cfa143bd48041bf323115, type: 2}
+      objectReference: {fileID: 11400000, guid: 0dcf64a69a2c35140b4af7225318cf8c, type: 2}
     - target: {fileID: 8824453230072639120, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4912643

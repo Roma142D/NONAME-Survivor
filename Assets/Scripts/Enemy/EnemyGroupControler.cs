@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RomaDoliba.Enemy
 {
-    [CreateAssetMenu(fileName = "EnemiesGroup", menuName = "Enemy/EnemiesGroup", order = 0)]
+    [CreateAssetMenu(fileName = "EnemiesGroup", menuName = "Enemy/EnemiesGroup", order = 1)]
     public class EnemyGroupControler : ScriptableObject
     {
         [SerializeField] private EnemyMovement _enemyPrefab;

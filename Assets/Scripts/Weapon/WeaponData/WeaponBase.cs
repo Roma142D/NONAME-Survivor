@@ -18,6 +18,7 @@ namespace RomaDoliba.Weapon
         public float Speed => _speed;
         public float Cooldown => _cooldown;
         public WeaponType WeaponType => _weaponType;
+        public float Damage => _damage;
         
         
         public GameObject Init(WeaponHolderControler weaponHolder)
