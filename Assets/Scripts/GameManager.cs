@@ -21,6 +21,7 @@ namespace RomaDoliba.Manager
         [Header("EnemySpawn")]
         [SerializeField] private EnemyGroupControler _enemiesSpawner;
         [SerializeField] private Transform _spawnEnemiesPoint; //TEST 
+        [SerializeField] private int _enemiesSpawnPerOneTime;
         private List<EnemyMovement> _spawnedEnemies;
         [Space]
         [Header("Player")]
@@ -33,7 +34,7 @@ namespace RomaDoliba.Manager
             SpawnTile(Vector3.zero);
 
             _spawnedEnemies = new List<EnemyMovement>();
-            _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, 5);
+            _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _enemiesSpawnPerOneTime);
         }
         private void Update()
         {

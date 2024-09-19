@@ -12,7 +12,6 @@ namespace RomaDoliba.Weapon
         {
             StartAuraCorotine();
             _currentCooldown = _weaponData.Cooldown;
-            //_auraCoroutine = StartCoroutine(AuraAnimationCorotine(this.gameObject, _weaponData.Speed));
         }
         private void Update()
         {

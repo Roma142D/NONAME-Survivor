@@ -161,6 +161,7 @@ MonoBehaviour:
   _distanceToDisable: 22
   _enemiesSpawner: {fileID: 11400000, guid: c946ebe8d938f2a4aa308c016833ab57, type: 2}
   _spawnEnemiesPoint: {fileID: 1330868370}
+  _enemiesSpawnPerOneTime: 1
   _player: {fileID: 1453015400}
 --- !u!4 &348076218
 Transform:
@@ -477,6 +478,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 600368467918943375, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7203271283584374757, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -569,7 +574,7 @@ PrefabInstance:
     - target: {fileID: 7456584431598404759, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: _currentWeapon1
       value: 
-      objectReference: {fileID: 11400000, guid: 0dcf64a69a2c35140b4af7225318cf8c, type: 2}
+      objectReference: {fileID: 11400000, guid: e1fc373c27e61b743a29e4c3debb79f5, type: 2}
     - target: {fileID: 8824453230072639120, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4912643

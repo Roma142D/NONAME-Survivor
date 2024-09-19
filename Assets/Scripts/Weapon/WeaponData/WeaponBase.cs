@@ -14,11 +14,13 @@ namespace RomaDoliba.Weapon
         [SerializeField] protected float _damage;
         [SerializeField] protected float _speed;
         [SerializeField] protected float _cooldown;
+        [SerializeField] protected bool _passThroughEnemies;
         protected WeaponHolderControler _weaponHolder;
-        public float Speed => _speed;
-        public float Cooldown => _cooldown;
         public WeaponType WeaponType => _weaponType;
         public float Damage => _damage;
+        public float Speed => _speed;
+        public float Cooldown => _cooldown;
+        public bool PassThroughEnemies => _passThroughEnemies;
         
         
         public GameObject Init(WeaponHolderControler weaponHolder)

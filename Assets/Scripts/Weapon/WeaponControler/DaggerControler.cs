@@ -12,13 +12,11 @@ namespace RomaDoliba.Weapon
         protected override void Start()
         {
             StartCoroutine(FireDaggerCorotine(this.gameObject, _weaponData.Speed, CalculateDirection()));
-            //StartCoroutine(DelayToEnable());
             base.Start();
         }
         protected override void OnEnable()
         {
             StartCoroutine(FireDaggerCorotine(this.gameObject, _weaponData.Speed, CalculateDirection()));
-            //StartCoroutine(DelayToEnable());
             base.OnEnable();
         }
 
@@ -38,9 +36,9 @@ namespace RomaDoliba.Weapon
                 yield return new WaitForEndOfFrame();
             }
         }
-        protected override IEnumerator DelayToEnable()
+        protected override IEnumerator DelayToDisable()
         {
-            return base.DelayToEnable();
+            return base.DelayToDisable();
         }
     }
 }

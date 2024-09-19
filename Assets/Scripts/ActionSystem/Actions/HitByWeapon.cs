@@ -15,6 +15,7 @@ namespace RomaDoliba.ActionSystem
                 Debug.Log("FindEnemy");
                 if (enemy.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
                 {
+
                     _enemy = enemyStats;
                 }
             }
@@ -26,6 +27,10 @@ namespace RomaDoliba.ActionSystem
             {
                 Debug.Log("HitEnemy");
                 _enemy.GetHit(_weaponData.Damage);
+                if (!_weaponData.PassThroughEnemies)
+                {
+                    this.gameObject.SetActive(false);
+                }
             }
         }
     }

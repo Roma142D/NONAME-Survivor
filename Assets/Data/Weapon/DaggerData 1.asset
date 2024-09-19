@@ -17,3 +17,4 @@ MonoBehaviour:
   _damage: 1.2
   _speed: 6
   _cooldown: 2.5
+  _passThroughEnemies: 1
