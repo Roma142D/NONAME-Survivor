@@ -62,6 +62,11 @@ namespace RomaDoliba.Enemy
             }
         }
 
+        private void OnDisable()
+        {
+            _followCoroutine = null;
+        }
+
 
         [System.Serializable]
         private struct SpriteDirection

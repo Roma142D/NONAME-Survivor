@@ -22,7 +22,11 @@ namespace RomaDoliba.Manager
         [SerializeField] private EnemyGroupControler _enemiesSpawner;
         [SerializeField] private Transform _spawnEnemiesPoint; //TEST 
         [SerializeField] private int _enemiesSpawnPerOneTime;
+        [SerializeField] private float _coolDownForSpawn;
+        private int _currentEnemiesPerSpawn;
         private List<EnemyMovement> _spawnedEnemies;
+        private List<EnemyMovement> _enemiesToPool;
+        private Coroutine _spawnEnemiesCoroutine;
         [Space]
         [Header("Player")]
         [SerializeField] private PlayerControler _player;
@@ -33,11 +37,19 @@ namespace RomaDoliba.Manager
             _terrainTilesData.Init(_backgroundGrid.transform);
             SpawnTile(Vector3.zero);
 
+            _currentEnemiesPerSpawn = _enemiesSpawnPerOneTime;
             _spawnedEnemies = new List<EnemyMovement>();
-            _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _enemiesSpawnPerOneTime);
+            _enemiesToPool = new List<EnemyMovement>();
+            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _currentEnemiesPerSpawn);
+            _spawnedEnemies.AddRange(spawnedEnemies);
         }
         private void Update()
         {
+            if (_spawnEnemiesCoroutine == null)
+            {
+                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
+            }
+            
             CheckTilesToSpawn();
         }
 
@@ -85,5 +97,43 @@ namespace RomaDoliba.Manager
             var spawnedTile = _terrainTilesData.SpawnTile(spawnPosition);
             _spawnedTiles.Add(spawnedTile);
         }
+
+        private IEnumerator SpawnEnemiesByCoolDown()
+        {
+            yield return new WaitForSeconds(_coolDownForSpawn);
+            CheckEnemiesToPool();
+            if (_enemiesToPool.Count <= _currentEnemiesPerSpawn || _enemiesToPool == null)
+            {
+                var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _enemiesSpawnPerOneTime);
+                _spawnedEnemies.AddRange(spawnedEnemies);
+            }
+            else
+            {
+                for (int i = 0; i < _currentEnemiesPerSpawn; i++)
+                {
+                    var enemyToPool = _enemiesToPool[i];
+                    enemyToPool.gameObject.transform.position = _spawnEnemiesPoint.position;
+                    enemyToPool.gameObject.SetActive(true);
+                    _enemiesToPool.Remove(enemyToPool);
+                    _spawnedEnemies.Add(enemyToPool);
+                }
+            }
+
+            _spawnEnemiesCoroutine = null;
+        }
+
+        private void CheckEnemiesToPool()
+        {
+            for (int i = 0; i < _spawnedEnemies.Count; i++)
+            {
+                var enemy = _spawnedEnemies[i];
+                if (enemy.gameObject.activeSelf == false)
+                {
+                    _spawnedEnemies.Remove(enemy);
+                    _enemiesToPool.Add(enemy);
+                }
+            }
+        }
+
     }
 }

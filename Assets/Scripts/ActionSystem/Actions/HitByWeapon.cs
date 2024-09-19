@@ -12,7 +12,6 @@ namespace RomaDoliba.ActionSystem
         {
             if (enemy.CompareTag("Enemy"))
             {
-                Debug.Log("FindEnemy");
                 if (enemy.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
                 {
 
@@ -25,7 +24,6 @@ namespace RomaDoliba.ActionSystem
         {
             if (_enemy != null)
             {
-                Debug.Log("HitEnemy");
                 _enemy.GetHit(_weaponData.Damage);
                 if (!_weaponData.PassThroughEnemies)
                 {

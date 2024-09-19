@@ -161,7 +161,8 @@ MonoBehaviour:
   _distanceToDisable: 22
   _enemiesSpawner: {fileID: 11400000, guid: c946ebe8d938f2a4aa308c016833ab57, type: 2}
   _spawnEnemiesPoint: {fileID: 1330868370}
-  _enemiesSpawnPerOneTime: 1
+  _enemiesSpawnPerOneTime: 2
+  _coolDownForSpawn: 3
   _player: {fileID: 1453015400}
 --- !u!4 &348076218
 Transform:

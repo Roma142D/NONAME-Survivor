@@ -15,10 +15,16 @@ namespace RomaDoliba.Enemy
             _currentSpeed = _enemyData.MoveSpeed;
             _currentDamage = _enemyData.Damage;
         }
+        private void OnEnable()
+        {
+            _currentHealth = _enemyData.Health;
+            _currentSpeed = _enemyData.MoveSpeed;
+            _currentDamage = _enemyData.Damage;
+        }
 
         public void GetHit(float damage)
         {
-            Debug.Log("TakeDamage");
+            Debug.Log($"EnemyHelth {_currentHealth}");
             _currentHealth -= damage;
             if (_currentHealth <= 0)
             {

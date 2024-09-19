@@ -7,25 +7,18 @@ namespace RomaDoliba.Weapon
     {
         [SerializeField] private Vector3 _minScale;
         [SerializeField] private Vector3 _maxScale;
-        private float _currentCooldown;
-        private void Start()
-        {
-            StartAuraCorotine();
-            _currentCooldown = _weaponData.Cooldown;
-        }
+        private Coroutine _auraCoroutine;
         private void Update()
         {
-            _currentCooldown -= Time.deltaTime;
-            if (_currentCooldown <= 0)
+            if (_auraCoroutine == null)
             {
                 StartAuraCorotine();
-                _currentCooldown = _weaponData.Cooldown;
             }
         }
         
         public void StartAuraCorotine()
         {
-            StartCoroutine(AuraAnimationCorotine(this.gameObject, _weaponData.Speed));
+            _auraCoroutine = StartCoroutine(AuraAnimationCorotine(this.gameObject, _weaponData.Speed));
         }
 
         private IEnumerator AuraAnimationCorotine(GameObject aura, float animSpeed)
@@ -40,8 +33,11 @@ namespace RomaDoliba.Weapon
                 deltaTime = Mathf.Min(animSpeed, deltaTime + Time.deltaTime);
                 currentTime = Mathf.Min(endTime, (endTime * deltaTime) / animSpeed);
                 currentScale = aura.transform.localScale;
+
                 yield return new WaitForEndOfFrame();
             }
+            
+            yield return new WaitForSeconds(_weaponData.Cooldown);           
             currentTime = 0f;
             deltaTime = 0f;
             while (deltaTime != animSpeed)
@@ -50,8 +46,10 @@ namespace RomaDoliba.Weapon
                 deltaTime = Mathf.Min(animSpeed, deltaTime + Time.deltaTime);
                 currentTime = Mathf.Min(endTime, (endTime * deltaTime) / animSpeed);
                 currentScale = aura.transform.localScale;
+
                 yield return new WaitForEndOfFrame();
             }
+            _auraCoroutine = null;
         }
     }
 }

@@ -103,8 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponData: {fileID: 11400000, guid: e1fc373c27e61b743a29e4c3debb79f5, type: 2}
-  _minScale: {x: 0.5, y: 0.5, z: 0.5}
-  _maxScale: {x: 3.5, y: 3.5, z: 3.5}
+  _minScale: {x: 0, y: 0, z: 0}
+  _maxScale: {x: 4, y: 4, z: 4}
+  _collider: {fileID: 8614127279509522868}
 --- !u!58 &8614127279509522868
 CircleCollider2D:
   m_ObjectHideFlags: 0

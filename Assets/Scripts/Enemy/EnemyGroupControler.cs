@@ -16,6 +16,7 @@ namespace RomaDoliba.Enemy
         }
         public List<EnemyMovement> SpawnEnemies(Vector3 spawnPoint, int enemiesCount)
         {
+            _enemiesGroup.Clear();
             var nextSpawnPosition = spawnPoint;
             for (int i = 0; i < enemiesCount; i++)
             {
