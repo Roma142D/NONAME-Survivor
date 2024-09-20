@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2692853846338964489}
   - component: {fileID: 7019587070505589946}
   - component: {fileID: 2118760667442604664}
-  m_Layer: 0
+  - component: {fileID: 6266060514300995646}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -194,12 +195,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f96afc5a5aa8a945b0528d69bc0e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterData: {fileID: 11400000, guid: 33ad5588e3367f84a91547f2d1de753a, type: 2}
   _player: {fileID: 2692853846338964489}
   _playerRenderer: {fileID: 3265215372750039168}
-  _moveSpeed: 200
   _playerAnimator: {fileID: 1115099964110895156}
   _camera: {fileID: 0}
   _cameraSpeed: 0.25
+--- !u!114 &6266060514300995646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808087472270055031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9b4b54bc5f7cff4a948a80a8622dc41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelRanges:
+  - StartLevel: 1
+    EndLevel: 3
+    ExpCapIncrease: 100
+  - StartLevel: 4
+    EndLevel: 6
+    ExpCapIncrease: 200
+  _expText: {fileID: 0}
 --- !u!1 &5119144123579859682
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7461814678674717129}
   - component: {fileID: 7456584431598404759}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,4 +265,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a686b0d302c6cd545879c3d0738ca4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentWeapon1: {fileID: 0}
+  _currentWeapon1: {fileID: 11400000, guid: e1fc373c27e61b743a29e4c3debb79f5, type: 2}

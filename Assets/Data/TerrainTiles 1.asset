@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c773c491a827fbb4f9191229ac2011ee, type: 3}
-  m_Name: TerrainTiles
+  m_Name: TerrainTiles 1
   m_EditorClassIdentifier: 
   _terrainTilesBackground:
   - {fileID: 2740060920588526411, guid: 9457e4a878d24124bac019831a720309, type: 3}

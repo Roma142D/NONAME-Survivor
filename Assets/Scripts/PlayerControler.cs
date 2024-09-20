@@ -11,12 +11,14 @@ namespace RomaDoliba.Player
     public class PlayerControler : MonoBehaviour
     {
         public static PlayerControler Instance{get; private set;}
+        [SerializeField] private CharacterData _characterData;
         [SerializeField] private Rigidbody2D _player;
         [SerializeField] private SpriteRenderer _playerRenderer;
-        [SerializeField] private float _moveSpeed;
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private Transform _camera;
         [SerializeField] private float _cameraSpeed;
+        private float _currentMoveSpeed;
+        private float _currentHP;
         private MyPlayerInput _playerInput;
         private Vector2 _moveDirection;
         private Vector2 _lastMoveDirection;
@@ -33,7 +35,10 @@ namespace RomaDoliba.Player
             {
                 Destroy(gameObject);
             }
-            
+            _playerAnimator.runtimeAnimatorController = _characterData.Animator;
+            _playerRenderer.sprite = _characterData.Skin;
+            _currentMoveSpeed = _characterData.MoveSpeed;
+            _currentHP = _characterData.MaxHealth;
             _playerInput = new MyPlayerInput();
         }
         
@@ -49,7 +54,7 @@ namespace RomaDoliba.Player
         private void Move()
         {
             var velocityByInput = new Vector2(_moveDirection.x, _moveDirection.y).normalized;
-            var modifiedVelocity = velocityByInput * _moveSpeed * Time.fixedDeltaTime;
+            var modifiedVelocity = velocityByInput * _currentMoveSpeed * Time.fixedDeltaTime;
 
             _player.velocity = new Vector2(modifiedVelocity.x, modifiedVelocity.y);
             if (_moveDirection != Vector2.zero)
