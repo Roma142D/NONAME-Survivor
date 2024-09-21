@@ -11,12 +11,6 @@ namespace RomaDoliba.Terrain
         [SerializeField] private List<GameObject> _propPrefabs;
         private Transform _parent;
 
-        private void Awake()
-        {
-            _terrainTilesBackground = new List<TileBase>();
-            _propPrefabs = new List<GameObject>();
-
-        }
         public void Init (Transform parent)
         {
             _parent = parent;

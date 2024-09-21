@@ -9,25 +9,33 @@ namespace RomaDoliba.Player
 {
     public class PlayerStats : MonoBehaviour
     {
+        [SerializeField] private CharacterData _characterData;
         [SerializeField] private List<LevelRange> _levelRanges;
         [SerializeField] private TextMeshProUGUI _expText;
         private int _currentExp = 0;
         private int _currentLevel = 1;
         private int _expCap;
 
+        public void Init(Animator animator, SpriteRenderer renderer)
+        {
+            animator.runtimeAnimatorController = _characterData.Animator;
+            renderer.sprite = _characterData.Skin;
+            PlayerControler.Instance.CurrentMS = _characterData.MoveSpeed;
+            PlayerControler.Instance.CurrentHP = _characterData.MaxHealth;
+        }
         private void Awake()
         {
-            //_levelRanges = new List<LevelRange>();
             _expCap = _levelRanges[0].ExpCapIncrease;
-            ExperienceSender.OnEnemyDeath += GainExperience;
+            //ExperienceSender.OnEnemyDeath += GainExperience;
         }
 
-        private void GainExperience(int exp)
+        public void GainExperience(int exp)
         {
             _currentExp += exp;
             LevelUpChecker();
             _expText.SetText($"Level:{_currentLevel} Exp:{_currentExp}");
         }
+        
         private void LevelUpChecker()
         {
             if (_currentExp >= _expCap)
@@ -47,6 +55,7 @@ namespace RomaDoliba.Player
                 _expCap += expCapIncrease;
             }
         }
+
 
         [System.Serializable]
         public struct LevelRange

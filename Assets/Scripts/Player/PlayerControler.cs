@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using RomaDoliba.ActionSystem;
 using RomaDoliba.Weapon;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static RomaDoliba.Player.MyPlayerInput;
@@ -11,18 +13,22 @@ namespace RomaDoliba.Player
     public class PlayerControler : MonoBehaviour
     {
         public static PlayerControler Instance{get; private set;}
-        [SerializeField] private CharacterData _characterData;
+        [SerializeField] private PlayerStats _playerStats;
         [SerializeField] private Rigidbody2D _player;
         [SerializeField] private SpriteRenderer _playerRenderer;
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private Transform _camera;
         [SerializeField] private float _cameraSpeed;
+        [SerializeField] private TextMeshProUGUI _testHP;
         private float _currentMoveSpeed;
         private float _currentHP;
         private MyPlayerInput _playerInput;
         private Vector2 _moveDirection;
         private Vector2 _lastMoveDirection;
+        private Coroutine _takingDamage;
 
+        public float CurrentMS {get => _currentMoveSpeed; set => _currentMoveSpeed = value;}
+        public float CurrentHP {get => _currentHP; set => _currentHP = value;}
         public Vector2 LastMoveDirection => _lastMoveDirection;
         public Vector2 MoveDirection => _moveDirection;
         private void Awake()
@@ -35,12 +41,12 @@ namespace RomaDoliba.Player
             {
                 Destroy(gameObject);
             }
-            _playerAnimator.runtimeAnimatorController = _characterData.Animator;
-            _playerRenderer.sprite = _characterData.Skin;
-            _currentMoveSpeed = _characterData.MoveSpeed;
-            _currentHP = _characterData.MaxHealth;
+            _playerStats.Init(_playerAnimator, _playerRenderer);
             _playerInput = new MyPlayerInput();
+            GlobalEventSender.OnEvent += TakeDamage;
+            _testHP.SetText(_currentHP.ToString());
         }
+
         
         private void Update()
         {
@@ -72,6 +78,28 @@ namespace RomaDoliba.Player
             }
             StartCoroutine(CameraFolow(_player.transform.position, _cameraSpeed));
         }
+        private void TakeDamage(string eventName, float damage)
+        {
+            if (eventName == "TakeDamage" && _takingDamage == null)
+            {
+                _takingDamage = StartCoroutine(TakeDamageCoroutine(damage));
+                _testHP.SetText(_currentHP.ToString());
+                if (_currentHP <= 0)
+                {
+                    Die();
+                }
+            }
+        }
+        private void Die()
+        {
+            Time.timeScale = 0;
+        }
+        private IEnumerator TakeDamageCoroutine(float damage)
+        {
+            _currentHP -= damage;
+            yield return new WaitForSeconds(1f);
+            _takingDamage = null;
+        }
         
         private IEnumerator CameraFolow(Vector2 playerPosition, float delay)
         {
@@ -96,6 +124,7 @@ namespace RomaDoliba.Player
         }
         private void OnDisable()
         {
+            GlobalEventSender.OnEvent -= TakeDamage;
             _playerInput.Disable();
         }
     }

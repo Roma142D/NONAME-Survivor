@@ -16,6 +16,9 @@ GameObject:
   - component: {fileID: 1127038692964157564}
   - component: {fileID: 4422902860312536868}
   - component: {fileID: 3561561690453761306}
+  - component: {fileID: 9083830360646017848}
+  - component: {fileID: 1201003871856018800}
+  - component: {fileID: -821100249709420345}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -216,4 +219,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drops:
   - DropPrefab: {fileID: 3150623385548327887, guid: 00db5f7a5b3f73946919b791fde5e90f, type: 3}
-    DropChance: 50
+    DropChance: 80
+--- !u!114 &9083830360646017848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a66e28c9274e840bf9396ab51a9882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _condition: {fileID: 1201003871856018800}
+  _actions:
+  - {fileID: -821100249709420345}
+  _onCollision: 1
+  _onTrigger: 0
+  _state:
+    _enter: 1
+    _stay: 1
+    _exit: 0
+--- !u!114 &1201003871856018800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481b56b043337bb4b80471ae215375b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collideWith:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &-821100249709420345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2b8631f647cba64da98bcd8e697b009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: TakeDamage
+  _value: 0
+  _enemyData: {fileID: 11400000, guid: b7d765c1f01b0f34eb9509909fbb566e, type: 2}
