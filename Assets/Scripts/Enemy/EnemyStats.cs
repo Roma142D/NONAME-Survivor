@@ -24,7 +24,6 @@ namespace RomaDoliba.Enemy
 
         public void GetHit(float damage)
         {
-            Debug.Log($"EnemyHelth {_currentHealth}");
             _currentHealth -= damage;
             if (_currentHealth <= 0)
             {

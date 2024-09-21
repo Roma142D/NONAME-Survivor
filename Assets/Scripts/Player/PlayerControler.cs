@@ -22,6 +22,7 @@ namespace RomaDoliba.Player
         [SerializeField] private TextMeshProUGUI _testHP;
         private float _currentMoveSpeed;
         private float _currentHP;
+        private float _maxHP;
         private MyPlayerInput _playerInput;
         private Vector2 _moveDirection;
         private Vector2 _lastMoveDirection;
@@ -42,6 +43,7 @@ namespace RomaDoliba.Player
                 Destroy(gameObject);
             }
             _playerStats.Init(_playerAnimator, _playerRenderer);
+            _maxHP = _currentHP;
             _playerInput = new MyPlayerInput();
             GlobalEventSender.OnEvent += TakeDamage;
             _testHP.SetText(_currentHP.ToString());
@@ -93,6 +95,15 @@ namespace RomaDoliba.Player
         private void Die()
         {
             Time.timeScale = 0;
+        }
+        public void Heal(int value)
+        {
+            _currentHP += value;
+            if (_currentHP > _maxHP)
+            {
+                _currentHP = _maxHP;
+            }
+            _testHP.SetText(_currentHP.ToString());
         }
         private IEnumerator TakeDamageCoroutine(float damage)
         {
