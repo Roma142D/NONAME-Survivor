@@ -8,6 +8,7 @@ namespace RomaDoliba.Enemy
         private float _currentHealth;
         private float _currentSpeed;
         private float _currentDamage;
+        public float MoveSpeed => _currentSpeed;
 
         private void Awake()
         {

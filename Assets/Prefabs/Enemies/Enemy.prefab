@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c1d1049d314624fb610b73293cfd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: b7d765c1f01b0f34eb9509909fbb566e, type: 2}
+  _enemyStats: {fileID: 1127038692964157564}
   _targetLayer:
     serializedVersion: 2
     m_Bits: 64

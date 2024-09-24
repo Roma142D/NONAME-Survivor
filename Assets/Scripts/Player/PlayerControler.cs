@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using RomaDoliba.ActionSystem;
 using RomaDoliba.Weapon;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static RomaDoliba.Player.MyPlayerInput;
@@ -19,7 +20,8 @@ namespace RomaDoliba.Player
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private Transform _camera;
         [SerializeField] private float _cameraSpeed;
-        [SerializeField] private TextMeshProUGUI _testHP;
+        [SerializeField] private CircleCollider2D _collector;
+        [SerializeField] public TextMeshProUGUI _testHP;
         private float _currentMoveSpeed;
         private float _currentHP;
         private float _maxHP;
@@ -27,9 +29,11 @@ namespace RomaDoliba.Player
         private Vector2 _moveDirection;
         private Vector2 _lastMoveDirection;
         private Coroutine _takingDamage;
+        private float _currentCollectRange;
 
         public float CurrentMS {get => _currentMoveSpeed; set => _currentMoveSpeed = value;}
         public float CurrentHP {get => _currentHP; set => _currentHP = value;}
+        public float CurrentCollectRange {get => _currentCollectRange; set => _currentCollectRange = value;}
         public Vector2 LastMoveDirection => _lastMoveDirection;
         public Vector2 MoveDirection => _moveDirection;
         private void Awake()
@@ -44,6 +48,7 @@ namespace RomaDoliba.Player
             }
             _playerStats.Init(_playerAnimator, _playerRenderer);
             _maxHP = _currentHP;
+            _collector.radius = _currentCollectRange;
             _playerInput = new MyPlayerInput();
             GlobalEventSender.OnEvent += TakeDamage;
             _testHP.SetText(_currentHP.ToString());
