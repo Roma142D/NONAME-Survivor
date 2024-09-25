@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using RomaDoliba.ActionSystem;
+using RomaDoliba.UI;
 using TMPro;
 using UnityEngine;
 
@@ -9,8 +10,6 @@ namespace RomaDoliba.Player
 {
     public class PlayerStats : MonoBehaviour
     {
-        [Header("Data")]
-        [SerializeField] private CharacterData _characterData;
         [Space]
         [Header("Leveling")]
         [SerializeField] private List<LevelRange> _levelRanges;
@@ -18,14 +17,17 @@ namespace RomaDoliba.Player
         private int _currentExp = 0;
         private int _currentLevel = 1;
         private int _expCap;
+        private CharacterData _characterData;
                 
         public void Init(Animator animator, SpriteRenderer renderer)
         {
+            _characterData = CharacteeSelector.GetData();
             animator.runtimeAnimatorController = _characterData.Animator;
             renderer.sprite = _characterData.Skin;
             PlayerControler.Instance.CurrentMS = _characterData.MoveSpeed;
             PlayerControler.Instance.CurrentHP = _characterData.MaxHealth;
             PlayerControler.Instance.CurrentCollectRange = _characterData.CollectRange;
+            PlayerControler.Instance.DefoltWeapon = _characterData.DefoltWeapon;
         }
         private void Awake()
         {

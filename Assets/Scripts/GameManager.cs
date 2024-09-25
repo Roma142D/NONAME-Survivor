@@ -40,14 +40,14 @@ namespace RomaDoliba.Manager
             _currentEnemiesPerSpawn = _enemiesSpawnPerOneTime;
             _spawnedEnemies = new List<EnemyMovement>();
             _enemiesToPool = new List<EnemyMovement>();
-            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _currentEnemiesPerSpawn);
-            _spawnedEnemies.AddRange(spawnedEnemies);
+            //var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _currentEnemiesPerSpawn);
+            //_spawnedEnemies.AddRange(spawnedEnemies);
         }
         private void Update()
         {
             if (_spawnEnemiesCoroutine == null)
             {
-                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
+                //_spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
             }
             
             CheckTilesToSpawn();

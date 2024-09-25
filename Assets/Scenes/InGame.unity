@@ -229,7 +229,7 @@ MonoBehaviour:
   _distanceToDisable: 22
   _enemiesSpawner: {fileID: 11400000, guid: c946ebe8d938f2a4aa308c016833ab57, type: 2}
   _spawnEnemiesPoint: {fileID: 1330868370}
-  _enemiesSpawnPerOneTime: 0
+  _enemiesSpawnPerOneTime: 1
   _coolDownForSpawn: 6
   _player: {fileID: 1453015400}
 --- !u!4 &348076218
@@ -494,7 +494,7 @@ Transform:
   m_GameObject: {fileID: 621502132}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1020,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 600368467918943375, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7203271283584374757, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
       propertyPath: m_Enabled
@@ -1107,6 +1107,10 @@ PrefabInstance:
       propertyPath: _characterData
       value: 
       objectReference: {fileID: 11400000, guid: 33ad5588e3367f84a91547f2d1de753a, type: 2}
+    - target: {fileID: 7456584431598404759, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
+      propertyPath: _testSecondWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 310fe241bf0cfa143bd48041bf323115, type: 2}
     - target: {fileID: 8824453230072639120, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.4912643

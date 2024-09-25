@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using RomaDoliba.Player;
 
@@ -8,7 +7,7 @@ namespace RomaDoliba.Weapon
 {
     public class WeaponHolderControler : MonoBehaviour
     {
-        [SerializeField] private WeaponBase _currentWeapon1;
+        public WeaponBase _testSecondWeapon;
         private WeaponBase _daggerWeapon;
         private WeaponBase _auraWeapon;
         private List<GameObject> _spawnedDaggers;
@@ -22,14 +21,19 @@ namespace RomaDoliba.Weapon
         }
         private void Start()
         {
-            switch (_currentWeapon1.WeaponType)  //TODO перенести цей світч в метод який буде спрацьовувати коли ми підбераємо нову зброю
+            AddWeapon(PlayerControler.Instance.DefoltWeapon);
+            AddWeapon(_testSecondWeapon);
+        }
+        private void AddWeapon(WeaponBase weapon)
+        {
+            switch (weapon.WeaponType)  
             {
                 case WeaponType.dagger: 
-                    _daggerWeapon = _currentWeapon1;
+                    _daggerWeapon = weapon;
                     _currentCooldown = _daggerWeapon.Cooldown;
                     break;
                 case WeaponType.aura:
-                    _auraWeapon = _currentWeapon1;
+                    _auraWeapon = weapon;
                     AuraWeaponBehavior(_auraWeapon);
                     break;
                 default: 

@@ -30,7 +30,9 @@ namespace RomaDoliba.Player
         private Vector2 _lastMoveDirection;
         private Coroutine _takingDamage;
         private float _currentCollectRange;
+        private WeaponBase _defoltWeapon;
 
+        public WeaponBase DefoltWeapon {get => _defoltWeapon; set => _defoltWeapon = value;}
         public float CurrentMS {get => _currentMoveSpeed; set => _currentMoveSpeed = value;}
         public float CurrentHP {get => _currentHP; set => _currentHP = value;}
         public float CurrentCollectRange {get => _currentCollectRange; set => _currentCollectRange = value;}

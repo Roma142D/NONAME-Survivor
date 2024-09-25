@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RomaDoliba.ActionSystem
 {
-    public class HitByWeapon : ActionBase
+    public class HitByWeapon : MonoBehaviour
     {
         [SerializeField] private WeaponBase _weaponData;
         private EnemyStats _enemy;
@@ -14,13 +14,13 @@ namespace RomaDoliba.ActionSystem
             {
                 if (enemy.TryGetComponent<EnemyStats>(out EnemyStats enemyStats))
                 {
-
                     _enemy = enemyStats;
+                    Execute();
                 }
             }
         }
         
-        public override void Execute()
+        public void Execute()
         {
             if (_enemy != null)
             {

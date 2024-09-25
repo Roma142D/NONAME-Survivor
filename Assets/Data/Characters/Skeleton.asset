@@ -15,7 +15,7 @@ MonoBehaviour:
   _defoltWeapon: {fileID: 11400000, guid: e1fc373c27e61b743a29e4c3debb79f5, type: 2}
   _moveSpeed: 250
   _maxHealth: 50
-  _pasiveRecovery: 10
+  _pasiveRecovery: 0.5
   _collectRange: 1.5
   _characterSkin: {fileID: 21300016, guid: 07d565d92ab6f034c8b49f741846f845, type: 3}
   _animationControler: {fileID: 9100000, guid: f5363fbd4ae068548af4fc5695951402, type: 2}

@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: -1040557710978867456}
   - component: {fileID: 3918306837641050428}
   - component: {fileID: 4372454148855784263}
-  - component: {fileID: 7838719275710290689}
-  - component: {fileID: 3917105752462147600}
   - component: {fileID: -3541158865327311145}
   m_Layer: 0
   m_Name: Dagger
@@ -112,7 +110,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6406712524275714416}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -185,42 +183,6 @@ PolygonCollider2D:
       - {x: 0.25036383, y: 0.3152926}
       - {x: -0.1829139, y: -0.092099786}
   m_UseDelaunayMesh: 0
---- !u!114 &7838719275710290689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6406712524275714416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481b56b043337bb4b80471ae215375b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collideWith:
-    serializedVersion: 2
-    m_Bits: 128
---- !u!114 &3917105752462147600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6406712524275714416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a66e28c9274e840bf9396ab51a9882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _condition: {fileID: 7838719275710290689}
-  _actions:
-  - {fileID: -3541158865327311145}
-  _onCollision: 0
-  _onTrigger: 1
-  _state:
-    _enter: 1
-    _stay: 0
-    _exit: 0
 --- !u!114 &-3541158865327311145
 MonoBehaviour:
   m_ObjectHideFlags: 0
