@@ -18,9 +18,12 @@ namespace RomaDoliba.Player
         private int _currentLevel = 1;
         private int _expCap;
         private CharacterData _characterData;
+        private GlobalWeaponData _globalWeaponData;
                 
         public void Init(Animator animator, SpriteRenderer renderer)
         {
+            Debug.Log(PlayerPrefs.GetString("CharacterName"));
+            
             _characterData = CharacteeSelector.GetData();
             animator.runtimeAnimatorController = _characterData.Animator;
             renderer.sprite = _characterData.Skin;
