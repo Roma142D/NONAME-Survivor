@@ -17,14 +17,13 @@ namespace RomaDoliba.Player
         private int _currentExp = 0;
         private int _currentLevel = 1;
         private int _expCap;
-        private CharacterData _characterData;
-        private GlobalWeaponData _globalWeaponData;
-                
+        [SerializeField] private CharacterData _characterData;
+                        
         public void Init(Animator animator, SpriteRenderer renderer)
         {
             Debug.Log(PlayerPrefs.GetString("CharacterName"));
             
-            _characterData = CharacteeSelector.GetData();
+            //_characterData = CharacteeSelector.GetData();
             animator.runtimeAnimatorController = _characterData.Animator;
             renderer.sprite = _characterData.Skin;
             PlayerControler.Instance.CurrentMS = _characterData.MoveSpeed;
@@ -35,7 +34,6 @@ namespace RomaDoliba.Player
         private void Awake()
         {
             _expCap = _levelRanges[0].ExpCapIncrease;
-            //ExperienceSender.OnEnemyDeath += GainExperience;
         }
         private void Update()
         {

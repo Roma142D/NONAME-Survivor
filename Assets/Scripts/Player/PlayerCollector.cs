@@ -12,7 +12,6 @@ namespace RomaDoliba.Player
         {
             if (_pickUpsLayer == (_pickUpsLayer | (1 << col.gameObject.layer)))
             {
-                Debug.Log("PickUp");
                 StartCoroutine(MoveItem(col.transform));
             }
         }

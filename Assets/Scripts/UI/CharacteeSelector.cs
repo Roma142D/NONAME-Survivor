@@ -12,7 +12,7 @@ namespace RomaDoliba.UI
     public class CharacteeSelector : MonoBehaviour
     {
         public static CharacteeSelector Instance{get; private set;}
-        [SerializeField] private GlobalWeaponData _globalCharacterData;
+        [SerializeField] private GlobalCharactersData _globalCharacterData;
         private CharacterData _characterData = null;
                 
         private void Awake()
@@ -43,6 +43,10 @@ namespace RomaDoliba.UI
             if (Instance._characterData == null)
             {
                 Instance._characterData = Instance._globalCharacterData.GetCharacterDataByName(PlayerPrefs.GetString("CharacterName"));
+                if (Instance._characterData == null)
+                {
+                    Instance._characterData = Instance._globalCharacterData.FirstCharacterData;
+                }
             }
 
             return Instance._characterData;

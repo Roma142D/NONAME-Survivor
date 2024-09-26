@@ -5,10 +5,11 @@ using UnityEngine;
 
 namespace RomaDoliba
 {
-    [CreateAssetMenu(fileName = "GlobalWeaponData", menuName = "Data/GlobalWeaponData", order = 1)]
-    public class GlobalWeaponData : ScriptableObject
+    [CreateAssetMenu(fileName = "GlobalCharactersData", menuName = "Data/GlobalCharactersData", order = 1)]
+    public class GlobalCharactersData : ScriptableObject
     {
         [SerializeField] private CharacterData[] _charactersData;
+        public CharacterData FirstCharacterData => _charactersData[0];
         
         public CharacterData GetCharacterDataByName(string name)
         {

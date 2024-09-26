@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b195748dbe3ce44588b638f03ac84d0, type: 3}
-  m_Name: GlobalWeaponData
+  m_Name: GlobalCharactersData
   m_EditorClassIdentifier: 
   _charactersData:
   - {fileID: 11400000, guid: 334bff3e7bb22b2439343577d956d972, type: 2}
