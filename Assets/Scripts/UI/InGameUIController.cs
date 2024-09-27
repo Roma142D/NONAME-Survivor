@@ -22,7 +22,6 @@ namespace RomaDoliba.UI
             if (eventName == "Coin")
             {
                 _currentCoins += (int)value; 
-                Debug.Log(_currentCoins);
                 _coinsCounter.SetText(_currentCoins.ToString());
             }
         }

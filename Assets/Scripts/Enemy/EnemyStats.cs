@@ -1,3 +1,5 @@
+using RomaDoliba.ActionSystem;
+using RomaDoliba.PickUps;
 using UnityEngine;
 
 namespace RomaDoliba.Enemy
@@ -5,6 +7,7 @@ namespace RomaDoliba.Enemy
     public class EnemyStats : MonoBehaviour
     {
         [SerializeField] private EnemyData _enemyData;
+        [SerializeField] private DropItem _dropItem;
         private float _currentHealth;
         private float _currentSpeed;
         private float _currentDamage;
@@ -28,6 +31,7 @@ namespace RomaDoliba.Enemy
             _currentHealth -= damage;
             if (_currentHealth <= 0)
             {
+                _dropItem.DropRandomItem(transform.position);
                 this.gameObject.SetActive(false);
             }
         }

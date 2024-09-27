@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RomaDoliba.ActionSystem
 {
-    public class DropItem : ActionBase
+    public class DropItemAS : ActionBase
     {
         [SerializeField] private List<Drop> _drops;
 

@@ -30,7 +30,6 @@ namespace RomaDoliba.ActionSystem
                     PlayerControler.Instance.Heal((int)_value);
                     break;
                 case PickUpType.Coin:
-                    Debug.Log("SendCoins");
                     var curCoins = PlayerPrefs.GetInt("Coins");
                     curCoins += (int)_value;
                     PlayerPrefs.SetInt("Coins", curCoins);

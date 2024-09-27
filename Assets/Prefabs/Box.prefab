@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 510842649658191823}
   - component: {fileID: 1578732410967955193}
   - component: {fileID: 1127038692964157564}
-  - component: {fileID: 4422902860312536868}
-  - component: {fileID: 3561561690453761306}
   - component: {fileID: 1049050456412413984}
   m_Layer: 7
   m_Name: Box
@@ -129,38 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 3de0b0329ca7bfc4d8694e7b60f78c3d, type: 2}
---- !u!114 &4422902860312536868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600368467918943375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72678143a1940f94b86d9c133a375495, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _condition: {fileID: 0}
-  _actions:
-  - {fileID: 3561561690453761306}
---- !u!114 &3561561690453761306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600368467918943375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97963e3b713436a4d8e32d03c747e460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _drops:
-  - DropPrefab: {fileID: 3150623385548327887, guid: 27242903509c29a478fcb93ac2c7768b, type: 3}
-    DropChance: 50
-  - DropPrefab: {fileID: 3150623385548327887, guid: c1737a2dc0e45d54ab034234ac88a78f, type: 3}
-    DropChance: 50
+  _dropItem: {fileID: 11400000, guid: e7d4f6cf9c914cb4c8d0f996ae326b02, type: 2}
 --- !u!61 &1049050456412413984
 BoxCollider2D:
   m_ObjectHideFlags: 0

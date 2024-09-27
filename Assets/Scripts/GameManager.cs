@@ -30,6 +30,12 @@ namespace RomaDoliba.Manager
         [Space]
         [Header("Player")]
         [SerializeField] private PlayerControler _player;
+        [Space]
+        [Header("Items")]
+        [SerializeField] private Transform _dropedItemsCollector;
+        private List<GameObject> _dropedItems;
+        public Transform DropedItemsCollector => _dropedItemsCollector;
+        public List<GameObject> DropedItems => _dropedItems;
         
         private void Awake()
         {
@@ -40,14 +46,16 @@ namespace RomaDoliba.Manager
             _currentEnemiesPerSpawn = _enemiesSpawnPerOneTime;
             _spawnedEnemies = new List<EnemyMovement>();
             _enemiesToPool = new List<EnemyMovement>();
-            //var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _currentEnemiesPerSpawn);
-            //_spawnedEnemies.AddRange(spawnedEnemies);
+            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _currentEnemiesPerSpawn);
+            _spawnedEnemies.AddRange(spawnedEnemies);
+
+            _dropedItems = new List<GameObject>();
         }
         private void Update()
         {
             if (_spawnEnemiesCoroutine == null)
             {
-                //_spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
+                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
             }
             
             CheckTilesToSpawn();
@@ -133,6 +141,11 @@ namespace RomaDoliba.Manager
                     _enemiesToPool.Add(enemy);
                 }
             }
+        }
+
+        public void AddItemToPool(GameObject item)
+        {
+            _dropedItems.Add(item);
         }
 
     }
