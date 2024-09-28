@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using RomaDoliba.Manager;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RomaDoliba.PickUps
@@ -10,12 +9,7 @@ namespace RomaDoliba.PickUps
     public class DropItem : ScriptableObject
     {
         [SerializeField] private List<Drop> _drops;
-        private GameManager _gameManager;
-        
-        private void Awake()
-        {
-            _gameManager = FindObjectOfType<GameManager>();
-        }
+                
         public GameObject DropRandomItem(Vector3 dropPosition)
         {
             foreach (var drop in _drops)
@@ -24,15 +18,15 @@ namespace RomaDoliba.PickUps
                 GameObject dropedItem = null;
                 if (rand <= drop.DropChance)
                 {
-                    if (_gameManager.DropedItems.Count <= 5)
+                    if (GameManager.Instance.DropedItems == null || GameManager.Instance.DropedItems.Count <= 5)
                     {
-                        dropedItem = Instantiate(drop.DropPrefab, dropPosition, Quaternion.identity, _gameManager.DropedItemsCollector);
-                        _gameManager.AddItemToPool(dropedItem);
+                        dropedItem = Instantiate(drop.DropPrefab, dropPosition, Quaternion.identity, GameManager.Instance.DropedItemsCollector);
+                        GameManager.Instance.AddItemToPool(dropedItem);
                         return dropedItem;
                     }
                     else
                     {
-                        foreach (var item in _gameManager.DropedItems)
+                        foreach (var item in GameManager.Instance.DropedItems)
                         {
                             var dropItemName = $"{drop.DropPrefab.name}(Clone)";
                             
@@ -40,16 +34,16 @@ namespace RomaDoliba.PickUps
                             {
                                 item.transform.position = dropPosition;
                                 item.SetActive(true);
-                                _gameManager.DropedItems.Remove(item);
+                                GameManager.Instance.DropedItems.Remove(item);
                                 dropedItem = item;
-                                _gameManager.AddItemToPool(dropedItem);
+                                GameManager.Instance.AddItemToPool(dropedItem);
                                 return dropedItem;
                             }
                         }
                         if (dropedItem == null)
                         {
-                            dropedItem = Instantiate(drop.DropPrefab, dropPosition, Quaternion.identity, _gameManager.DropedItemsCollector);
-                            _gameManager.AddItemToPool(dropedItem);
+                            dropedItem = Instantiate(drop.DropPrefab, dropPosition, Quaternion.identity, GameManager.Instance.DropedItemsCollector);
+                            GameManager.Instance.AddItemToPool(dropedItem);
                             return dropedItem;
                         }
                     }

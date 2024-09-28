@@ -10,14 +10,16 @@ namespace RomaDoliba.Player
 {
     public class PlayerStats : MonoBehaviour
     {
+        [SerializeField] private CharacterData _characterData;
         [Space]
         [Header("Leveling")]
         [SerializeField] private List<LevelRange> _levelRanges;
-        [SerializeField] private TextMeshProUGUI _expText;
         private int _currentExp = 0;
         private int _currentLevel = 1;
         private int _expCap;
-        [SerializeField] private CharacterData _characterData;
+        public int CurrentExp => _currentExp;
+        public int CurrentLevel => _currentLevel;
+        public int CurrentExpCap => _expCap;
                         
         public void Init(Animator animator, SpriteRenderer renderer)
         {
@@ -44,7 +46,6 @@ namespace RomaDoliba.Player
         {
             _currentExp += exp;
             LevelUpChecker();
-            _expText.SetText($"Level:{_currentLevel} Exp:{_currentExp}");
         }
         
         private void LevelUpChecker()
@@ -76,7 +77,6 @@ namespace RomaDoliba.Player
                 {
                     PlayerControler.Instance.CurrentHP = _characterData.MaxHealth;
                 }
-                PlayerControler.Instance._testHP.SetText(PlayerControler.Instance.CurrentHP.ToString());
             }
         }
 
@@ -87,6 +87,11 @@ namespace RomaDoliba.Player
             public int StartLevel;
             public int EndLevel;
             public int ExpCapIncrease;
+        }
+        public struct LevelData
+        {
+            public int Level;
+            public int Experience;
         }
     }
 }

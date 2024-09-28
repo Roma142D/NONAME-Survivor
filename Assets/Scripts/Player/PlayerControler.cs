@@ -21,7 +21,7 @@ namespace RomaDoliba.Player
         [SerializeField] private Transform _camera;
         [SerializeField] private float _cameraSpeed;
         [SerializeField] private CircleCollider2D _collector;
-        [SerializeField] public TextMeshProUGUI _testHP;
+        
         private float _currentMoveSpeed;
         private float _currentHP;
         private float _maxHP;
@@ -31,6 +31,7 @@ namespace RomaDoliba.Player
         private Coroutine _takingDamage;
         private float _currentCollectRange;
         private WeaponBase _defoltWeapon;
+        //private LevelData _currentLevelData;
 
         public WeaponBase DefoltWeapon {get => _defoltWeapon; set => _defoltWeapon = value;}
         public float CurrentMS {get => _currentMoveSpeed; set => _currentMoveSpeed = value;}
@@ -38,6 +39,8 @@ namespace RomaDoliba.Player
         public float CurrentCollectRange {get => _currentCollectRange; set => _currentCollectRange = value;}
         public Vector2 LastMoveDirection => _lastMoveDirection;
         public Vector2 MoveDirection => _moveDirection;
+        //public LevelData CurrentLevelData => _currentLevelData;
+        public PlayerStats PlayerStats => _playerStats;
         private void Awake()
         {
             if (Instance == null)
@@ -53,7 +56,6 @@ namespace RomaDoliba.Player
             _collector.radius = _currentCollectRange;
             _playerInput = new MyPlayerInput();
             GlobalEventSender.OnEvent += TakeDamage;
-            _testHP.SetText(_currentHP.ToString());
         }
 
         
@@ -92,7 +94,6 @@ namespace RomaDoliba.Player
             if (eventName == "TakeDamage" && _takingDamage == null)
             {
                 _takingDamage = StartCoroutine(TakeDamageCoroutine(damage));
-                _testHP.SetText(_currentHP.ToString());
                 if (_currentHP <= 0)
                 {
                     Die();
@@ -110,7 +111,6 @@ namespace RomaDoliba.Player
             {
                 _currentHP = _maxHP;
             }
-            _testHP.SetText(_currentHP.ToString());
         }
         private IEnumerator TakeDamageCoroutine(float damage)
         {
@@ -144,6 +144,13 @@ namespace RomaDoliba.Player
         {
             GlobalEventSender.OnEvent -= TakeDamage;
             _playerInput.Disable();
+        }
+
+        [System.Serializable]
+        public struct LevelData
+        {
+            public int Level;
+            public int Experience;
         }
     }
 }

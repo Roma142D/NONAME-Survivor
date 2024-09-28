@@ -9,6 +9,7 @@ namespace RomaDoliba.Manager
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager Instance{get; private set;}
         [Header("TerrainSpawn")]
         [SerializeField] private TerrainTilesData _terrainTilesData;
         [SerializeField] private GameObject _backgroundGrid;
@@ -39,6 +40,14 @@ namespace RomaDoliba.Manager
         
         private void Awake()
         {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
             SpawnTile(Vector3.zero);
