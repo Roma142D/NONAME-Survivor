@@ -16,7 +16,7 @@ namespace RomaDoliba.Enemy
 
         private void Update()
         {
-            if (Physics2D.CircleCast(this.transform.position, 22f, Vector2.zero, 0f, _targetLayer))
+            if (Physics2D.CircleCast(this.transform.position, 44f, Vector2.zero, 0f, _targetLayer))
             {
                 if (_followCoroutine == null)
                 {

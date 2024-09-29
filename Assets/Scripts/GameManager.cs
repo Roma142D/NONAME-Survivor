@@ -27,6 +27,7 @@ namespace RomaDoliba.Manager
         private int _currentEnemiesPerSpawn;
         private List<EnemyMovement> _spawnedEnemies;
         private List<EnemyMovement> _enemiesToPool;
+        private List<Transform> _currentEnemiesSpawnPoints;
         private Coroutine _spawnEnemiesCoroutine;
         [Space]
         [Header("Player")]
@@ -48,14 +49,16 @@ namespace RomaDoliba.Manager
             {
                 Destroy(gameObject);
             }
+            _currentEnemiesSpawnPoints = new List<Transform>();
+
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
             SpawnTile(Vector3.zero);
-
+            
             _currentEnemiesPerSpawn = _enemiesSpawnPerOneTime;
             _spawnedEnemies = new List<EnemyMovement>();
             _enemiesToPool = new List<EnemyMovement>();
-            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _currentEnemiesPerSpawn);
+            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints);
             _spawnedEnemies.AddRange(spawnedEnemies);
 
             _dropedItems = new List<GameObject>();
@@ -64,7 +67,8 @@ namespace RomaDoliba.Manager
         {
             if (_spawnEnemiesCoroutine == null)
             {
-                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
+                var ranPosition = _currentEnemiesSpawnPoints[Random.Range(0, _currentEnemiesSpawnPoints.Count)];
+                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown(ranPosition.position));
             }
             
             CheckTilesToSpawn();
@@ -88,6 +92,11 @@ namespace RomaDoliba.Manager
                     var poolTile = CheckTilesToPool();
                     poolTile.gameObject.SetActive(true);
                     poolTile.gameObject.transform.position = nextPositionToSpawn;
+                    if (_currentEnemiesSpawnPoints.Count >= 16)
+                        {
+                            _currentEnemiesSpawnPoints.RemoveRange(0, _currentEnemiesSpawnPoints.Count - 8);
+                        }
+                        _currentEnemiesSpawnPoints.AddRange(poolTile.EnemiesSpawnPoints);
                 }
             }
         }
@@ -113,15 +122,22 @@ namespace RomaDoliba.Manager
         {
             var spawnedTile = _terrainTilesData.SpawnTile(spawnPosition);
             _spawnedTiles.Add(spawnedTile);
+            //Debug.Log(_currentEnemiesSpawnPoints.Count);
+            if (_currentEnemiesSpawnPoints.Count >= 16)
+            {
+                _currentEnemiesSpawnPoints.RemoveRange(0, _currentEnemiesSpawnPoints.Count);
+            }
+            _currentEnemiesSpawnPoints.AddRange(spawnedTile.EnemiesSpawnPoints);
+            //Debug.Log(_currentEnemiesSpawnPoints.Count);
         }
 
-        private IEnumerator SpawnEnemiesByCoolDown()
+        private IEnumerator SpawnEnemiesByCoolDown(Vector3 spawnPosition)
         {
             yield return new WaitForSeconds(_coolDownForSpawn);
             CheckEnemiesToPool();
             if (_enemiesToPool.Count <= _currentEnemiesPerSpawn || _enemiesToPool == null)
             {
-                var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_spawnEnemiesPoint.position, _enemiesSpawnPerOneTime);
+                var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints);
                 _spawnedEnemies.AddRange(spawnedEnemies);
             }
             else
@@ -129,7 +145,7 @@ namespace RomaDoliba.Manager
                 for (int i = 0; i < _currentEnemiesPerSpawn; i++)
                 {
                     var enemyToPool = _enemiesToPool[i];
-                    enemyToPool.gameObject.transform.position = _spawnEnemiesPoint.position;
+                    enemyToPool.gameObject.transform.position = spawnPosition;
                     enemyToPool.gameObject.SetActive(true);
                     _enemiesToPool.Remove(enemyToPool);
                     _spawnedEnemies.Add(enemyToPool);

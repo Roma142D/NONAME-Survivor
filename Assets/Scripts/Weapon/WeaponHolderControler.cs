@@ -7,7 +7,7 @@ namespace RomaDoliba.Weapon
 {
     public class WeaponHolderControler : MonoBehaviour
     {
-        public WeaponBase _testSecondWeapon;
+        //public WeaponBase _testSecondWeapon;
         private WeaponBase _daggerWeapon;
         private WeaponBase _auraWeapon;
         private List<GameObject> _spawnedDaggers;
@@ -22,7 +22,7 @@ namespace RomaDoliba.Weapon
         private void Start()
         {
             AddWeapon(PlayerControler.Instance.DefoltWeapon);
-            AddWeapon(_testSecondWeapon);
+            //AddWeapon(_testSecondWeapon);
         }
         private void AddWeapon(WeaponBase weapon)
         {

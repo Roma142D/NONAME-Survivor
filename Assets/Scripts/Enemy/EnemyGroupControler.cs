@@ -7,22 +7,20 @@ namespace RomaDoliba.Enemy
     [CreateAssetMenu(fileName = "EnemiesGroup", menuName = "Enemy/EnemiesGroup", order = 1)]
     public class EnemyGroupControler : ScriptableObject
     {
-        [SerializeField] private EnemyMovement _enemyPrefab;
+        //[SerializeField] private EnemyMovement _enemyPrefab;
+        [SerializeField] private EnemyWave _enemyWavesData;
         private List<EnemyMovement> _enemiesGroup;
-
-        private void Start()
+        
+        public List<EnemyMovement> SpawnEnemies(List<Transform> spawnPoint)
         {
-            _enemiesGroup = new List<EnemyMovement>();
-        }
-        public List<EnemyMovement> SpawnEnemies(Vector3 spawnPoint, int enemiesCount)
-        {
+            var firstWave = _enemyWavesData.GetFirstWave();
             _enemiesGroup.Clear();
-            var nextSpawnPosition = spawnPoint;
-            for (int i = 0; i < enemiesCount; i++)
+            for (int i = 0; i < firstWave.EnemyAmount; i++)
             {
-                var spawnedEnemy = Instantiate(_enemyPrefab, nextSpawnPosition, Quaternion.identity);
+                var nextSpawnPosition = spawnPoint[Random.Range(0, spawnPoint.Count)].position;
+                var ranEnemy = firstWave.EnemiesToSpawn[Random.Range(0, firstWave.EnemiesToSpawn.Count)];
+                var spawnedEnemy = Instantiate(ranEnemy, nextSpawnPosition, Quaternion.identity);
                 _enemiesGroup.Add(spawnedEnemy);
-                nextSpawnPosition += spawnedEnemy.transform.localScale;
             }
             return _enemiesGroup;
         }

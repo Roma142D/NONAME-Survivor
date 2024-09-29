@@ -9,7 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a467b35e76d914ea0e0d119b3ebfaa, type: 3}
-  m_Name: EnemiesGroup
+  m_Script: {fileID: 11500000, guid: b5a2b62059092674ca685130a58fe5e0, type: 3}
+  m_Name: EnemyWave1
   m_EditorClassIdentifier: 
-  _enemyWavesData: {fileID: 11400000, guid: 031b08d8d4a48364b9750424d413912b, type: 2}
+  _enemyWaves:
+  - EnemiesToSpawn:
+    - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
+    EnemyAmount: 2
+    SpawnInterval: 0

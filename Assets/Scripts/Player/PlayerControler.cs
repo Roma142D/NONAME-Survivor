@@ -1,13 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using RomaDoliba.ActionSystem;
 using RomaDoliba.Weapon;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static RomaDoliba.Player.MyPlayerInput;
 
 namespace RomaDoliba.Player
 {

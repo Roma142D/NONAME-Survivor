@@ -30,7 +30,7 @@ namespace RomaDoliba.Terrain
                 Instantiate(_propPrefabs[randomProp], propPosition.transform.position, Quaternion.identity, propPosition);
             }
         }
-
+        
         [System.Serializable]
         public struct PropsData
         {
