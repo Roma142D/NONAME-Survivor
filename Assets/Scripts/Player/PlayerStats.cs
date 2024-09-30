@@ -25,7 +25,7 @@ namespace RomaDoliba.Player
         {
             Debug.Log(PlayerPrefs.GetString("CharacterName"));
             
-            //_characterData = CharacteeSelector.GetData();
+            _characterData = CharacteeSelector.GetData();
             animator.runtimeAnimatorController = _characterData.Animator;
             renderer.sprite = _characterData.Skin;
             PlayerControler.Instance.CurrentMS = _characterData.MoveSpeed;

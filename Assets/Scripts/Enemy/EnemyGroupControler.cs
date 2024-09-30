@@ -14,7 +14,7 @@ namespace RomaDoliba.Enemy
         public List<EnemyMovement> SpawnEnemies(List<Transform> spawnPoint, bool IsStartGame, Transform parent)
         {
             var waveToSpawn = _enemyWavesData.GetNextWave();
-            _enemiesGroup.Clear();
+            _enemiesGroup = new List<EnemyMovement>();
             if (IsStartGame)
             {
                 waveToSpawn = _enemyWavesData.GetFirstWave();
