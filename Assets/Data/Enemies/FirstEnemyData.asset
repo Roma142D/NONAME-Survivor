@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 711fa23a98e968441ac8957fae060d37, type: 3}
-  m_Name: EnemyData
+  m_Name: FirstEnemyData
   m_EditorClassIdentifier: 
   _moveSpeed: 2
   _health: 5
-  _damage: 10
+  _damage: 2
