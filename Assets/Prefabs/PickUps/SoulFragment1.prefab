@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventName: 
-  _value: 10
+  _value: 100
   _type: 0
 --- !u!114 &-6123375679533161850
 MonoBehaviour:

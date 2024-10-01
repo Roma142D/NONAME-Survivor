@@ -70,12 +70,12 @@ namespace RomaDoliba.Player
 
         public void Recover()
         {
-            if (PlayerControler.Instance.CurrentHP < _characterData.MaxHealth)
+            if (PlayerControler.Instance.CurrentHP < PlayerControler.Instance.CurrentMaxHP)
             {
                 PlayerControler.Instance.CurrentHP += _characterData.PasiveRecovery * Time.deltaTime;
-                if (PlayerControler.Instance.CurrentHP > _characterData.MaxHealth)
+                if (PlayerControler.Instance.CurrentHP > PlayerControler.Instance.CurrentMaxHP)
                 {
-                    PlayerControler.Instance.CurrentHP = _characterData.MaxHealth;
+                    PlayerControler.Instance.CurrentHP = PlayerControler.Instance.CurrentMaxHP;
                 }
             }
         }

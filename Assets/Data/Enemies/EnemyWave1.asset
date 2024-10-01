@@ -15,10 +15,8 @@ MonoBehaviour:
   _enemyWaves:
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
-    EnemyAmount: 8
-    SpawnInterval: 0
+    EnemyAmount: 10
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
-    EnemyAmount: 8
-    SpawnInterval: 0
+    EnemyAmount: 10

@@ -14,7 +14,9 @@ namespace RomaDoliba.UI
         [SerializeField] private Slider _HPBar;
         [SerializeField] private Slider _expBar;
         [SerializeField] private TextMeshProUGUI _levelCounter;
+        [SerializeField] private GameObject _upgratesScreen;
         private int _currentCoins;
+        private int _currentLevel;
 
         private void Awake()
         {
@@ -22,11 +24,13 @@ namespace RomaDoliba.UI
             _coinsCounter.SetText(_currentCoins.ToString());
             GlobalEventSender.OnEvent += ChangeCoinValue;
             SetHPBar();
+            _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
             _expBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
         }
         private void FixedUpdate()
         {
-            _HPBar.value = PlayerControler.Instance.CurrentHP;
+            SetHPBar();
+            //_HPBar.value = PlayerControler.Instance.CurrentHP;
             ExpChanging();
         }
         public void ChangeCoinValue(string eventName, float value)
@@ -39,7 +43,7 @@ namespace RomaDoliba.UI
         }
         public void SetHPBar()
         {
-            _HPBar.maxValue = PlayerControler.Instance.CurrentHP;
+            _HPBar.maxValue = PlayerControler.Instance.CurrentMaxHP;
             _HPBar.value = PlayerControler.Instance.CurrentHP;
         }
         private void ExpChanging()
@@ -47,6 +51,12 @@ namespace RomaDoliba.UI
             _levelCounter.SetText(PlayerControler.Instance.PlayerStats.CurrentLevel.ToString());
             _expBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
             _expBar.value = PlayerControler.Instance.PlayerStats.CurrentExp;
+            if (PlayerControler.Instance.PlayerStats.CurrentLevel > _currentLevel)
+            {
+                Time.timeScale = 0.01f;
+                ToggleScreen(_upgratesScreen);
+                _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
+            }
         }
         
     }

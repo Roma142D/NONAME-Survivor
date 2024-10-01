@@ -10,6 +10,7 @@ namespace RomaDoliba.Player
     {
         public static PlayerControler Instance{get; private set;}
         [SerializeField] private PlayerStats _playerStats;
+        [SerializeField] private WeaponHolderControler _weaponHolder;
         [SerializeField] private Rigidbody2D _player;
         [SerializeField] private SpriteRenderer _playerRenderer;
         [SerializeField] private Animator _playerAnimator;
@@ -31,11 +32,13 @@ namespace RomaDoliba.Player
         public WeaponBase DefoltWeapon {get => _defoltWeapon; set => _defoltWeapon = value;}
         public float CurrentMS {get => _currentMoveSpeed; set => _currentMoveSpeed = value;}
         public float CurrentHP {get => _currentHP; set => _currentHP = value;}
+        public float CurrentMaxHP {get => _maxHP; set => _maxHP = value;}
         public float CurrentCollectRange {get => _currentCollectRange; set => _currentCollectRange = value;}
         public Vector2 LastMoveDirection => _lastMoveDirection;
         public Vector2 MoveDirection => _moveDirection;
         //public LevelData CurrentLevelData => _currentLevelData;
         public PlayerStats PlayerStats => _playerStats;
+        public WeaponHolderControler WeaponHolder => _weaponHolder;
         private void Awake()
         {
             if (Instance == null)
@@ -107,6 +110,7 @@ namespace RomaDoliba.Player
                 _currentHP = _maxHP;
             }
         }
+
         private IEnumerator TakeDamageCoroutine(float damage)
         {
             _currentHP -= damage;

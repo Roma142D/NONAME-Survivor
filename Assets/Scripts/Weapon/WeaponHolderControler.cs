@@ -7,34 +7,35 @@ namespace RomaDoliba.Weapon
 {
     public class WeaponHolderControler : MonoBehaviour
     {
-        //public WeaponBase _testSecondWeapon;
         private WeaponBase _daggerWeapon;
         private WeaponBase _auraWeapon;
+        private List<WeaponBase> _allWeapon;
         private List<GameObject> _spawnedDaggers;
-        private float _currentCooldown;
-        
+        private float _currentCooldown;       
 
         private void Awake()
         {
             _spawnedDaggers = new List<GameObject>();
-            
+            _allWeapon = new List<WeaponBase>();
         }
         private void Start()
         {
             AddWeapon(PlayerControler.Instance.DefoltWeapon);
-            //AddWeapon(_testSecondWeapon);
         }
-        private void AddWeapon(WeaponBase weapon)
+        public void AddWeapon(WeaponBase weapon)
         {
             switch (weapon.WeaponType)  
             {
                 case WeaponType.dagger: 
                     _daggerWeapon = weapon;
                     _currentCooldown = _daggerWeapon.Cooldown;
+                    DaggerWeaponBehavior(weapon, true);
+                    _allWeapon.Add(weapon);
                     break;
                 case WeaponType.aura:
                     _auraWeapon = weapon;
                     AuraWeaponBehavior(_auraWeapon);
+                    _allWeapon.Add(weapon);
                     break;
                 default: 
                     Debug.Log("Not a weapon");
@@ -48,15 +49,19 @@ namespace RomaDoliba.Weapon
 
             if (_currentCooldown <= 0 && _daggerWeapon != null)
             {
-                DaggerWeaponBehavior(_daggerWeapon);
+                DaggerWeaponBehavior(_daggerWeapon, false);
                 _currentCooldown = _daggerWeapon.Cooldown;
             }
         }
 
-        private void DaggerWeaponBehavior(WeaponBase weapon)
+        private void DaggerWeaponBehavior(WeaponBase weapon, bool newDagger)
         {
-            if (_spawnedDaggers.Count < 5)
+            if (_spawnedDaggers.Count < 5 || newDagger)
             {
+                if (newDagger)
+                {
+                    _spawnedDaggers.Clear();
+                }
                 var spawnedWeapon = weapon.Init(this);
                 _spawnedDaggers.Add(spawnedWeapon);
             }
@@ -74,6 +79,13 @@ namespace RomaDoliba.Weapon
         private void AuraWeaponBehavior(WeaponBase weapon)
         {
             weapon.Init(this);
+        }
+        public void IncreaseDamage(float value)
+        {
+            foreach (var weapon in _allWeapon)
+            {
+                weapon.CurrentDamage += value;
+            }
         }
     }
 
