@@ -113,8 +113,18 @@ namespace RomaDoliba.Player
 
         private IEnumerator TakeDamageCoroutine(float damage)
         {
+            var originColor = _playerRenderer.color;
             _currentHP -= damage;
-            yield return new WaitForSeconds(1f);
+            while (_playerRenderer.color != Color.red)
+            {
+                _playerRenderer.color = Color.Lerp(_playerRenderer.color, Color.red, 0.25f);
+                yield return new WaitForEndOfFrame();
+            }
+            while(_playerRenderer.color != originColor)
+            {
+                _playerRenderer.color = Color.Lerp(_playerRenderer.color, originColor, 0.25f);
+                yield return new WaitForEndOfFrame();
+            }
             _takingDamage = null;
         }
         

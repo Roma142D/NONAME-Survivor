@@ -53,7 +53,7 @@ namespace RomaDoliba.UI
             _expBar.value = PlayerControler.Instance.PlayerStats.CurrentExp;
             if (PlayerControler.Instance.PlayerStats.CurrentLevel > _currentLevel)
             {
-                Time.timeScale = 0.01f;
+                Time.timeScale = 0;
                 ToggleScreen(_upgratesScreen);
                 _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
             }

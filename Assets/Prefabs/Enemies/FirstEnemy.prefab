@@ -189,6 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: b7d765c1f01b0f34eb9509909fbb566e, type: 2}
   _dropItem: {fileID: 11400000, guid: bb465ec9fd56d204e9b626d42516b7fc, type: 2}
+  _enemyRenderer: {fileID: 510842649658191823}
+  _enemyRigidbody: {fileID: 1578732410967955193}
 --- !u!114 &9083830360646017848
 MonoBehaviour:
   m_ObjectHideFlags: 0

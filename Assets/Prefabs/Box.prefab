@@ -128,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: 3de0b0329ca7bfc4d8694e7b60f78c3d, type: 2}
   _dropItem: {fileID: 11400000, guid: e7d4f6cf9c914cb4c8d0f996ae326b02, type: 2}
+  _enemyRenderer: {fileID: 510842649658191823}
+  _enemyRigidbody: {fileID: 1578732410967955193}
 --- !u!61 &1049050456412413984
 BoxCollider2D:
   m_ObjectHideFlags: 0
