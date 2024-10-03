@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace RomaDoliba.Weapon
 {
-    [CreateAssetMenu(fileName = "DaggerData", menuName = "Weapon/DaggerData", order = 0)]
+    [CreateAssetMenu(fileName = "DaggerData", menuName = "Weapon/DaggerData", order = 2)]
     public class DaggerSpawner : WeaponBase
     {
         protected override GameObject Execute()

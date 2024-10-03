@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6395689862764264854}
   - component: {fileID: 1126022220712591806}
   m_Layer: 5
-  m_Name: AddDaggerButton
+  m_Name: AddAuraButton 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -297,7 +297,7 @@ MonoBehaviour:
         m_MethodName: RemoveBtnFromList
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 6395689862764264854}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0

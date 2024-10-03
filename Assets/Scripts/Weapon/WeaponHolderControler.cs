@@ -8,11 +8,11 @@ namespace RomaDoliba.Weapon
     public class WeaponHolderControler : MonoBehaviour
     {
         private WeaponBase _daggerWeapon;
-        private WeaponBase _auraWeapon;
+        private GameObject _auraWeapon;
         private List<WeaponBase> _allWeapon;
         private List<GameObject> _spawnedDaggers;
         private float _currentCooldown;       
-
+        public List<WeaponBase> CurrentWeapons => _allWeapon;
         private void Awake()
         {
             _spawnedDaggers = new List<GameObject>();
@@ -33,8 +33,12 @@ namespace RomaDoliba.Weapon
                     _allWeapon.Add(weapon);
                     break;
                 case WeaponType.aura:
-                    _auraWeapon = weapon;
-                    AuraWeaponBehavior(_auraWeapon);
+                    if (_auraWeapon != null)
+                    {
+                        Destroy(_auraWeapon);
+                    }
+                    //_auraWeapon = weapon;
+                    AuraWeaponBehavior(weapon);
                     _allWeapon.Add(weapon);
                     break;
                 default: 
@@ -78,7 +82,7 @@ namespace RomaDoliba.Weapon
         }
         private void AuraWeaponBehavior(WeaponBase weapon)
         {
-            weapon.Init(this);
+            _auraWeapon = weapon.Init(this);
         }
         public void IncreaseDamage(float value)
         {
