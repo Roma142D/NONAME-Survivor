@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using RomaDoliba.ActionSystem;
 using RomaDoliba.Player;
 using TMPro;
@@ -10,54 +8,67 @@ namespace RomaDoliba.UI
 {
     public class InGameUIController : UIController
     {
-        [SerializeField] private TextMeshProUGUI _coinsCounter;
-        [SerializeField] private Slider _HPBar;
-        [SerializeField] private Slider _expBar;
-        [SerializeField] private TextMeshProUGUI _levelCounter;
+        [SerializeField] private PlayerStatsUI _playerStatsUI;
         [SerializeField] private GameObject _upgratesScreen;
+        [SerializeField] private GameObject _gameOverScreen;
         private int _currentCoins;
         private int _currentLevel;
 
         private void Awake()
         {
-            _currentCoins = PlayerPrefs.GetInt("Coins");
-            _coinsCounter.SetText(_currentCoins.ToString());
+            Time.timeScale = 1;
+            _currentCoins = PlayerPrefs.GetInt(GlobalData.TOTAL_COINS_AMOUNT);
+            _playerStatsUI.CoinsCounter.SetText(_currentCoins.ToString());
             GlobalEventSender.OnEvent += ChangeCoinValue;
             SetHPBar();
             _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
-            _expBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
+            _playerStatsUI.ExpBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
         }
         private void FixedUpdate()
         {
             SetHPBar();
-            //_HPBar.value = PlayerControler.Instance.CurrentHP;
             ExpChanging();
+            GameOverCheck();
         }
         public void ChangeCoinValue(string eventName, float value)
         {           
-            if (eventName == "Coin")
+            if (eventName == GlobalData.COIN_COLLECT)
             {
                 _currentCoins += (int)value; 
-                _coinsCounter.SetText(_currentCoins.ToString());
+                _playerStatsUI.CoinsCounter.SetText(_currentCoins.ToString());
             }
         }
         public void SetHPBar()
         {
-            _HPBar.maxValue = PlayerControler.Instance.CurrentMaxHP;
-            _HPBar.value = PlayerControler.Instance.CurrentHP;
+            _playerStatsUI.HPBar.maxValue = PlayerControler.Instance.CurrentMaxHP;
+            _playerStatsUI.HPBar.value = PlayerControler.Instance.CurrentHP;
         }
         private void ExpChanging()
         {
-            _levelCounter.SetText(PlayerControler.Instance.PlayerStats.CurrentLevel.ToString());
-            _expBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
-            _expBar.value = PlayerControler.Instance.PlayerStats.CurrentExp;
+            _playerStatsUI.LevelCounter.SetText(PlayerControler.Instance.PlayerStats.CurrentLevel.ToString());
+            _playerStatsUI.ExpBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
+            _playerStatsUI.ExpBar.value = PlayerControler.Instance.PlayerStats.CurrentExp;
             if (PlayerControler.Instance.PlayerStats.CurrentLevel > _currentLevel)
             {
-                Time.timeScale = 0;
                 ToggleScreen(_upgratesScreen);
                 _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
             }
         }
+        private void GameOverCheck()
+        {
+            if (PlayerControler.Instance.CurrentHP <= 0)
+            {
+                ToggleScreen(_gameOverScreen);
+            }
+        }
         
+        [System.Serializable]
+        public struct PlayerStatsUI
+        {
+            public TextMeshProUGUI CoinsCounter;
+            public Slider HPBar;
+            public Slider ExpBar;
+            public TextMeshProUGUI LevelCounter;
+        }
     }
 }

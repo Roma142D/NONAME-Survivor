@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using RomaDoliba.Player;
 using UnityEngine;
 
@@ -20,7 +18,7 @@ namespace RomaDoliba
                     return characterData;
                 }
             }
-            return null;
+            return FirstCharacterData;
         }
     }
 }

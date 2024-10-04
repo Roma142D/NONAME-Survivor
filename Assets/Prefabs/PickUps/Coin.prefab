@@ -215,6 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f631b677a992c42a65b20f9fe0dc37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: Coin
+  _eventName: CoinCollect
   _value: 1
   _type: 2

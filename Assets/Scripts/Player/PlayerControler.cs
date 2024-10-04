@@ -92,15 +92,7 @@ namespace RomaDoliba.Player
             if (eventName == "TakeDamage" && _takingDamage == null)
             {
                 _takingDamage = StartCoroutine(TakeDamageCoroutine(damage));
-                if (_currentHP <= 0)
-                {
-                    Die();
-                }
             }
-        }
-        private void Die()
-        {
-            Time.timeScale = 0;
         }
         public void Heal(int value)
         {

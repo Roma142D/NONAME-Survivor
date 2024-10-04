@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using RomaDoliba.Weapon;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,34 +68,28 @@ namespace RomaDoliba.Player
         {
             PlayerControler.Instance.CurrentMaxHP += 10 * _multiplierHP;
             _multiplierHP += 0.2f;
-            Time.timeScale = 1;
         }
         public void IncreaseMoveSpeed()
         {
             PlayerControler.Instance.CurrentMS += 10 * _multiplierMS;
             _multiplierMS += 0.2f;
-            Time.timeScale = 1;
         }
         public void IncreaseDamage()
         {
             PlayerControler.Instance.WeaponHolder.IncreaseDamage(1 * _multiplierDMG);
             _multiplierDMG += 0.1f;
-            Time.timeScale = 1;
         }
         public void AddDagger()
         {
             var dagger = _weaponsData.GetWeaponData(WeaponType.dagger, 0);
             PlayerControler.Instance.WeaponHolder.AddWeapon(dagger);
             _daggerLvl += 1;
-            Time.timeScale = 1;
         }
         public void AddAura()
         {
             var aura = _weaponsData.GetWeaponData(WeaponType.aura, 0);
-            Debug.Log(aura.name);
             PlayerControler.Instance.WeaponHolder.AddWeapon(aura);
             _auraLvl += 1;
-            Time.timeScale = 1;
         }
         public void UpgradeDagger(Button buttonToRemoveOnDaggerMaxLvl)
         {
@@ -111,8 +103,6 @@ namespace RomaDoliba.Player
                     RemoveBtnFromList(buttonToRemoveOnDaggerMaxLvl);
                 }
             }
-            
-            Time.timeScale = 1;
         }
         public void UpgradeAura(Button buttonToRemoveOnDaggerMaxLvl)
         {
@@ -121,13 +111,11 @@ namespace RomaDoliba.Player
             {
                 PlayerControler.Instance.WeaponHolder.AddWeapon(aura);
                 _auraLvl += 1;
-                if (_daggerLvl > _weaponsData.MaxWeaponLevel(WeaponType.aura))
+                if (_auraLvl > _weaponsData.MaxWeaponLevel(WeaponType.aura))
                 {
                     RemoveBtnFromList(buttonToRemoveOnDaggerMaxLvl);
                 }
             }
-            
-            Time.timeScale = 1;
         }
         
         public void RemoveBtnFromList(Button button)

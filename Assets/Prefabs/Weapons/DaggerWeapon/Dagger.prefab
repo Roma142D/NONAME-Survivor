@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3918306837641050428}
   - component: {fileID: 4372454148855784263}
   - component: {fileID: -3541158865327311145}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6406712524275714416}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

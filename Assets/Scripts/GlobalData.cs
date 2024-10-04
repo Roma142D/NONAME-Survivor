@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace RomaDoliba
 {
-    [CreateAssetMenu(fileName = "GlobalData", menuName = "Data/GlobalData", order = 0)]
-    public class GlobalData : ScriptableObject
+    public static class GlobalData 
     {
-        
+        public static string COIN_COLLECT = "CoinCollect";
+        public static string TOTAL_COINS_AMOUNT = "TotalCoinsAmount";
+        public static string SELECTED_CHARACTER = "CharacterName";
     }
 }
