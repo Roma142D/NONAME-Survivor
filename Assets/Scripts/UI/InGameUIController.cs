@@ -10,7 +10,7 @@ namespace RomaDoliba.UI
     {
         [SerializeField] private PlayerStatsUI _playerStatsUI;
         [SerializeField] private GameObject _upgratesScreen;
-        [SerializeField] private GameObject _gameOverScreen;
+        [SerializeField] private GameOverUI _gameOverScreen;
         private int _currentCoins;
         private int _currentLevel;
 
@@ -58,7 +58,11 @@ namespace RomaDoliba.UI
         {
             if (PlayerControler.Instance.CurrentHP <= 0)
             {
-                ToggleScreen(_gameOverScreen);
+                ToggleScreen(_gameOverScreen.GameOverScreen);
+                _gameOverScreen.EnemiesKilled.SetText(PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN).ToString());
+                _gameOverScreen.CoinsCollected.SetText(PlayerPrefs.GetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN).ToString());
+                PlayerPrefs.DeleteKey(GlobalData.ENEMIES_KILLED_IN_THIS_RUN);
+                PlayerPrefs.DeleteKey(GlobalData.COINS_COLLECTED_IN_THIS_RUN);
             }
         }
         
@@ -69,6 +73,13 @@ namespace RomaDoliba.UI
             public Slider HPBar;
             public Slider ExpBar;
             public TextMeshProUGUI LevelCounter;
+        }
+        [System.Serializable]
+        public struct GameOverUI
+        {
+            public GameObject GameOverScreen;
+            public TextMeshProUGUI EnemiesKilled;
+            public TextMeshProUGUI CoinsCollected;
         }
     }
 }

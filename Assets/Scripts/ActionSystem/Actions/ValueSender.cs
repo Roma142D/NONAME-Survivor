@@ -27,6 +27,11 @@ namespace RomaDoliba.ActionSystem
                     PlayerControler.Instance.Heal((int)_value);
                     break;
                 case PickUpType.Coin:
+                    var collectedCoins = PlayerPrefs.GetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN, 0);
+                    collectedCoins += (int)_value;
+                    Debug.Log(collectedCoins);
+                    PlayerPrefs.SetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN, collectedCoins);
+                    
                     var curCoins = PlayerPrefs.GetInt(GlobalData.TOTAL_COINS_AMOUNT);
                     curCoins += (int)_value;
                     PlayerPrefs.SetInt(GlobalData.TOTAL_COINS_AMOUNT, curCoins);

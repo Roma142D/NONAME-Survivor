@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RomaDoliba.Player;
+using UnityEngine.UI;
 
 namespace RomaDoliba.Weapon
 {
     public class WeaponHolderControler : MonoBehaviour
     {
+        [SerializeField] private Slider _cooldownSlider;
         private WeaponBase _daggerWeapon;
         private GameObject _auraWeapon;
         private List<WeaponBase> _allWeapon;
@@ -29,6 +31,8 @@ namespace RomaDoliba.Weapon
                 case WeaponType.dagger: 
                     _daggerWeapon = weapon;
                     _currentCooldown = _daggerWeapon.Cooldown;
+                    _cooldownSlider.gameObject.SetActive(true);
+                    _cooldownSlider.maxValue = _currentCooldown;
                     DaggerWeaponBehavior(weapon, true);
                     _allWeapon.Add(weapon);
                     break;
@@ -37,7 +41,6 @@ namespace RomaDoliba.Weapon
                     {
                         Destroy(_auraWeapon);
                     }
-                    //_auraWeapon = weapon;
                     AuraWeaponBehavior(weapon);
                     _allWeapon.Add(weapon);
                     break;
@@ -50,6 +53,7 @@ namespace RomaDoliba.Weapon
         private void Update()
         {
             _currentCooldown -= Time.deltaTime;
+            _cooldownSlider.value = _currentCooldown;
 
             if (_currentCooldown <= 0 && _daggerWeapon != null)
             {
@@ -64,6 +68,10 @@ namespace RomaDoliba.Weapon
             {
                 if (newDagger)
                 {
+                    foreach (var dagger in _spawnedDaggers)
+                    {
+                        Destroy(dagger);
+                    }
                     _spawnedDaggers.Clear();
                 }
                 var spawnedWeapon = weapon.Init(this);

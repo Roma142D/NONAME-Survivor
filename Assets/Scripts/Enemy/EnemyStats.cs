@@ -70,7 +70,10 @@ namespace RomaDoliba.Enemy
                                        
                     yield return new WaitForEndOfFrame();
                 }
-                
+                var killedEnemies = PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN, 0);
+                killedEnemies += 1;
+                PlayerPrefs.SetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN, killedEnemies);
+                PlayerPrefs.Save();
                 _dropItem.DropRandomItem(transform.position);
                 this.gameObject.SetActive(false);
             }

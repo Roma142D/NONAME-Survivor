@@ -15,6 +15,7 @@ namespace RomaDoliba.Player
         [SerializeField] private SpriteRenderer _playerRenderer;
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private Transform _camera;
+        //[SerializeField] private Transform _coolDownBar;
         [SerializeField] private float _cameraSpeed;
         [SerializeField] private CircleCollider2D _collector;
         
