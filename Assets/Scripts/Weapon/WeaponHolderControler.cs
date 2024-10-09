@@ -2,39 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RomaDoliba.Player;
+using UnityEngine.UI;
 
 namespace RomaDoliba.Weapon
 {
     public class WeaponHolderControler : MonoBehaviour
     {
-        //public WeaponBase _testSecondWeapon;
+        [SerializeField] private Slider _cooldownSlider;
         private WeaponBase _daggerWeapon;
-        private WeaponBase _auraWeapon;
+        private GameObject _auraWeapon;
+        private List<WeaponBase> _allWeapon;
         private List<GameObject> _spawnedDaggers;
-        private float _currentCooldown;
-        
-
+        private float _currentCooldown;       
+        public List<WeaponBase> CurrentWeapons => _allWeapon;
         private void Awake()
         {
             _spawnedDaggers = new List<GameObject>();
-            
+            _allWeapon = new List<WeaponBase>();
         }
         private void Start()
         {
             AddWeapon(PlayerControler.Instance.DefoltWeapon);
-            //AddWeapon(_testSecondWeapon);
         }
-        private void AddWeapon(WeaponBase weapon)
+        public void AddWeapon(WeaponBase weapon)
         {
             switch (weapon.WeaponType)  
             {
                 case WeaponType.dagger: 
                     _daggerWeapon = weapon;
                     _currentCooldown = _daggerWeapon.Cooldown;
+                    _cooldownSlider.gameObject.SetActive(true);
+                    _cooldownSlider.maxValue = _daggerWeapon.Cooldown;
+                    DaggerWeaponBehavior(weapon, true);
+                    _allWeapon.Add(weapon);
                     break;
                 case WeaponType.aura:
-                    _auraWeapon = weapon;
-                    AuraWeaponBehavior(_auraWeapon);
+                    if (_auraWeapon != null)
+                    {
+                        Destroy(_auraWeapon);
+                    }
+                    AuraWeaponBehavior(weapon);
+                    _allWeapon.Add(weapon);
                     break;
                 default: 
                     Debug.Log("Not a weapon");
@@ -45,18 +53,27 @@ namespace RomaDoliba.Weapon
         private void Update()
         {
             _currentCooldown -= Time.deltaTime;
+            _cooldownSlider.value = _currentCooldown;
 
             if (_currentCooldown <= 0 && _daggerWeapon != null)
             {
-                DaggerWeaponBehavior(_daggerWeapon);
+                DaggerWeaponBehavior(_daggerWeapon, false);
                 _currentCooldown = _daggerWeapon.Cooldown;
             }
         }
 
-        private void DaggerWeaponBehavior(WeaponBase weapon)
+        private void DaggerWeaponBehavior(WeaponBase weapon, bool newDagger)
         {
-            if (_spawnedDaggers.Count < 5)
+            if (_spawnedDaggers.Count < 5 || newDagger)
             {
+                if (newDagger)
+                {
+                    foreach (var dagger in _spawnedDaggers)
+                    {
+                        Destroy(dagger);
+                    }
+                    _spawnedDaggers.Clear();
+                }
                 var spawnedWeapon = weapon.Init(this);
                 _spawnedDaggers.Add(spawnedWeapon);
             }
@@ -73,7 +90,14 @@ namespace RomaDoliba.Weapon
         }
         private void AuraWeaponBehavior(WeaponBase weapon)
         {
-            weapon.Init(this);
+            _auraWeapon = weapon.Init(this);
+        }
+        public void IncreaseDamage(float value)
+        {
+            foreach (var weapon in _allWeapon)
+            {
+                weapon.CurrentDamage += value;
+            }
         }
     }
 

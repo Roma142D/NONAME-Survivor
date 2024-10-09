@@ -27,7 +27,6 @@ namespace RomaDoliba.Enemy
                 {
                     var spawnedEnemy = Instantiate(ranEnemy, nextSpawnPosition, Quaternion.identity, parent);
                     _enemiesGroup.Add(spawnedEnemy);
-                    Debug.Log($"{_enemiesGroup.Count} OnGameStart");
                 }
                 else
                 {
@@ -35,7 +34,6 @@ namespace RomaDoliba.Enemy
                     {
                         var spawnEnemy = Instantiate(ranEnemy, nextSpawnPosition, Quaternion.identity, parent);
                         _enemiesGroup.Add(spawnEnemy);
-                        Debug.Log($"{_enemiesGroup.Count} OnEnemiesPool<8");
                     }
                     else
                     {
@@ -49,7 +47,6 @@ namespace RomaDoliba.Enemy
                                 spawnEnemy.transform.position = nextSpawnPosition;
                                 spawnEnemy.gameObject.SetActive(true);
                                 GameManager.Instance.EnemiesToPool.Remove(spawnEnemy);
-                                Debug.Log($"{_enemiesGroup.Count} FromPool");
                                 break;
                             }
                         }
@@ -57,7 +54,6 @@ namespace RomaDoliba.Enemy
                         if (spawnEnemy == null)
                         {
                             spawnEnemy = Instantiate(ranEnemy, nextSpawnPosition, Quaternion.identity, parent);
-                            Debug.Log($"{_enemiesGroup.Count} CantFindInPool");
                         }
 
                         _enemiesGroup.Add(spawnEnemy);

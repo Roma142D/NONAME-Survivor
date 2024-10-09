@@ -27,6 +27,7 @@ namespace RomaDoliba.Weapon
             var deltaTime = 0f;
             var endTime = 1f;
             var currentScale = aura.transform.localScale;
+            _audioSource.Play();
             while (deltaTime != animSpeed)
             {
                 aura.transform.localScale = Vector3.Lerp(currentScale, _maxScale, currentTime);

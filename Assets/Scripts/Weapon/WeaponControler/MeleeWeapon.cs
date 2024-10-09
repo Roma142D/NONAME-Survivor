@@ -7,6 +7,6 @@ namespace RomaDoliba.Weapon
     public class MeleeWeapon : MonoBehaviour
     {
         [SerializeField] protected WeaponBase _weaponData;
-
+        [SerializeField] protected AudioSource _audioSource;
     }
 }

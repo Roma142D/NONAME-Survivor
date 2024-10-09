@@ -24,7 +24,7 @@ namespace RomaDoliba.ActionSystem
         {
             if (_enemy != null)
             {
-                _enemy.GetHit(_weaponData.Damage);
+                _enemy.GetHit(_weaponData.CurrentDamage);
                 if (!_weaponData.PassThroughEnemies)
                 {
                     this.gameObject.SetActive(false);

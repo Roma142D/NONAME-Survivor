@@ -54,7 +54,7 @@ namespace RomaDoliba.Enemy
         private IEnumerator FollowTarget(float speed)
         {
             _target = PlayerControler.Instance.transform;
-            while (this.transform.position != PlayerControler.Instance.transform.position)
+            while (_enemyStats.CurrentHP > 0)
             {
                 CheckTargetPosition();
                 this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerControler.Instance.transform.position, speed * Time.deltaTime);

@@ -37,6 +37,10 @@ namespace RomaDoliba.Manager
         private List<GameObject> _dropedItems;
         public Transform DropedItemsCollector => _dropedItemsCollector;
         public List<GameObject> DropedItems => _dropedItems;
+        [Space]
+        [Header("")]
+        [SerializeField] private AudioSource _actionAudioSource;
+        public AudioSource ActionAudioSource {get => _actionAudioSource; set => _actionAudioSource = value;}
         
         private void Awake()
         {

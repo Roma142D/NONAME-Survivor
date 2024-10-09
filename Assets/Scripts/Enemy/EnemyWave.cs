@@ -37,8 +37,6 @@ namespace RomaDoliba.Enemy
         {
             public List<EnemyMovement> EnemiesToSpawn;
             public int EnemyAmount;
-            public float SpawnInterval;
-            private readonly int SpawnCount;
         }
     }
 }

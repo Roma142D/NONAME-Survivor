@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SecondEnemyData
   m_EditorClassIdentifier: 
   _moveSpeed: 3
-  _health: 5
-  _damage: 4
+  _health: 8
+  _damage: 5

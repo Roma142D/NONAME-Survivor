@@ -1,5 +1,6 @@
-using System;
+//using System;
 using System.Collections;
+using System.Collections.Generic;
 using RomaDoliba.ActionSystem;
 using RomaDoliba.Weapon;
 using UnityEngine;
@@ -10,12 +11,15 @@ namespace RomaDoliba.Player
     {
         public static PlayerControler Instance{get; private set;}
         [SerializeField] private PlayerStats _playerStats;
+        [SerializeField] private WeaponHolderControler _weaponHolder;
         [SerializeField] private Rigidbody2D _player;
         [SerializeField] private SpriteRenderer _playerRenderer;
         [SerializeField] private Animator _playerAnimator;
         [SerializeField] private Transform _camera;
         [SerializeField] private float _cameraSpeed;
         [SerializeField] private CircleCollider2D _collector;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private List<AudioClip> _takeDamageClips;
         
         private float _currentMoveSpeed;
         private float _currentHP;
@@ -24,18 +28,19 @@ namespace RomaDoliba.Player
         private Vector2 _moveDirection;
         private Vector2 _lastMoveDirection;
         private Coroutine _takingDamage;
+        private Coroutine _cameraFollow;
         private float _currentCollectRange;
         private WeaponBase _defoltWeapon;
-        //private LevelData _currentLevelData;
-
+        
         public WeaponBase DefoltWeapon {get => _defoltWeapon; set => _defoltWeapon = value;}
         public float CurrentMS {get => _currentMoveSpeed; set => _currentMoveSpeed = value;}
         public float CurrentHP {get => _currentHP; set => _currentHP = value;}
+        public float CurrentMaxHP {get => _maxHP; set => _maxHP = value;}
         public float CurrentCollectRange {get => _currentCollectRange; set => _currentCollectRange = value;}
         public Vector2 LastMoveDirection => _lastMoveDirection;
         public Vector2 MoveDirection => _moveDirection;
-        //public LevelData CurrentLevelData => _currentLevelData;
         public PlayerStats PlayerStats => _playerStats;
+        public WeaponHolderControler WeaponHolder => _weaponHolder;
         private void Awake()
         {
             if (Instance == null)
@@ -82,22 +87,17 @@ namespace RomaDoliba.Player
                     _playerRenderer.flipX = true;
                 }
             }
-            StartCoroutine(CameraFolow(_player.transform.position, _cameraSpeed));
+            if (_cameraFollow == null)
+            {
+                _cameraFollow = StartCoroutine(CameraFolow(_cameraSpeed));
+            }
         }
         private void TakeDamage(string eventName, float damage)
         {
             if (eventName == "TakeDamage" && _takingDamage == null)
             {
                 _takingDamage = StartCoroutine(TakeDamageCoroutine(damage));
-                if (_currentHP <= 0)
-                {
-                    Die();
-                }
             }
-        }
-        private void Die()
-        {
-            Time.timeScale = 0;
         }
         public void Heal(int value)
         {
@@ -107,27 +107,40 @@ namespace RomaDoliba.Player
                 _currentHP = _maxHP;
             }
         }
+
         private IEnumerator TakeDamageCoroutine(float damage)
         {
+            var originColor = _playerRenderer.color;
             _currentHP -= damage;
-            yield return new WaitForSeconds(1f);
+            _audioSource.clip = _takeDamageClips[Random.Range(0, _takeDamageClips.Count)];
+            _audioSource.Play();
+            while (_playerRenderer.color != Color.red)
+            {
+                _playerRenderer.color = Color.Lerp(_playerRenderer.color, Color.red, 0.25f);
+                yield return new WaitForEndOfFrame();
+            }
+            while(_playerRenderer.color != originColor)
+            {
+                _playerRenderer.color = Color.Lerp(_playerRenderer.color, originColor, 0.25f);
+                yield return new WaitForEndOfFrame();
+            }
             _takingDamage = null;
         }
         
-        private IEnumerator CameraFolow(Vector2 playerPosition, float delay)
+        private IEnumerator CameraFolow(float delay)
         {
             var currentTime = 0f;
             var deltaTime = 0f;
             var endTime = 1f;
-            var cameraStartPosition = _camera.position;
-            while (deltaTime != delay)
+            while (_camera.position != transform.position)
             {
-                _camera.position = Vector3.Lerp(cameraStartPosition, playerPosition, currentTime);
+                _camera.position = Vector3.Lerp(_camera.position, transform.position, currentTime);
                 deltaTime = Mathf.Min(delay, deltaTime + Time.deltaTime);
                 currentTime = Mathf.Min(endTime, (endTime * deltaTime) / delay);
 
                 yield return new WaitForEndOfFrame();
             }
+            _cameraFollow = null;
         }
         
         

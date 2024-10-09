@@ -15,24 +15,25 @@ namespace RomaDoliba.ActionSystem
     public class ValueSender : GlobalEventSender, ICollectible
     {
         [SerializeField] private PickUpType _type;
-        //[SerializeField] private int _value;
-        private PlayerStats _player;
-        
+                
         public void Collect()
         {
             switch (_type)
             {
                 case PickUpType.Experience:
-                    _player = PlayerControler.Instance.gameObject.GetComponent<PlayerStats>();
-                    _player.GainExperience((int)_value);
+                    PlayerControler.Instance.PlayerStats.GainExperience((int)_value);
                     break;
                 case PickUpType.Food:
                     PlayerControler.Instance.Heal((int)_value);
                     break;
                 case PickUpType.Coin:
-                    var curCoins = PlayerPrefs.GetInt("Coins");
+                    var collectedCoins = PlayerPrefs.GetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN, 0);
+                    collectedCoins += (int)_value;
+                    PlayerPrefs.SetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN, collectedCoins);
+                    
+                    var curCoins = PlayerPrefs.GetInt(GlobalData.TOTAL_COINS_AMOUNT);
                     curCoins += (int)_value;
-                    PlayerPrefs.SetInt("Coins", curCoins);
+                    PlayerPrefs.SetInt(GlobalData.TOTAL_COINS_AMOUNT, curCoins);
                     PlayerPrefs.Save();
                     break;
             }

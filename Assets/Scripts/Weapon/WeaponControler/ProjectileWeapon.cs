@@ -10,6 +10,7 @@ namespace RomaDoliba.Weapon
     {
         [SerializeField] protected WeaponBase _weaponData;
         [SerializeField] protected float _delayToDestroy;
+        [SerializeField] protected AudioSource _audioSource;
         private Vector3 _fireDirection;
         public WeaponBase WeaponData => _weaponData;
 

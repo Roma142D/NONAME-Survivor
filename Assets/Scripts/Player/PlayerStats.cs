@@ -1,16 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using RomaDoliba.ActionSystem;
-using RomaDoliba.UI;
-using TMPro;
 using UnityEngine;
 
 namespace RomaDoliba.Player
 {
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField] private CharacterData _characterData;
+        [SerializeField] private GlobalCharactersData _charactersData;
+        private CharacterData _characterData;
         [Space]
         [Header("Leveling")]
         [SerializeField] private List<LevelRange> _levelRanges;
@@ -23,9 +19,9 @@ namespace RomaDoliba.Player
                         
         public void Init(Animator animator, SpriteRenderer renderer)
         {
-            Debug.Log(PlayerPrefs.GetString("CharacterName"));
+            Debug.Log(PlayerPrefs.GetString(GlobalData.SELECTED_CHARACTER));
             
-            _characterData = CharacteeSelector.GetData();
+            _characterData = _charactersData.GetCharacterDataByName(PlayerPrefs.GetString("CharacterName"));
             animator.runtimeAnimatorController = _characterData.Animator;
             renderer.sprite = _characterData.Skin;
             PlayerControler.Instance.CurrentMS = _characterData.MoveSpeed;
@@ -70,12 +66,12 @@ namespace RomaDoliba.Player
 
         public void Recover()
         {
-            if (PlayerControler.Instance.CurrentHP < _characterData.MaxHealth)
+            if (PlayerControler.Instance.CurrentHP < PlayerControler.Instance.CurrentMaxHP)
             {
                 PlayerControler.Instance.CurrentHP += _characterData.PasiveRecovery * Time.deltaTime;
-                if (PlayerControler.Instance.CurrentHP > _characterData.MaxHealth)
+                if (PlayerControler.Instance.CurrentHP > PlayerControler.Instance.CurrentMaxHP)
                 {
-                    PlayerControler.Instance.CurrentHP = _characterData.MaxHealth;
+                    PlayerControler.Instance.CurrentHP = PlayerControler.Instance.CurrentMaxHP;
                 }
             }
         }
