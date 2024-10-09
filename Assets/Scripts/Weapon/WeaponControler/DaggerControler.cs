@@ -23,6 +23,7 @@ namespace RomaDoliba.Weapon
             var deltaTime = 0f;
             var endTime = 1f;
             var startPosition = dagger.transform.position;
+            _audioSource.Play();
             
             while (deltaTime != speed)
             {

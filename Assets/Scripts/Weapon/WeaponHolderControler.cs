@@ -32,7 +32,7 @@ namespace RomaDoliba.Weapon
                     _daggerWeapon = weapon;
                     _currentCooldown = _daggerWeapon.Cooldown;
                     _cooldownSlider.gameObject.SetActive(true);
-                    _cooldownSlider.maxValue = _currentCooldown;
+                    _cooldownSlider.maxValue = _daggerWeapon.Cooldown;
                     DaggerWeaponBehavior(weapon, true);
                     _allWeapon.Add(weapon);
                     break;

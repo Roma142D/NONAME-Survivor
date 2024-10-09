@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -7123294961342043201}
   - component: {fileID: 8453631558738205982}
   - component: {fileID: 3070758402372893036}
+  - component: {fileID: -3272929465988220308}
   m_Layer: 7
   m_Name: Box
   m_TagString: Enemy
@@ -176,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _condition: {fileID: -7123294961342043201}
   _actions:
+  - {fileID: -3272929465988220308}
   - {fileID: 8453631558738205982}
   - {fileID: 3070758402372893036}
   _onCollision: 1
@@ -226,3 +228,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectsToToggle:
   - {fileID: 600368467918943375}
+--- !u!114 &-3272929465988220308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4de04dae65765045997db0e30a4c4f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clipToPlay: {fileID: 8300000, guid: 26e19616f6ba9f6469e9d3d6c38b23fe, type: 3}

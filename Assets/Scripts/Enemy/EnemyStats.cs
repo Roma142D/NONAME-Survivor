@@ -1,5 +1,5 @@
 using System.Collections;
-using RomaDoliba.ActionSystem;
+using System.Collections.Generic;
 using RomaDoliba.PickUps;
 using UnityEngine;
 
@@ -11,6 +11,9 @@ namespace RomaDoliba.Enemy
         [SerializeField] private DropItem _dropItem;
         [SerializeField] private SpriteRenderer _enemyRenderer;
         [SerializeField] private Rigidbody2D _enemyRigidbody;
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private List<AudioClip> _takeDamageClips;
+
         private float _currentHealth;
         private float _currentSpeed;
         private float _currentDamage;
@@ -45,6 +48,8 @@ namespace RomaDoliba.Enemy
         private IEnumerator TakeDamage(float damage)
         {
             _originColor = _enemyRenderer.color;
+            _audioSource.clip = _takeDamageClips[Random.Range(0, _takeDamageClips.Count)];
+            _audioSource.Play();
             while (_enemyRenderer.color != Color.red)
             {
                 _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, Color.red, 0.5f);

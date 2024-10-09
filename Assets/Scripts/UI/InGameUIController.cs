@@ -65,6 +65,13 @@ namespace RomaDoliba.UI
                 PlayerPrefs.DeleteKey(GlobalData.COINS_COLLECTED_IN_THIS_RUN);
             }
         }
+
+        private void OnDisable()
+        {
+            GlobalEventSender.OnEvent -= ChangeCoinValue;
+            PlayerPrefs.DeleteKey(GlobalData.ENEMIES_KILLED_IN_THIS_RUN);
+            PlayerPrefs.DeleteKey(GlobalData.COINS_COLLECTED_IN_THIS_RUN);
+        }
         
         [System.Serializable]
         public struct PlayerStatsUI

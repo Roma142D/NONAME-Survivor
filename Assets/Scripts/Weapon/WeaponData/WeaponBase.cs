@@ -24,8 +24,7 @@ namespace RomaDoliba.Weapon
         public float Speed => _currentSpeed;
         public float Cooldown => _currentCooldown;
         public bool PassThroughEnemies => _passThroughEnemies;
-        
-        
+                    
         public GameObject Init(WeaponHolderControler weaponHolder)
         {
             _weaponHolder = weaponHolder;
