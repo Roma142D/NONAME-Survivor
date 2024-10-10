@@ -30,9 +30,8 @@ namespace RomaDoliba.Weapon
             {
                 case WeaponType.dagger: 
                     _daggerWeapon = weapon;
-                    _currentCooldown = _daggerWeapon.Cooldown;
-                    _cooldownSlider.gameObject.SetActive(true);
-                    _cooldownSlider.maxValue = _daggerWeapon.Cooldown;
+                    _currentCooldown = weapon.Cooldown;
+                    
                     DaggerWeaponBehavior(weapon, true);
                     _allWeapon.Add(weapon);
                     break;
@@ -73,6 +72,8 @@ namespace RomaDoliba.Weapon
                         Destroy(dagger);
                     }
                     _spawnedDaggers.Clear();
+                    _cooldownSlider.gameObject.SetActive(true);
+                    _cooldownSlider.maxValue = weapon.Cooldown;
                 }
                 var spawnedWeapon = weapon.Init(this);
                 _spawnedDaggers.Add(spawnedWeapon);
