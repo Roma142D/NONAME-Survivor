@@ -216,7 +216,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.35100913}
+  m_Offset: {x: 0.01632303, y: 0.5550473}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -227,7 +227,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.4258351}
+  m_Size: {x: 1.9450163, y: 2.8339114}
   m_EdgeRadius: 0
 --- !u!50 &3337571973506330007
 Rigidbody2D:
@@ -466,8 +466,8 @@ PolygonCollider2D:
     - - {x: 1.0596228, y: 9.419556}
       - {x: 1.053858, y: 8.685851}
       - {x: 11.854706, y: 8.634079}
-      - {x: 11.884489, y: 1.2219032}
-      - {x: 12.544058, y: 1.1989012}
+      - {x: 11.895027, y: -1.2122873}
+      - {x: 12.491369, y: -1.2036767}
       - {x: 12.5, y: 9.375}
   m_UseDelaunayMesh: 0
 --- !u!50 &2693052679180639472
@@ -896,8 +896,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.0596228, y: 9.419556}
-      - {x: 1.053858, y: 8.685851}
+    - - {x: -1.0957901, y: 9.370119}
+      - {x: -1.0916684, y: 8.685851}
       - {x: 11.854706, y: 8.634079}
       - {x: 11.884489, y: 1.2219032}
       - {x: 12.544058, y: 1.1989012}
@@ -1020,7 +1020,7 @@ Transform:
   m_GameObject: {fileID: 4663129936237086724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 19, z: 0}
+  m_LocalPosition: {x: 0, y: 18.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1230,7 +1230,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1814723, y: 0}
+  m_Offset: {x: 0.29758072, y: -0.028147459}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1241,7 +1241,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.68241405, y: 2.375}
+  m_Size: {x: 0.9146309, y: 2.192041}
   m_EdgeRadius: 0
 --- !u!50 &8971096032017892761
 Rigidbody2D:

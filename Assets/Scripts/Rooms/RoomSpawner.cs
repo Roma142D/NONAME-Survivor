@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RomaDoliba.Manager;
 using UnityEngine;
 namespace RomaDoliba.Terrain
 {
@@ -19,35 +20,46 @@ namespace RomaDoliba.Terrain
 
         private void Start()
         {
+            Invoke("SpawnRoom", 0.2f);
             Destroy(gameObject, 3f);
-            Invoke("Spawn", 0.2f);
+            /*
+            if (GameManager.Instance.SpawnedRooms == null 
+                ||GameManager.Instance.SpawnedRooms.Count <= GameManager.Instance.MaxRooms)
+            {
+            }
+            else
+            {
+            }
+            */
         }
-
-        public void Spawn()
+        
+        public void SpawnRoom()
         {
+            RoomBase newRoom = null;
             if (!IsSpawned)
             {
                 switch (_direction)
                 {
                     case Direction.Top:
                         var topRoom = FindRoomByDirection(Direction.Top);
-                        Instantiate(topRoom, transform.position, Quaternion.identity);
+                        newRoom = Instantiate(topRoom, transform.position, Quaternion.identity);
                         break;
                     case Direction.Down:
                         var downRoom = FindRoomByDirection(Direction.Down);
-                        Instantiate(downRoom, transform.position, Quaternion.identity);
+                        newRoom = Instantiate(downRoom, transform.position, Quaternion.identity);
                         break;
                     case Direction.Right:
                         var rightRoom = FindRoomByDirection(Direction.Right);
-                        Instantiate(rightRoom, transform.position, Quaternion.identity);
+                        newRoom = Instantiate(rightRoom, transform.position, Quaternion.identity);
                         break;
                     case Direction.Left:
                         var leftRoom = FindRoomByDirection(Direction.Left);
-                        Instantiate(leftRoom, transform.position, Quaternion.identity);          
-                        break;         
+                        newRoom = Instantiate(leftRoom, transform.position, Quaternion.identity);          
+                        break;
                 }
                 IsSpawned = true;
             }
+            GameManager.Instance.SpawnedRooms.Add(newRoom);
         }
 
         private RoomBase FindRoomByDirection(Direction direction)
