@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using RomaDoliba.Manager;
 using UnityEngine;
 
 namespace RomaDoliba.Terrain
@@ -15,10 +16,12 @@ namespace RomaDoliba.Terrain
         {
             _parent = parent;
         }
-        public TileBase SpawnTile(Vector3 spawnPosition)
+        public TileBase SpawnTile(Vector3 spawnPosition, bool isStart)
         {
             var randomTile = _terrainTilesBackground[Random.Range(0, _terrainTilesBackground.Count)];
-            var spawnedTile = Instantiate(randomTile, spawnPosition, Quaternion.identity, _parent);
+            var lastSpawnedTile = GameManager.Instance.LastSpawnedTile;
+            var nextSpawnPosition = isStart ? spawnPosition : lastSpawnedTile.GetNextSpawnPoint().position;
+            var spawnedTile = Instantiate(randomTile, nextSpawnPosition, Quaternion.identity, _parent);
             SpawnProps(spawnedTile.PropsSpawnPoints);
             return spawnedTile;
         }

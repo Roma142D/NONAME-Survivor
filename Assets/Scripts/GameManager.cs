@@ -18,6 +18,7 @@ namespace RomaDoliba.Manager
         [SerializeField] private float _checkRadius;
         [SerializeField] private float _checkDistance;
         [SerializeField] private float _distanceToDisable;
+        public TileBase LastSpawnedTile {get;private set;}
         [Space]
         [Header("EnemySpawn")]
         [SerializeField] private EnemyGroupControler _enemiesSpawner;
@@ -56,7 +57,7 @@ namespace RomaDoliba.Manager
 
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
-            SpawnTile(Vector3.zero);
+            SpawnTile(Vector3.zero, true);
             
             //_currentEnemiesPerSpawn = _enemiesSpawnPerOneTime;
             _spawnedEnemies = new List<EnemyMovement>();
@@ -88,13 +89,14 @@ namespace RomaDoliba.Manager
                 var nextPositionToSpawn = currentTile.transform.position + spawnDistance;
                 if (_spawnedTiles.Count < 15 || CheckTilesToPool() == null)
                 {
-                    SpawnTile(nextPositionToSpawn);
+                    SpawnTile(nextPositionToSpawn, false);
                 }
                 else if (CheckTilesToPool() != null)
                 {
                     var poolTile = CheckTilesToPool();
                     poolTile.gameObject.SetActive(true);
-                    poolTile.gameObject.transform.position = nextPositionToSpawn;
+                    poolTile.gameObject.transform.position = poolTile.GetNextSpawnPoint().position;
+                    LastSpawnedTile = poolTile;
                     if (_currentEnemiesSpawnPoints.Count >= 16)
                         {
                             _currentEnemiesSpawnPoints.RemoveRange(0, _currentEnemiesSpawnPoints.Count - 8);
@@ -121,10 +123,11 @@ namespace RomaDoliba.Manager
             }
             return null;
         }
-        private void SpawnTile(Vector3 spawnPosition)
+        private void SpawnTile(Vector3 spawnPosition, bool isStart)
         {
-            var spawnedTile = _terrainTilesData.SpawnTile(spawnPosition);
+            var spawnedTile = _terrainTilesData.SpawnTile(spawnPosition, isStart);
             _spawnedTiles.Add(spawnedTile);
+            LastSpawnedTile = spawnedTile;
             
             if (_currentEnemiesSpawnPoints.Count >= 16)
             {
