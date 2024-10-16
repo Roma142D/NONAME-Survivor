@@ -20,7 +20,7 @@ namespace RomaDoliba.Terrain
 
         private void Start()
         {
-            Invoke("SpawnRoom", 0.2f);
+            Invoke("SpawnRoom", 0.1f);
             Destroy(gameObject, 3f);
             /*
             if (GameManager.Instance.SpawnedRooms == null 

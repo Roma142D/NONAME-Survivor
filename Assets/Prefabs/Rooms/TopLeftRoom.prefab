@@ -239,7 +239,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 713154483951492857}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -749,6 +749,20 @@ MonoBehaviour:
       SpriteRenderer: {fileID: 0}
       Collider: {fileID: 0}
   _roomDirection: 0000000003000000
+  _doorFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1 &2951368157955136424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1267,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 4843482428188655424}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0

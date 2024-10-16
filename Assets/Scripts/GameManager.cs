@@ -76,8 +76,19 @@ namespace RomaDoliba.Manager
         }
         private IEnumerator Start()
         {
-            yield return new WaitForSecondsRealtime(5f);
+            yield return new WaitForSecondsRealtime(3f);
             //_currentEnemiesSpawnPoints.AddRange(SpawnedRooms[0].EnemiesSpawnPoints);
+            SpawnedRooms[0].gameObject.SetActive(false);
+            Debug.Log(SpawnedRooms.Count);
+            if (SpawnedRooms.Count > MaxRooms)
+            {
+                while (SpawnedRooms.Count - 1 > MaxRooms)
+                {
+                    Destroy(SpawnedRooms[MaxRooms + 1].gameObject);
+                    SpawnedRooms.RemoveAt(MaxRooms + 1);
+                }
+            }
+            yield return new WaitForSecondsRealtime(2f);
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints, true, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
         }
@@ -160,22 +171,6 @@ namespace RomaDoliba.Manager
             CheckEnemiesToPool();
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints, false, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
-            /*
-            if (_enemiesToPool.Count <= _currentEnemiesPerSpawn || _enemiesToPool == null)
-            {
-            }
-            else
-            {
-                for (int i = 0; i < _currentEnemiesPerSpawn; i++)
-                {
-                    var enemyToPool = _enemiesToPool[i];
-                    enemyToPool.gameObject.transform.position = spawnPosition;
-                    enemyToPool.gameObject.SetActive(true);
-                    _enemiesToPool.Remove(enemyToPool);
-                    _spawnedEnemies.Add(enemyToPool);
-                }
-            }
-            */
             _spawnEnemiesCoroutine = null;
         }
 
