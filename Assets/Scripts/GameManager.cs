@@ -13,7 +13,7 @@ namespace RomaDoliba.Manager
         [Space]
         [Header("RoomsSpawn")]
         [SerializeField] private int _maxRooms;
-        [SerializeField] private RoomBase _startRoom;
+        private RoomBase _startRoom;
         public int MaxRooms => _maxRooms;
         public List<RoomBase> SpawnedRooms {get; set;}
         /*
@@ -37,6 +37,8 @@ namespace RomaDoliba.Manager
         private List<Transform> _currentEnemiesSpawnPoints;
         private Coroutine _spawnEnemiesCoroutine;
         public List<EnemyMovement> EnemiesToPool => _enemiesToPool;
+        public Coroutine IsEnemyDefeated {get; private set;}
+        public bool IsWaveDefeated {get; set;}
         [Space]
         [Header("Player")]
         [SerializeField] private PlayerControler _player;
@@ -47,7 +49,7 @@ namespace RomaDoliba.Manager
         public Transform DropedItemsCollector => _dropedItemsCollector;
         public List<GameObject> DropedItems => _dropedItems;
         [Space]
-        [Header("")]
+        [Header("Audio")]
         [SerializeField] private AudioSource _actionAudioSource;
         public AudioSource ActionAudioSource {get => _actionAudioSource; set => _actionAudioSource = value;}
         
@@ -66,7 +68,7 @@ namespace RomaDoliba.Manager
             _spawnedEnemies = new List<EnemyMovement>();
             _enemiesToPool = new List<EnemyMovement>();
             _dropedItems = new List<GameObject>();
-            _currentEnemiesSpawnPoints.AddRange(_startRoom.EnemiesSpawnPoints);
+            
             /*
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
@@ -76,10 +78,11 @@ namespace RomaDoliba.Manager
         }
         private IEnumerator Start()
         {
-            yield return new WaitForSecondsRealtime(3f);
+            yield return new WaitForSecondsRealtime(2f);
             //_currentEnemiesSpawnPoints.AddRange(SpawnedRooms[0].EnemiesSpawnPoints);
-            SpawnedRooms[0].gameObject.SetActive(false);
-            Debug.Log(SpawnedRooms.Count);
+            //SpawnedRooms[0].gameObject.SetActive(false);
+            _startRoom = SpawnedRooms[0];
+            _currentEnemiesSpawnPoints.AddRange(_startRoom.EnemiesSpawnPoints);
             if (SpawnedRooms.Count > MaxRooms)
             {
                 while (SpawnedRooms.Count - 1 > MaxRooms)
@@ -88,19 +91,20 @@ namespace RomaDoliba.Manager
                     SpawnedRooms.RemoveAt(MaxRooms + 1);
                 }
             }
-            yield return new WaitForSecondsRealtime(2f);
+            yield return new WaitForSecondsRealtime(1f);
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints, true, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
         }
-        private void Update()
+        private void FixedUpdate()
         {
-            /*
-            if (_spawnEnemiesCoroutine == null)
+            if (_spawnedEnemies.Count > 0) CheckEnemiesToPool();
+            if (_spawnEnemiesCoroutine == null && IsWaveDefeated)
             {
+                Debug.Log("Update");
                 var ranPosition = _currentEnemiesSpawnPoints[Random.Range(0, _currentEnemiesSpawnPoints.Count)];
                 _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown(ranPosition.position));
             }
-            */
+            
             
             //CheckTilesToSpawn();
         }
@@ -166,17 +170,40 @@ namespace RomaDoliba.Manager
         
         private IEnumerator SpawnEnemiesByCoolDown(Vector3 spawnPosition)
         {
+            Debug.Log("StartCheck");
+            /*
+            do
+            {
+                Debug.Log(_spawnedEnemies.Count);
+                CheckEnemiesToPool();
+            } while (_spawnedEnemies.Count != 0);
+            */
+            //CheckEnemiesToPool();
+            //yield return new WaitUntil(() => _spawnedEnemies.Count == 0);
+            //IsWaveDefeated = _spawnedEnemies.Count == 0;
             yield return new WaitForSeconds(_coolDownForSpawn);
-
-            CheckEnemiesToPool();
+            IsWaveDefeated = false;
+            //CheckEnemiesToPool();
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints, false, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
             _spawnEnemiesCoroutine = null;
         }
-
+        private IEnumerator CheckIsWaveDefeeated()
+        {
+            Debug.Log("StartCheck");
+            do
+            {
+                CheckEnemiesToPool();
+                Debug.Log(_spawnedEnemies.Count);
+            } while (_spawnedEnemies.Count != 0);
+            yield return new WaitUntil(() => _spawnedEnemies.Count == 0);
+            IsWaveDefeated = _spawnedEnemies.Count == 0;
+            Debug.Log("EndCheck" + IsWaveDefeated);
+            IsEnemyDefeated = null;
+        }
         private void CheckEnemiesToPool()
         {
-            for (int i = 0; i < _spawnedEnemies.Count; i++)
+            for (int i = _spawnedEnemies.Count - 1; i >= 0; i--)
             {
                 var enemy = _spawnedEnemies[i];
                 if (enemy.gameObject.activeSelf == false)
@@ -185,7 +212,10 @@ namespace RomaDoliba.Manager
                     _enemiesToPool.Add(enemy);
                 }
             }
+            IsWaveDefeated = _spawnedEnemies.Count == 0;
+            //Debug.Log(IsWaveDefeated);
         }
+        
 
         public void AddItemToPool(GameObject item)
         {

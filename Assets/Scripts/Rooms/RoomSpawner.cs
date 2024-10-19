@@ -10,6 +10,7 @@ namespace RomaDoliba.Terrain
         Down,
         Right,
         Left,
+        AllDirections,
         None
     }
     public class RoomSpawner : MonoBehaviour
@@ -55,6 +56,10 @@ namespace RomaDoliba.Terrain
                     case Direction.Left:
                         var leftRoom = FindRoomByDirection(Direction.Left);
                         newRoom = Instantiate(leftRoom, transform.position, Quaternion.identity);          
+                        break;
+                    case Direction.AllDirections:
+                        var allDirectionsRoom = FindRoomByDirection(Direction.AllDirections);
+                        newRoom = Instantiate(allDirectionsRoom, transform.position, Quaternion.identity);          
                         break;
                 }
                 IsSpawned = true;
