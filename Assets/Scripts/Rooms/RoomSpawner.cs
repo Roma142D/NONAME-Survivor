@@ -22,7 +22,7 @@ namespace RomaDoliba.Terrain
         private void Start()
         {
             Invoke("SpawnRoom", 0.1f);
-            Destroy(gameObject, 3f);
+            Destroy(gameObject, 5f);
             /*
             if (GameManager.Instance.SpawnedRooms == null 
                 ||GameManager.Instance.SpawnedRooms.Count <= GameManager.Instance.MaxRooms)
@@ -84,6 +84,8 @@ namespace RomaDoliba.Terrain
         {
             if (collider.CompareTag("NeighborPoint") && collider.GetComponent<RoomSpawner>().IsSpawned)
             {
+                Debug.Log("DestroyRoom");
+                Destroy(collider.gameObject);
                 Destroy(gameObject);
             }
         }

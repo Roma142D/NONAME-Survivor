@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 2582652586699816525}
   - component: {fileID: 1032684093646072749}
   - component: {fileID: 3337571973506330007}
+  - component: {fileID: 1237468116348961383}
   m_Layer: 11
   m_Name: DoorUp
   m_TagString: Untagged
@@ -256,6 +257,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1237468116348961383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713154483951492857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _delayToCloseDoors: 1
 --- !u!1 &924503864271985391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1819,6 +1837,7 @@ GameObject:
   - component: {fileID: 5305179600937805861}
   - component: {fileID: 5217484094825356640}
   - component: {fileID: 4196552586281040885}
+  - component: {fileID: 4208333512427925921}
   m_Layer: 11
   m_Name: DoorRight
   m_TagString: Untagged
@@ -1965,3 +1984,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4208333512427925921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078521142501563376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _delayToCloseDoors: 1

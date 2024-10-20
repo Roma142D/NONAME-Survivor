@@ -1538,6 +1538,7 @@ GameObject:
   - component: {fileID: 5305179600937805861}
   - component: {fileID: 5217484094825356640}
   - component: {fileID: 4196552586281040885}
+  - component: {fileID: 5538774872544195086}
   m_Layer: 11
   m_Name: DoorRight
   m_TagString: Untagged
@@ -1684,3 +1685,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5538774872544195086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9078521142501563376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  _delayToCloseDoors: 1

@@ -112,9 +112,7 @@ GameObject:
   - component: {fileID: 7162181929874868498}
   - component: {fileID: 61101145851129129}
   - component: {fileID: 6271386834028565427}
-  - component: {fileID: 8274765327370846954}
-  - component: {fileID: 7480571172871431366}
-  - component: {fileID: 3652619770024701576}
+  - component: {fileID: 3628411124889027276}
   m_Layer: 11
   m_Name: DoorBottom
   m_TagString: Untagged
@@ -261,7 +259,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8274765327370846954
+--- !u!114 &3628411124889027276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,47 +268,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 470591488056346332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a66e28c9274e840bf9396ab51a9882, type: 3}
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _condition: {fileID: 7480571172871431366}
-  _actions:
-  - {fileID: 3652619770024701576}
-  _onCollision: 0
-  _onTrigger: 1
-  _state:
-    _enter: 0
-    _stay: 0
-    _exit: 1
---- !u!114 &7480571172871431366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470591488056346332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481b56b043337bb4b80471ae215375b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collideWith:
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &3652619770024701576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 470591488056346332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b566472727af47ab527b22ca61b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventName: CloseDoors
-  _value: 2
+  _delayToCloseDoors: 1
 --- !u!1 &713154483951492857
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,9 +288,7 @@ GameObject:
   - component: {fileID: 2582652586699816525}
   - component: {fileID: 1032684093646072749}
   - component: {fileID: 3337571973506330007}
-  - component: {fileID: 7887727825311346678}
-  - component: {fileID: 3052210038029450981}
-  - component: {fileID: 8054739682453055575}
+  - component: {fileID: 7365546143309202554}
   m_Layer: 11
   m_Name: DoorUp
   m_TagString: Untagged
@@ -472,7 +435,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7887727825311346678
+--- !u!114 &7365546143309202554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,47 +444,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 713154483951492857}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a66e28c9274e840bf9396ab51a9882, type: 3}
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _condition: {fileID: 8054739682453055575}
-  _actions:
-  - {fileID: 3052210038029450981}
-  _onCollision: 0
-  _onTrigger: 1
-  _state:
-    _enter: 0
-    _stay: 0
-    _exit: 1
---- !u!114 &3052210038029450981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713154483951492857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b566472727af47ab527b22ca61b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventName: CloseDoors
-  _value: 2
---- !u!114 &8054739682453055575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 713154483951492857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481b56b043337bb4b80471ae215375b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collideWith:
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  _delayToCloseDoors: 1
 --- !u!1 &924503864271985391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,9 +1456,7 @@ GameObject:
   - component: {fileID: 1708219238818168849}
   - component: {fileID: 2349072165585327016}
   - component: {fileID: 8971096032017892761}
-  - component: {fileID: 2434152981571549147}
-  - component: {fileID: 6410389411595454461}
-  - component: {fileID: 5848341251189679913}
+  - component: {fileID: 4259261589496872596}
   m_Layer: 11
   m_Name: DoorLeft
   m_TagString: Untagged
@@ -1675,7 +1603,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2434152981571549147
+--- !u!114 &4259261589496872596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1684,47 +1612,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4843482428188655424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481b56b043337bb4b80471ae215375b2, type: 3}
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collideWith:
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &6410389411595454461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843482428188655424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a66e28c9274e840bf9396ab51a9882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _condition: {fileID: 2434152981571549147}
-  _actions:
-  - {fileID: 5848341251189679913}
-  _onCollision: 0
-  _onTrigger: 1
-  _state:
-    _enter: 0
-    _stay: 0
-    _exit: 1
---- !u!114 &5848341251189679913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4843482428188655424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b566472727af47ab527b22ca61b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _eventName: CloseDoors
-  _value: 2
+  _delayToCloseDoors: 1
 --- !u!1 &5135894585161804018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2537,9 +2432,7 @@ GameObject:
   - component: {fileID: 5305179600937805861}
   - component: {fileID: 5217484094825356640}
   - component: {fileID: 4196552586281040885}
-  - component: {fileID: 2710799612516253715}
-  - component: {fileID: 6811210048032912187}
-  - component: {fileID: 313594730166546490}
+  - component: {fileID: 6613188142727858382}
   m_Layer: 11
   m_Name: DoorRight
   m_TagString: Untagged
@@ -2686,7 +2579,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2710799612516253715
+--- !u!114 &6613188142727858382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2695,44 +2588,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 9078521142501563376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5b566472727af47ab527b22ca61b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: d509362463d353646a5cfa785613391d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _eventName: CloseDoors
-  _value: 2
---- !u!114 &6811210048032912187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9078521142501563376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481b56b043337bb4b80471ae215375b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _collideWith:
+  _room: {fileID: 3084424496962497644}
+  _playerLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &313594730166546490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9078521142501563376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a66e28c9274e840bf9396ab51a9882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _condition: {fileID: 6811210048032912187}
-  _actions:
-  - {fileID: 2710799612516253715}
-  _onCollision: 0
-  _onTrigger: 1
-  _state:
-    _enter: 0
-    _stay: 0
-    _exit: 1
+  _delayToCloseDoors: 1

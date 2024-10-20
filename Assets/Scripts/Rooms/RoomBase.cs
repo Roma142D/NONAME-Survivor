@@ -18,7 +18,7 @@ namespace RomaDoliba.Terrain
         
         private IEnumerator Start()
         {
-            GlobalEventSender.OnEvent += CloseDoors;
+            //GlobalEventSender.OnEvent += CloseDoors;
             NeighborDoors = new List<Collider2D>();
             yield return new WaitForSecondsRealtime(2.1f);
             CheckDoors();
@@ -32,13 +32,14 @@ namespace RomaDoliba.Terrain
         {
             if (eventName == "CloseDoors")
             {
-                GameManager.Instance.IsWaveDefeated = false;
+                
                 StartCoroutine(CloseAfterDelay(delay));
             }
         }
 
-        private IEnumerator CloseAfterDelay(float delay)
+        public IEnumerator CloseAfterDelay(float delay)
         {
+            GameManager.Instance.IsWaveDefeated = false;
             yield return new WaitForSecondsRealtime(delay);
 
             if (_doors.LeftDoor.Collider != null)
@@ -102,18 +103,7 @@ namespace RomaDoliba.Terrain
                 
             }
         }
-        private void OnEnable()
-        {
-            GlobalEventSender.OnEvent += CloseDoors;
-        }
-        private void OnDisable()
-        {
-            GlobalEventSender.OnEvent -= CloseDoors;
-        }
-        private void OnDestroy()
-        {
-            GlobalEventSender.OnEvent -= CloseDoors;
-        }
+        
         private void CheckDoors()
         {
             if (_doors.LeftDoor.Collider != null)

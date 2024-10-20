@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RomaDoliba.Enemy;
 using RomaDoliba.Player;
 using RomaDoliba.Terrain;
@@ -15,6 +16,7 @@ namespace RomaDoliba.Manager
         [SerializeField] private int _maxRooms;
         private RoomBase _startRoom;
         public int MaxRooms => _maxRooms;
+        public RoomBase CurrentRoom {get; set;}
         public List<RoomBase> SpawnedRooms {get; set;}
         /*
         [Header("TerrainSpawn")]
@@ -81,8 +83,8 @@ namespace RomaDoliba.Manager
             yield return new WaitForSecondsRealtime(2f);
             //_currentEnemiesSpawnPoints.AddRange(SpawnedRooms[0].EnemiesSpawnPoints);
             //SpawnedRooms[0].gameObject.SetActive(false);
-            _startRoom = SpawnedRooms[0];
-            _currentEnemiesSpawnPoints.AddRange(_startRoom.EnemiesSpawnPoints);
+            CurrentRoom = SpawnedRooms[0];
+            //_currentEnemiesSpawnPoints.AddRange(CurrentRoom.EnemiesSpawnPoints);
             if (SpawnedRooms.Count > MaxRooms)
             {
                 while (SpawnedRooms.Count - 1 > MaxRooms)
@@ -92,7 +94,7 @@ namespace RomaDoliba.Manager
                 }
             }
             yield return new WaitForSecondsRealtime(1f);
-            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints, true, _enemiesCollector);
+            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), true, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
         }
         private void FixedUpdate()
@@ -100,9 +102,7 @@ namespace RomaDoliba.Manager
             if (_spawnedEnemies.Count > 0) CheckEnemiesToPool();
             if (_spawnEnemiesCoroutine == null && IsWaveDefeated)
             {
-                Debug.Log("Update");
-                var ranPosition = _currentEnemiesSpawnPoints[Random.Range(0, _currentEnemiesSpawnPoints.Count)];
-                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown(ranPosition.position));
+                _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
             }
             
             
@@ -168,38 +168,15 @@ namespace RomaDoliba.Manager
         }
         */
         
-        private IEnumerator SpawnEnemiesByCoolDown(Vector3 spawnPosition)
+        private IEnumerator SpawnEnemiesByCoolDown()
         {
-            Debug.Log("StartCheck");
-            /*
-            do
-            {
-                Debug.Log(_spawnedEnemies.Count);
-                CheckEnemiesToPool();
-            } while (_spawnedEnemies.Count != 0);
-            */
-            //CheckEnemiesToPool();
             //yield return new WaitUntil(() => _spawnedEnemies.Count == 0);
             //IsWaveDefeated = _spawnedEnemies.Count == 0;
             yield return new WaitForSeconds(_coolDownForSpawn);
             IsWaveDefeated = false;
-            //CheckEnemiesToPool();
-            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(_currentEnemiesSpawnPoints, false, _enemiesCollector);
+            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), false, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
             _spawnEnemiesCoroutine = null;
-        }
-        private IEnumerator CheckIsWaveDefeeated()
-        {
-            Debug.Log("StartCheck");
-            do
-            {
-                CheckEnemiesToPool();
-                Debug.Log(_spawnedEnemies.Count);
-            } while (_spawnedEnemies.Count != 0);
-            yield return new WaitUntil(() => _spawnedEnemies.Count == 0);
-            IsWaveDefeated = _spawnedEnemies.Count == 0;
-            Debug.Log("EndCheck" + IsWaveDefeated);
-            IsEnemyDefeated = null;
         }
         private void CheckEnemiesToPool()
         {
@@ -213,7 +190,6 @@ namespace RomaDoliba.Manager
                 }
             }
             IsWaveDefeated = _spawnedEnemies.Count == 0;
-            //Debug.Log(IsWaveDefeated);
         }
         
 
