@@ -21,17 +21,8 @@ namespace RomaDoliba.Terrain
 
         private void Start()
         {
-            Invoke("SpawnRoom", 0.1f);
+            Invoke("SpawnRoom", 0.2f);
             Destroy(gameObject, 5f);
-            /*
-            if (GameManager.Instance.SpawnedRooms == null 
-                ||GameManager.Instance.SpawnedRooms.Count <= GameManager.Instance.MaxRooms)
-            {
-            }
-            else
-            {
-            }
-            */
         }
         
         public void SpawnRoom()
@@ -61,6 +52,9 @@ namespace RomaDoliba.Terrain
                         var allDirectionsRoom = FindRoomByDirection(Direction.AllDirections);
                         newRoom = Instantiate(allDirectionsRoom, transform.position, Quaternion.identity);          
                         break;
+                    case Direction.None:
+                        Debug.Log("None");
+                        break;
                 }
                 IsSpawned = true;
             }
@@ -84,8 +78,6 @@ namespace RomaDoliba.Terrain
         {
             if (collider.CompareTag("NeighborPoint") && collider.GetComponent<RoomSpawner>().IsSpawned)
             {
-                Debug.Log("DestroyRoom");
-                Destroy(collider.gameObject);
                 Destroy(gameObject);
             }
         }

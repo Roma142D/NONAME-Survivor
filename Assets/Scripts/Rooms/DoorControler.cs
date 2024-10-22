@@ -9,6 +9,9 @@ namespace RomaDoliba.Terrain
         [SerializeField] private RoomBase _room;
         [SerializeField] private LayerMask _playerLayer;
         [SerializeField] private float _delayToCloseDoors;
+        [SerializeField] private SpriteRenderer _doorRenderer;
+        [SerializeField] private Collider2D _doorCollider;
+        [SerializeField] private ContactFilter2D _doorFilter;
 
         private void OnTriggerExit2D(Collider2D collider)
         {
@@ -18,5 +21,6 @@ namespace RomaDoliba.Terrain
                 GameManager.Instance.CurrentRoom = _room;
             }
         }
+        
     }
 }

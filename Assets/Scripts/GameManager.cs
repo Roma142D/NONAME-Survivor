@@ -80,7 +80,7 @@ namespace RomaDoliba.Manager
         }
         private IEnumerator Start()
         {
-            yield return new WaitForSecondsRealtime(2f);
+            yield return new WaitForSecondsRealtime(3f);
             //_currentEnemiesSpawnPoints.AddRange(SpawnedRooms[0].EnemiesSpawnPoints);
             //SpawnedRooms[0].gameObject.SetActive(false);
             CurrentRoom = SpawnedRooms[0];
@@ -93,6 +93,7 @@ namespace RomaDoliba.Manager
                     SpawnedRooms.RemoveAt(MaxRooms + 1);
                 }
             }
+            CheckRoomsPosition();
             yield return new WaitForSecondsRealtime(1f);
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), true, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
@@ -104,8 +105,6 @@ namespace RomaDoliba.Manager
             {
                 _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
             }
-            
-            
             //CheckTilesToSpawn();
         }
         /*
@@ -174,6 +173,7 @@ namespace RomaDoliba.Manager
             //IsWaveDefeated = _spawnedEnemies.Count == 0;
             yield return new WaitForSeconds(_coolDownForSpawn);
             IsWaveDefeated = false;
+            StartCoroutine(CurrentRoom.CloseAfterDelay(0f));
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), false, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
             _spawnEnemiesCoroutine = null;
@@ -190,6 +190,24 @@ namespace RomaDoliba.Manager
                 }
             }
             IsWaveDefeated = _spawnedEnemies.Count == 0;
+        }
+        private void CheckRoomsPosition()
+        {
+            for (int i = SpawnedRooms.Count - 1; i >= 0; i--)
+            {
+                var roomPositionToCheck = SpawnedRooms[i].transform.position;
+                for (int j = SpawnedRooms.Count - 1; j >= 0; j--)
+                {
+                    var otherRoomPos = SpawnedRooms[j].transform.position;
+                    if(roomPositionToCheck == otherRoomPos && i != j)
+                    {
+                        SpawnedRooms[i].gameObject.SetActive(false);
+                        SpawnedRooms.RemoveAt(i);
+                        Debug.Log("FindRooms");
+                        break;
+                    }
+                }
+            }
         }
         
 

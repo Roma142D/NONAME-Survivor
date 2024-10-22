@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using RomaDoliba.ActionSystem;
 using RomaDoliba.Manager;
 using UnityEngine;
 
@@ -10,6 +9,7 @@ namespace RomaDoliba.Terrain
     public class RoomBase : TileBase
     {
         [SerializeField] private Doors _doors;
+        [SerializeField] private Pentagram _pentagram;
         [SerializeField] private List<Direction> _roomDirection;
         [SerializeField] private ContactFilter2D _doorFilter;
         public Doors RoomDoors => _doors;
@@ -18,9 +18,8 @@ namespace RomaDoliba.Terrain
         
         private IEnumerator Start()
         {
-            //GlobalEventSender.OnEvent += CloseDoors;
             NeighborDoors = new List<Collider2D>();
-            yield return new WaitForSecondsRealtime(2.1f);
+            yield return new WaitForSecondsRealtime(3.1f);
             CheckDoors();
         }
 
@@ -28,15 +27,7 @@ namespace RomaDoliba.Terrain
         {
             if (GameManager.Instance.IsWaveDefeated) OpenDoors();
         }
-        private void CloseDoors(string eventName, float delay)
-        {
-            if (eventName == "CloseDoors")
-            {
-                
-                StartCoroutine(CloseAfterDelay(delay));
-            }
-        }
-
+        
         public IEnumerator CloseAfterDelay(float delay)
         {
             GameManager.Instance.IsWaveDefeated = false;
@@ -136,7 +127,12 @@ namespace RomaDoliba.Terrain
             }
             //Debug.Log(NeighborDoors.Count);
         }
-        
+        [System.Serializable]
+        public struct Pentagram
+        {
+            public SpriteRenderer SpriteRenderer;
+            public Collider2D Collider;
+        }
         [System.Serializable]
         public struct Doors
         {

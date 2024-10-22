@@ -8,6 +8,7 @@ TagManager:
   - NeighborPoint
   - Room
   - Rooms
+  - Pentagram
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Collector
   - Weapon
   - Door
-  - 
+  - Pentagram
   - 
   - 
   - 
