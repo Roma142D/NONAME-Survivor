@@ -12,6 +12,7 @@ namespace RomaDoliba.Terrain
         [SerializeField] private Pentagram _pentagram;
         [SerializeField] private List<Direction> _roomDirection;
         [SerializeField] private ContactFilter2D _doorFilter;
+        [SerializeField] private PropsData _propsData;
         public Doors RoomDoors => _doors;
         public List<Direction> RoomDirection => _roomDirection;
         public List<Collider2D> NeighborDoors{get; set;}
@@ -21,6 +22,7 @@ namespace RomaDoliba.Terrain
             NeighborDoors = new List<Collider2D>();
             yield return new WaitForSecondsRealtime(3.1f);
             CheckDoors();
+            _propsData.SpawnProps(_propsSpawnPoints, 3);
         }
 
         private void Update()
@@ -99,33 +101,42 @@ namespace RomaDoliba.Terrain
         {
             if (_doors.LeftDoor.Collider != null)
             {
-                //List<Collider2D> colliders = new List<Collider2D>();
-                _doors.LeftDoor.SpriteRenderer.enabled = _doors.LeftDoor.Collider.GetContacts(_doorFilter, NeighborDoors) != 0 
+                List<Collider2D> colliders = new List<Collider2D>();
+                _doors.LeftDoor.SpriteRenderer.enabled = _doors.LeftDoor.Collider.GetContacts(_doorFilter, colliders) != 0 
                 ? true
                 : false;
+                NeighborDoors.AddRange(colliders);
             }
             if (_doors.RightDoor.Collider != null)
             {
-                //List<Collider2D> colliders = new List<Collider2D>();
-                _doors.RightDoor.SpriteRenderer.enabled = _doors.RightDoor.Collider.GetContacts(_doorFilter, NeighborDoors) != 0 
+                List<Collider2D> colliders = new List<Collider2D>();
+                _doors.RightDoor.SpriteRenderer.enabled = _doors.RightDoor.Collider.GetContacts(_doorFilter, colliders) != 0 
                 ? true
                 : false;
+                NeighborDoors.AddRange(colliders);
             }
             if (_doors.TopDoor.Collider != null)
             {
-                //List<Collider2D> colliders = new List<Collider2D>();
-                _doors.TopDoor.SpriteRenderer.enabled = _doors.TopDoor.Collider.GetContacts(_doorFilter, NeighborDoors) != 0 
+                List<Collider2D> colliders = new List<Collider2D>();
+                _doors.TopDoor.SpriteRenderer.enabled = _doors.TopDoor.Collider.GetContacts(_doorFilter, colliders) != 0 
                 ? true
                 : false;
+                NeighborDoors.AddRange(colliders);
             }
             if (_doors.BottomDoor.Collider != null)
             {
-                //List<Collider2D> colliders = new List<Collider2D>();
-                _doors.BottomDoor.SpriteRenderer.enabled = _doors.BottomDoor.Collider.GetContacts(_doorFilter, NeighborDoors) != 0 
+                List<Collider2D> colliders = new List<Collider2D>();
+                _doors.BottomDoor.SpriteRenderer.enabled = _doors.BottomDoor.Collider.GetContacts(_doorFilter, colliders) != 0 
                 ? true
                 : false;
+                NeighborDoors.AddRange(colliders);
             }
-            //Debug.Log(NeighborDoors.Count);
+            
+            if(NeighborDoors.Count == 0)
+            {
+                GameManager.Instance.SpawnedRooms.Remove(this);
+                gameObject.SetActive(false);
+            } 
         }
         [System.Serializable]
         public struct Pentagram

@@ -523,6 +523,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  _propsData: {fileID: 11400000, guid: 0847e14124d083248923af99ad9fa7ae, type: 2}
 --- !u!1 &2951368157955136424
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,8 +8,8 @@ namespace RomaDoliba.Terrain
 {
     public class TileBase : MonoBehaviour
     {
-        [SerializeField] private Transform[] _propsSpawnPoints;
-        [SerializeField] private Transform[] _enemiesSpawnPoints;
+        [SerializeField] protected Transform[] _propsSpawnPoints;
+        [SerializeField] protected Transform[] _enemiesSpawnPoints;
         [SerializeField] private NeighborSpawnPoints _neighborSpawnPoints;
 
         public Transform[] PropsSpawnPoints => _propsSpawnPoints;
