@@ -5,7 +5,8 @@ namespace RomaDoliba.Weapon
     public enum WeaponType
     {
         dagger,
-        aura
+        aura,
+        gun
     }
     public class WeaponBase : ScriptableObject
     {
@@ -20,6 +21,7 @@ namespace RomaDoliba.Weapon
         private float _currentCooldown;
         protected WeaponHolderControler _weaponHolder;
         public WeaponType WeaponType => _weaponType;
+        public Joystick WeaponJoystick {get; set;}
         public float CurrentDamage {get => _currentDamage; set => _currentDamage = value;}
         public float Speed => _currentSpeed;
         public float Cooldown => _currentCooldown;

@@ -22,10 +22,15 @@ namespace RomaDoliba.Weapon
         {
             StartCoroutine(DelayToDisable());
         }
-        public Vector3 CalculateDirection()
+        protected virtual Vector3 CalculateDirection()
         {
+            
             _fireDirection = PlayerControler.Instance.transform.position;
-            _fireDirection += new Vector3(PlayerControler.Instance.MoveDirection.x, PlayerControler.Instance.MoveDirection.y, 0f) * 44f;
+
+            _fireDirection += PlayerControler.Instance.ControlerType == ControlerType.Android
+            ? new Vector3(_weaponData.WeaponJoystick.Horizontal, _weaponData.WeaponJoystick.Vertical, 0f).normalized * 44f
+            : new Vector3(PlayerControler.Instance.MoveDirection.x, PlayerControler.Instance.MoveDirection.y, 0f) * 44f;
+
             var lastMoveDirection = PlayerControler.Instance.LastMoveDirection;
             
             if (_fireDirection == PlayerControler.Instance.transform.position)

@@ -7,9 +7,12 @@ using UnityEngine;
 
 namespace RomaDoliba.Player
 {
+    public enum ControlerType { PC, Android }
     public class PlayerControler : MonoBehaviour
     {
         public static PlayerControler Instance{get; private set;}
+        [SerializeField] private ControlerType _controlerType;
+        [SerializeField] private Joystick _playerMoveJoystick;
         [SerializeField] private PlayerStats _playerStats;
         [SerializeField] private WeaponHolderControler _weaponHolder;
         [SerializeField] private Rigidbody2D _player;
@@ -41,6 +44,7 @@ namespace RomaDoliba.Player
         public Vector2 MoveDirection => _moveDirection;
         public PlayerStats PlayerStats => _playerStats;
         public WeaponHolderControler WeaponHolder => _weaponHolder;
+        public ControlerType ControlerType => _controlerType;
         private void Awake()
         {
             if (Instance == null)
@@ -70,19 +74,31 @@ namespace RomaDoliba.Player
                        
         private void Move()
         {
-            var velocityByInput = new Vector2(_moveDirection.x, _moveDirection.y).normalized;
+            Vector2 velocityByInput;
+            switch (_controlerType)
+            {
+                case ControlerType.PC:
+                    velocityByInput = new Vector2(_moveDirection.x, _moveDirection.y).normalized;
+                    break;
+                case ControlerType.Android:
+                    velocityByInput = _playerMoveJoystick.Direction.normalized;
+                    break;
+                default:
+                    velocityByInput = new Vector2(_moveDirection.x, _moveDirection.y).normalized;
+                    break;
+            }
             var modifiedVelocity = velocityByInput * _currentMoveSpeed * Time.fixedDeltaTime;
 
             _player.velocity = new Vector2(modifiedVelocity.x, modifiedVelocity.y);
-            if (_moveDirection != Vector2.zero)
+            if (velocityByInput != Vector2.zero)
             {
-                _lastMoveDirection = _moveDirection;
+                _lastMoveDirection = velocityByInput;
                 _playerAnimator.SetTrigger("Walk");
-                if (_moveDirection.x > 0)
+                if (velocityByInput.x > 0)
                 {
                     _playerRenderer.flipX = false;
                 }
-                else if (_moveDirection.x < 0)
+                else if (velocityByInput.x < 0)
                 {
                     _playerRenderer.flipX = true;
                 }

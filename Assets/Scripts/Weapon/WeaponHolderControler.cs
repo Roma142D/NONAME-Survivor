@@ -9,6 +9,7 @@ namespace RomaDoliba.Weapon
     public class WeaponHolderControler : MonoBehaviour
     {
         [SerializeField] private Slider _cooldownSlider;
+        [SerializeField] private Joystick _weaponJoystick;
         private WeaponBase _daggerWeapon;
         private GameObject _auraWeapon;
         private List<WeaponBase> _allWeapon;
@@ -30,6 +31,7 @@ namespace RomaDoliba.Weapon
             {
                 case WeaponType.dagger: 
                     _daggerWeapon = weapon;
+                    _daggerWeapon.WeaponJoystick = _weaponJoystick;
                     _currentCooldown = _daggerWeapon.Cooldown;
                     _cooldownSlider.gameObject.SetActive(true);
                     _cooldownSlider.maxValue = _daggerWeapon.Cooldown;
@@ -82,7 +84,9 @@ namespace RomaDoliba.Weapon
                 var pooledWeapon = _spawnedDaggers[0];
                 _spawnedDaggers.Remove(pooledWeapon);
                 pooledWeapon.transform.position = this.transform.position;
-                var rotZ = Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
+                var rotZ = PlayerControler.Instance.ControlerType == ControlerType.Android 
+                ? Mathf.Atan2(_daggerWeapon.WeaponJoystick.Vertical, _daggerWeapon.WeaponJoystick.Horizontal) * Mathf.Rad2Deg
+                : Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
                 pooledWeapon.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 45f);
                 pooledWeapon.SetActive(true);
                 _spawnedDaggers.Add(pooledWeapon);

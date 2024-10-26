@@ -37,15 +37,6 @@ namespace RomaDoliba.Player
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Attack"",
-                    ""type"": ""Value"",
-                    ""id"": ""89ff44b5-5de8-4fad-bfb9-9a1a8a76112b"",
-                    ""expectedControlType"": ""Delta"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -103,72 +94,6 @@ namespace RomaDoliba.Player
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""One Modifier"",
-                    ""id"": ""5158e93b-ba97-4ae6-ad88-627eb766db09"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Modifier"",
-                    ""id"": ""b812ca23-12e5-4133-a704-dbce450e5c58"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Binding"",
-                    ""id"": ""f1be8f0f-24a8-45e7-92d2-e0015f870aee"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""TouchPad"",
-                    ""id"": ""b3a45af8-9378-451b-b051-f384b3110c98"",
-                    ""path"": ""OneModifier"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Attack"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""modifier"",
-                    ""id"": ""9f5d92c4-0afc-4b37-8f65-27ff8acc976e"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""binding"",
-                    ""id"": ""1af580d3-db75-425e-a124-c2af1b743f40"",
-                    ""path"": ""<Pointer>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -204,13 +129,23 @@ namespace RomaDoliba.Player
                     ""isOR"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Android"",
+            ""bindingGroup"": ""Android"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<AndroidJoystick>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -273,13 +208,11 @@ namespace RomaDoliba.Player
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_Attack;
         public struct PlayerActions
         {
             private @MyPlayerInput m_Wrapper;
             public PlayerActions(@MyPlayerInput wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @Attack => m_Wrapper.m_Player_Attack;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -292,9 +225,6 @@ namespace RomaDoliba.Player
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -302,9 +232,6 @@ namespace RomaDoliba.Player
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
-                @Attack.started -= instance.OnAttack;
-                @Attack.performed -= instance.OnAttack;
-                @Attack.canceled -= instance.OnAttack;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -331,10 +258,18 @@ namespace RomaDoliba.Player
                 return asset.controlSchemes[m_KeyboardSchemeIndex];
             }
         }
+        private int m_AndroidSchemeIndex = -1;
+        public InputControlScheme AndroidScheme
+        {
+            get
+            {
+                if (m_AndroidSchemeIndex == -1) m_AndroidSchemeIndex = asset.FindControlSchemeIndex("Android");
+                return asset.controlSchemes[m_AndroidSchemeIndex];
+            }
+        }
         public interface IPlayerActions
         {
             void OnMove(InputAction.CallbackContext context);
-            void OnAttack(InputAction.CallbackContext context);
         }
     }
 }
