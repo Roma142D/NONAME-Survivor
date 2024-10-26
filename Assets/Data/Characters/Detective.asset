@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbeec4036e7f9d4dbca0b0b8fab862c, type: 3}
   m_Name: Detective
   m_EditorClassIdentifier: 
-  _defoltWeapon: {fileID: 11400000, guid: 0dcf64a69a2c35140b4af7225318cf8c, type: 2}
+  _defoltWeapon: {fileID: 11400000, guid: 4a0ab154be49c4e48a4f78b9ebf1c93d, type: 2}
   _moveSpeed: 200
   _maxHealth: 100
   _pasiveRecovery: 0.2

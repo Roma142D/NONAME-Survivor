@@ -16,11 +16,11 @@ namespace RomaDoliba.Weapon
 
         protected virtual void Start()
         {
-            StartCoroutine(DelayToDisable());
+            StartCoroutine(DelayToDisable(transform.gameObject));
         }
         protected virtual void OnEnable()
         {
-            StartCoroutine(DelayToDisable());
+            StartCoroutine(DelayToDisable(transform.gameObject));
         }
         protected virtual Vector3 CalculateDirection()
         {
@@ -47,10 +47,10 @@ namespace RomaDoliba.Weapon
             return _fireDirection;
         }
 
-        protected virtual IEnumerator DelayToDisable()
+        protected virtual IEnumerator DelayToDisable(GameObject objToDisable)
         {           
             yield return new WaitForSeconds(_delayToDestroy);
-            if (this.gameObject.activeSelf == true)
+            if (objToDisable == true)
             {
                 ToggleWeapon();
             }

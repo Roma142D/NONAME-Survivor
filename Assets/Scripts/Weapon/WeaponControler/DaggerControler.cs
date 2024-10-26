@@ -34,9 +34,9 @@ namespace RomaDoliba.Weapon
                 yield return new WaitForFixedUpdate();
             }
         }
-        protected override IEnumerator DelayToDisable()
+        protected override IEnumerator DelayToDisable(GameObject objToDisable)
         {
-            return base.DelayToDisable();
+            return base.DelayToDisable(transform.gameObject);
         }
     }
 }

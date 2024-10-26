@@ -15,7 +15,9 @@ namespace RomaDoliba.Weapon
         private List<WeaponBase> _allWeapon;
         private List<GameObject> _spawnedDaggers;
         private float _currentCooldown;       
+        public RevolverControler RevolverWeapon {get; set;}
         public List<WeaponBase> CurrentWeapons => _allWeapon;
+        public Joystick WeaponJoystick => _weaponJoystick;
         private void Awake()
         {
             _spawnedDaggers = new List<GameObject>();
@@ -46,6 +48,8 @@ namespace RomaDoliba.Weapon
                     AuraWeaponBehavior(weapon);
                     _allWeapon.Add(weapon);
                     break;
+                case WeaponType.gun:
+                    goto case WeaponType.dagger;
                 default: 
                     Debug.Log("Not a weapon");
                     break;
