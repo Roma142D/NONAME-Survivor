@@ -12,5 +12,6 @@ namespace RomaDoliba
         public static string SELECTED_CHARACTER = "CharacterName";
         public static string ENEMIES_KILLED_IN_THIS_RUN = "EnemiesKilledInThisRun";
         public static string COINS_COLLECTED_IN_THIS_RUN = "CoinsCollectedInThisRun";
+        public static string LAMB_SACRIFICE = "Sacrifice";
     }
 }

@@ -14,6 +14,7 @@ namespace RomaDoliba.Manager
         [Space]
         [Header("RoomsSpawn")]
         [SerializeField] private int _maxRooms;
+        [SerializeField] private GameObject _lambPrefab;
         private RoomBase _startRoom;
         public int MaxRooms => _maxRooms;
         public RoomBase CurrentRoom {get; set;}
@@ -213,12 +214,18 @@ namespace RomaDoliba.Manager
                     {
                         SpawnedRooms[i].gameObject.SetActive(false);
                         SpawnedRooms.RemoveAt(i);
-                        Debug.Log("FindRooms");
+                        Debug.Log("FindRoom");
                         break;
                     }
                 }
             }
-
+            SpawnedRooms[SpawnedRooms.Count - 1].IsBossRoom = true;
+            Instantiate(_lambPrefab, SpawnedRooms[SpawnedRooms.Count - 2].transform.position, Quaternion.identity, SpawnedRooms[SpawnedRooms.Count - 2].transform);
+        }
+        public void OnLevelCompleted()
+        {
+            Debug.Log("LevelCompleted");
+            Time.timeScale = 0f;
         }
         
 

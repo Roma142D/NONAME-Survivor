@@ -478,14 +478,14 @@ MonoBehaviour:
   _doorCollider: {fileID: 61101145851129129}
   _doorFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 2048
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -885,18 +885,10 @@ MonoBehaviour:
     TopPoint: {fileID: 0}
     BottomPoint: {fileID: 8257957892731097523}
   _doors:
-    LeftDoor:
-      SpriteRenderer: {fileID: 0}
-      Collider: {fileID: 0}
-    RightDoor:
-      SpriteRenderer: {fileID: 5305179600937805861}
-      Collider: {fileID: 5217484094825356640}
-    TopDoor:
-      SpriteRenderer: {fileID: 0}
-      Collider: {fileID: 0}
-    BottomDoor:
-      SpriteRenderer: {fileID: 7162181929874868498}
-      Collider: {fileID: 61101145851129129}
+    LeftDoor: {fileID: 0}
+    RightDoor: {fileID: 8095483405435043718}
+    TopDoor: {fileID: 0}
+    BottomDoor: {fileID: 6752994609925176106}
   _pentagram:
     SpriteRenderer: {fileID: 3468003033911012579}
     Collider: {fileID: 7995271132389222522}
@@ -2057,14 +2049,14 @@ MonoBehaviour:
   _doorCollider: {fileID: 5217484094825356640}
   _doorFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 2048
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0

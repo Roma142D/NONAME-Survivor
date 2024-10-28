@@ -14,6 +14,7 @@ namespace RomaDoliba.Terrain
         [SerializeField] private ContactFilter2D _doorFilter;
         public Collider2D DoorCollider => _doorCollider;
         public SpriteRenderer DoorRenderer => _doorRenderer;
+        public bool IsBossRoomDoor {get; set;}
 
         private void OnTriggerExit2D(Collider2D collider)
         {
