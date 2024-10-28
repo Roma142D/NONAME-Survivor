@@ -93,7 +93,7 @@ namespace RomaDoliba.Manager
                     SpawnedRooms.RemoveAt(MaxRooms + 1);
                 }
             }
-            CheckRoomsPosition();
+            CheckRooms();
             yield return new WaitForSecondsRealtime(1f);
             var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), true, _enemiesCollector);
             _spawnedEnemies.AddRange(spawnedEnemies);
@@ -103,6 +103,7 @@ namespace RomaDoliba.Manager
             if (_spawnedEnemies.Count > 0) CheckEnemiesToPool();
             if (_spawnEnemiesCoroutine == null && IsWaveDefeated)
             {
+                Debug.Log($"{CurrentRoom}  {CurrentRoom.IsRoomCleared}");
                 _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
             }
             //CheckTilesToSpawn();
@@ -172,11 +173,20 @@ namespace RomaDoliba.Manager
             //yield return new WaitUntil(() => _spawnedEnemies.Count == 0);
             //IsWaveDefeated = _spawnedEnemies.Count == 0;
             yield return new WaitForSeconds(_coolDownForSpawn);
-            IsWaveDefeated = false;
-            StartCoroutine(CurrentRoom.CloseAfterDelay(0f));
-            var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), false, _enemiesCollector);
-            _spawnedEnemies.AddRange(spawnedEnemies);
-            _spawnEnemiesCoroutine = null;
+            if (CurrentRoom.IsRoomCleared == false)
+            {
+                Debug.Log($"{CurrentRoom}  {CurrentRoom.IsRoomCleared}");
+                IsWaveDefeated = false;
+                //StartCoroutine(CurrentRoom.CloseAfterDelay(0f));
+                var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), false, _enemiesCollector);
+                _spawnedEnemies.AddRange(spawnedEnemies);
+                _spawnEnemiesCoroutine = null;
+            }
+            else
+            {
+                Debug.Log($"{CurrentRoom}  {CurrentRoom.IsRoomCleared}");
+                _spawnEnemiesCoroutine = null;
+            }
         }
         private void CheckEnemiesToPool()
         {
@@ -189,9 +199,9 @@ namespace RomaDoliba.Manager
                     _enemiesToPool.Add(enemy);
                 }
             }
-            IsWaveDefeated = _spawnedEnemies.Count == 0;
+            if (CurrentRoom.IsRoomCleared = IsWaveDefeated = _spawnedEnemies.Count == 0) CurrentRoom.OnWaveDefete();
         }
-        private void CheckRoomsPosition()
+        private void CheckRooms()
         {
             for (int i = SpawnedRooms.Count - 1; i >= 0; i--)
             {
@@ -208,6 +218,7 @@ namespace RomaDoliba.Manager
                     }
                 }
             }
+
         }
         
 

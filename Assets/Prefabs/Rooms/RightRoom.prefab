@@ -506,6 +506,8 @@ MonoBehaviour:
   _pentagram:
     SpriteRenderer: {fileID: 3937560646352851289}
     Collider: {fileID: 7496769757095492321}
+    DefoltSprite: {fileID: 21300000, guid: e828181400a5c9e4a8a1be3357344d23, type: 3}
+    ActiveSprite: {fileID: 21300000, guid: 45b96aab96433304a8dd459f35996197, type: 3}
   _roomDirection: 02000000
   _doorFilter:
     useTriggers: 0
@@ -1737,8 +1739,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _delayToCloseDoors: 1
-  _doorRenderer: {fileID: 0}
-  _doorCollider: {fileID: 0}
+  _doorRenderer: {fileID: 5305179600937805861}
+  _doorCollider: {fileID: 5217484094825356640}
   _doorFilter:
     useTriggers: 0
     useLayerMask: 0

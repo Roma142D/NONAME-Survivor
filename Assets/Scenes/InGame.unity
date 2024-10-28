@@ -4427,7 +4427,7 @@ PrefabInstance:
       objectReference: {fileID: 1083706541}
     - target: {fileID: 2118760667442604664, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: _controlerType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2118760667442604664, guid: 26fea7686f809f44ab9d941a70b9643d, type: 3}
       propertyPath: _playerMoveJoystick

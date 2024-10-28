@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using RomaDoliba.Weapon;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace RomaDoliba.Player
@@ -15,14 +14,14 @@ namespace RomaDoliba.Player
         [SerializeField] private float _pasiveRecovery;
         [SerializeField] private float _collectRange;
         [SerializeField] private Sprite _characterSkin;
-        [SerializeField] private AnimatorController _animationControler;
+        [SerializeField] private RuntimeAnimatorController _animationControler;
         public WeaponBase DefoltWeapon => _defoltWeapon;
         public float MoveSpeed => _moveSpeed;
         public float MaxHealth => _maxHealth;
         public float PasiveRecovery => _pasiveRecovery;
         public float CollectRange => _collectRange;
         public Sprite Skin => _characterSkin;
-        public AnimatorController Animator => _animationControler;
+        public RuntimeAnimatorController Animator => _animationControler;
 
     }
 }
