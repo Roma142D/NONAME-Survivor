@@ -61,29 +61,25 @@ namespace RomaDoliba.Terrain
             if (_doors.LeftDoor != null)
             {
                 _doors.LeftDoor.DoorCollider.isTrigger = false;
-                //_doors.LeftDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.LeftDoor.DoorRenderer.color = Color.white;
+                _doors.LeftDoor.DoorRenderer.sprite = _doors.LeftDoor.DoorSprite.ClosedDoor;
                 
             }
             if (_doors.RightDoor != null)
             {
                 _doors.RightDoor.DoorCollider.isTrigger = false;
-                //_doors.RightDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.RightDoor.DoorRenderer.color =Color.white;
+                _doors.RightDoor.DoorRenderer.sprite = _doors.RightDoor.DoorSprite.ClosedDoor;
                 
             }
             if (_doors.TopDoor != null)
             {
                 _doors.TopDoor.DoorCollider.isTrigger = false;
-                //_doors.TopDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.TopDoor.DoorRenderer.color = Color.white;
+                _doors.TopDoor.DoorRenderer.sprite = _doors.TopDoor.DoorSprite.ClosedDoor;
                 
             }
             if (_doors.BottomDoor != null)
             {
                 _doors.BottomDoor.DoorCollider.isTrigger = false;
-                //_doors.BottomDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.BottomDoor.DoorRenderer.color = Color.white;
+                _doors.BottomDoor.DoorRenderer.sprite = _doors.BottomDoor.DoorSprite.ClosedDoor;
                 
             }
         }
@@ -93,29 +89,25 @@ namespace RomaDoliba.Terrain
             if (_doors.LeftDoor != null)
             {
                 _doors.LeftDoor.DoorCollider.isTrigger = true;
-                //_doors.LeftDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.LeftDoor.DoorRenderer.color = Color.black;
+                _doors.LeftDoor.DoorRenderer.sprite = _doors.LeftDoor.DoorSprite.OpenedDoor;
                 
             }
             if (_doors.RightDoor != null)
             {
                 _doors.RightDoor.DoorCollider.isTrigger = true;
-                //_doors.RightDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.RightDoor.DoorRenderer.color = Color.black;
+                _doors.RightDoor.DoorRenderer.sprite = _doors.RightDoor.DoorSprite.OpenedDoor;
                 
             }
             if (_doors.TopDoor != null)
             {
                 _doors.TopDoor.DoorCollider.isTrigger = true;
-                //_doors.TopDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.TopDoor.DoorRenderer.color = Color.black;
+                _doors.TopDoor.DoorRenderer.sprite = _doors.TopDoor.DoorSprite.OpenedDoor;
                 
             }
             if (_doors.BottomDoor != null)
             {
                 _doors.BottomDoor.DoorCollider.isTrigger = true;
-                //_doors.BottomDoor.Collider.GetContacts(_doorFilter, NeighborDoors);
-                _doors.BottomDoor.DoorRenderer.color = Color.black;
+                _doors.BottomDoor.DoorRenderer.sprite = _doors.BottomDoor.DoorSprite.OpenedDoor;
                 
             }
             foreach (var door in NeighborDoors)
@@ -123,7 +115,7 @@ namespace RomaDoliba.Terrain
                 if (!door.IsBossRoomDoor)
                 {
                     door.DoorCollider.isTrigger = true;
-                    door.DoorRenderer.color = Color.black;
+                    door.DoorRenderer.sprite = door.DoorSprite.OpenedDoor;
                 }
             }
         }
@@ -181,7 +173,6 @@ namespace RomaDoliba.Terrain
             public Collider2D Collider;
             public Sprite DefoltSprite;
             public Sprite ActiveSprite;
-            //public GameObject Lamb;
         }
         [System.Serializable]
         public struct Doors
@@ -190,12 +181,6 @@ namespace RomaDoliba.Terrain
             public DoorControler RightDoor;
             public DoorControler TopDoor;
             public DoorControler BottomDoor;
-        }
-        [System.Serializable]
-        public struct DoorData
-        {
-            public SpriteRenderer DoorRenderer;
-            public Collider2D DoorCollider;
         }
     }
 }

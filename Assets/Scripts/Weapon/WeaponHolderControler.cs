@@ -49,7 +49,8 @@ namespace RomaDoliba.Weapon
                     _allWeapon.Add(weapon);
                     break;
                 case WeaponType.gun:
-                    goto case WeaponType.dagger;
+                    weapon.Init(this);
+                    break;
                 default: 
                     Debug.Log("Not a weapon");
                     break;
@@ -91,7 +92,7 @@ namespace RomaDoliba.Weapon
                 var rotZ = PlayerControler.Instance.ControlerType == ControlerType.Android 
                 ? Mathf.Atan2(_daggerWeapon.WeaponJoystick.Vertical, _daggerWeapon.WeaponJoystick.Horizontal) * Mathf.Rad2Deg
                 : Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
-                pooledWeapon.transform.rotation = Quaternion.Euler(0f, 0f, rotZ - 45f);
+                pooledWeapon.transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
                 pooledWeapon.SetActive(true);
                 _spawnedDaggers.Add(pooledWeapon);
             }

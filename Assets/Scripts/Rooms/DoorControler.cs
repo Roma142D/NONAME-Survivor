@@ -10,10 +10,12 @@ namespace RomaDoliba.Terrain
         [SerializeField] private LayerMask _playerLayer;
         [SerializeField] private float _delayToCloseDoors;
         [SerializeField] private SpriteRenderer _doorRenderer;
+        [SerializeField] private DoorSprites _doorSprites;
         [SerializeField] private Collider2D _doorCollider;
         [SerializeField] private ContactFilter2D _doorFilter;
         public Collider2D DoorCollider => _doorCollider;
         public SpriteRenderer DoorRenderer => _doorRenderer;
+        public DoorSprites DoorSprite => _doorSprites;
         public bool IsBossRoomDoor {get; set;}
 
         private void OnTriggerExit2D(Collider2D collider)
@@ -24,6 +26,11 @@ namespace RomaDoliba.Terrain
                 //GameManager.Instance.CurrentRoom = _room;
             }
         }
-        
+        [System.Serializable]
+        public struct DoorSprites
+        {
+            public Sprite OpenedDoor;
+            public Sprite ClosedDoor;
+        }
     }
 }

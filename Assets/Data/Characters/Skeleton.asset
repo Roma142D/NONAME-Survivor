@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cbeec4036e7f9d4dbca0b0b8fab862c, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  _defoltWeapon: {fileID: 11400000, guid: e1fc373c27e61b743a29e4c3debb79f5, type: 2}
+  _defoltWeapon: {fileID: 11400000, guid: a35004b62611a8743b8ed5e74ad46cd7, type: 2}
   _moveSpeed: 250
   _maxHealth: 50
   _pasiveRecovery: 0.5

@@ -275,6 +275,9 @@ MonoBehaviour:
     m_Bits: 64
   _delayToCloseDoors: 1
   _doorRenderer: {fileID: 2582652586699816525}
+  _doorSprites:
+    OpenedDoor: {fileID: 21300000, guid: 2b70f992185fd4e49927579cca617826, type: 3}
+    ClosedDoor: {fileID: 21300000, guid: 873b702d28a40a440a73c97c21d9fb57, type: 3}
   _doorCollider: {fileID: 1032684093646072749}
   _doorFilter:
     useTriggers: 0
@@ -1250,6 +1253,9 @@ MonoBehaviour:
     m_Bits: 64
   _delayToCloseDoors: 1
   _doorRenderer: {fileID: 1708219238818168849}
+  _doorSprites:
+    OpenedDoor: {fileID: 21300000, guid: 9cc9cb3f4ce3869409d6b8e086efdc34, type: 3}
+    ClosedDoor: {fileID: 21300000, guid: 6b0d1d8d874d0944c89cfab5568a4d4d, type: 3}
   _doorCollider: {fileID: 2349072165585327016}
   _doorFilter:
     useTriggers: 0

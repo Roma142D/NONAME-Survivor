@@ -17,7 +17,7 @@ namespace RomaDoliba.Weapon
             base.OnEnable();
         }
 
-        private IEnumerator FireDaggerCorotine(GameObject dagger, float speed, Vector3 direction)
+        protected virtual IEnumerator FireDaggerCorotine(GameObject dagger, float speed, Vector3 direction)
         {
             var currentTime = 0f;
             var deltaTime = 0f;
