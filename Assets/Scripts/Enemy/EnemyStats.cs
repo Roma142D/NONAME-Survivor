@@ -13,6 +13,7 @@ namespace RomaDoliba.Enemy
         [SerializeField] private Rigidbody2D _enemyRigidbody;
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private List<AudioClip> _takeDamageClips;
+        [SerializeField] private Animator _animator;
 
         private float _currentHealth;
         private float _currentSpeed;
@@ -65,6 +66,9 @@ namespace RomaDoliba.Enemy
             
             if (_currentHealth <= 0)
             {
+                _animator.SetTrigger("Death");
+                yield return new WaitForSecondsRealtime(0.5f);
+                /*
                 var endRotation = new Vector3(0, 0, 90);
                 _enemyRigidbody.simulated = false;
                 
@@ -75,6 +79,7 @@ namespace RomaDoliba.Enemy
                                        
                     yield return new WaitForEndOfFrame();
                 }
+                */
                 var killedEnemies = PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN, 0);
                 killedEnemies += 1;
                 PlayerPrefs.SetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN, killedEnemies);

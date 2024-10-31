@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1201003871856018800}
   - component: {fileID: -821100249709420345}
   - component: {fileID: 5663773375789486287}
+  - component: {fileID: -1101863550463385051}
   m_Layer: 7
   m_Name: FirstEnemy
   m_TagString: Enemy
@@ -195,6 +196,7 @@ MonoBehaviour:
   _audioSource: {fileID: 5663773375789486287}
   _takeDamageClips:
   - {fileID: 8300000, guid: 87e2452fe2c754248926c9a9ab93a467, type: 3}
+  _animator: {fileID: -1101863550463385051}
 --- !u!114 &9083830360646017848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,3 +344,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &-1101863550463385051
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a8007d6e03d92f439d59802bf8f225b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
