@@ -20,6 +20,7 @@ namespace RomaDoliba.Enemy
         private float _currentDamage;
         private Coroutine _takingDamage;
         private Color _originColor;
+        public Animator EnemyAnimator => _animator;
         public float CurrentHP => _currentHealth;
         public float MoveSpeed => _currentSpeed;
 
@@ -54,13 +55,13 @@ namespace RomaDoliba.Enemy
             while (_enemyRenderer.color != Color.red)
             {
                 _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, Color.red, 0.5f);
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForFixedUpdate();
             }
             _currentHealth -= damage;
             while(_enemyRenderer.color != _originColor)
             {
                 _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, _originColor, 0.5f);
-                yield return new WaitForEndOfFrame();
+                yield return new WaitForFixedUpdate();
             }
 
             

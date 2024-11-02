@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4372454148855784263}
   - component: {fileID: -3541158865327311145}
   - component: {fileID: 3550522851752218487}
-  - component: {fileID: 6732539473695601391}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -102,11 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f06a48da35b10b4488b051419afdd2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponData: {fileID: 11400000, guid: 4a0ab154be49c4e48a4f78b9ebf1c93d, type: 2}
+  _weaponData: {fileID: 11400000, guid: 8c0ee64d65595074fb58b18bd73c364b, type: 2}
   _delayToDestroy: 3
   _audioSource: {fileID: 3550522851752218487}
-  _animator: {fileID: 6732539473695601391}
-  _shootPoint: {fileID: 0}
 --- !u!50 &3918306837641050428
 Rigidbody2D:
   serializedVersion: 4
@@ -297,24 +294,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &6732539473695601391
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6406712524275714416}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6a22d7110a90c69478965044bfb04f47, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

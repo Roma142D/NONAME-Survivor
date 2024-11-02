@@ -9,6 +9,7 @@ namespace RomaDoliba.Weapon
     {
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private BulletController _bulletPrefab;
+        [SerializeField] private Animator _animator;
         private Joystick _weaponJoystick;
         private float _currentCooldown;
         private List<GameObject> _spawnedBullets;
@@ -49,6 +50,7 @@ namespace RomaDoliba.Weapon
                     var bullet = _bulletPrefab.WeaponData.Init(PlayerControler.Instance.WeaponHolder);
                     _spawnedBullets.Add(bullet);
                     bullet.GetComponent<BulletController>().ShootPoint = _shootPoint;
+                    _animator.SetTrigger("Shoot");
                     bullet.GetComponent<BulletController>().StratBulletCoroutine(CalculateDirection());
                 }
                 else
@@ -63,6 +65,7 @@ namespace RomaDoliba.Weapon
                     pooledBullet.SetActive(true);
                     _spawnedBullets.Add(pooledBullet);
                     pooledBullet.GetComponent<BulletController>().ShootPoint = _shootPoint;
+                    _animator.SetTrigger("Shoot");
                     pooledBullet.GetComponent<BulletController>().StratBulletCoroutine(CalculateDirection());
                 }
                 bulletsToShoot -= 1;

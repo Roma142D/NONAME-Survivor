@@ -6,7 +6,6 @@ namespace RomaDoliba.Weapon
 {
     public class BulletController : DaggerControler
     {
-        [SerializeField] private Animator _animator;
         public Transform ShootPoint {get; set;}
         protected override void Start()
         {
@@ -20,8 +19,6 @@ namespace RomaDoliba.Weapon
         protected override IEnumerator FireDaggerCorotine(GameObject dagger, float speed, Vector3 direction)
         {
             transform.position = ShootPoint.position;
-            _animator.SetTrigger("Shoot");
-            yield return new WaitForSecondsRealtime(0.4f);
             var currentTime = 0f;
             var deltaTime = 0f;
             var endTime = 1f;

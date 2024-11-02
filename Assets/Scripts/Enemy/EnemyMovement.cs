@@ -7,14 +7,18 @@ namespace RomaDoliba.Enemy
 {
     public class EnemyMovement : MonoBehaviour
     {
-        [SerializeField] private EnemyStats _enemyStats;
-        [SerializeField] private LayerMask _targetLayer;
-        [SerializeField] private SpriteRenderer _enemyRenderer;
+        [SerializeField] protected EnemyStats _enemyStats;
+        [SerializeField] protected LayerMask _targetLayer;
+        [SerializeField] protected SpriteRenderer _enemyRenderer;
         [SerializeField] private SpriteDirection _enemySprites;
-        private Transform _target;
-        private Coroutine _followCoroutine;
+        protected Transform _target;
+        protected Coroutine _followCoroutine;
 
         private void Update()
+        {
+            StartFollowTarget();
+        }
+        protected virtual void StartFollowTarget()
         {
             if (Physics2D.CircleCast(this.transform.position, 44f, Vector2.zero, 0f, _targetLayer))
             {
@@ -24,7 +28,7 @@ namespace RomaDoliba.Enemy
                 }
             }
         }
-        private void CheckTargetPosition()
+        protected void CheckTargetPosition()
         {
             if (_target.position.x > this.transform.position.x)
             {
@@ -51,7 +55,7 @@ namespace RomaDoliba.Enemy
                 }
             }
         }
-        private IEnumerator FollowTarget(float speed)
+        protected IEnumerator FollowTarget(float speed)
         {
             _target = PlayerControler.Instance.transform;
             while (_enemyStats.CurrentHP > 0)

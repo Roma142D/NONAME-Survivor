@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f96afc5a5aa8a945b0528d69bc0e9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controlerType: 0
+  _controlerType: 1
   _playerMoveJoystick: {fileID: 0}
   _playerStats: {fileID: 6266060514300995646}
   _weaponHolder: {fileID: 7456584431598404759}
