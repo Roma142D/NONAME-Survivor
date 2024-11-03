@@ -28,7 +28,7 @@ namespace RomaDoliba.Enemy
                 }
             }
         }
-        protected void CheckTargetPosition()
+        protected virtual void CheckTargetPosition()
         {
             if (_target.position.x > this.transform.position.x)
             {
@@ -55,7 +55,7 @@ namespace RomaDoliba.Enemy
                 }
             }
         }
-        protected IEnumerator FollowTarget(float speed)
+        protected virtual IEnumerator FollowTarget(float speed)
         {
             _target = PlayerControler.Instance.transform;
             while (_enemyStats.CurrentHP > 0)
