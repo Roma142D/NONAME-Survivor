@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 318407073506589715}
   - component: {fileID: 7523019701237071991}
   - component: {fileID: 2241353084852187477}
+  - component: {fileID: 5269601244145361161}
   - component: {fileID: 3996122625296726331}
   - component: {fileID: 4571859400350778052}
   - component: {fileID: 9167161999103331385}
+  - component: {fileID: -6555508706648903088}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Untagged
@@ -78,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: -930540003
   m_SortingLayer: 3
   m_SortingOrder: 500
-  m_Sprite: {fileID: 21300000, guid: 6a6c98a6079537844ab0f7b2b45425b3, type: 3}
+  m_Sprite: {fileID: -311103671, guid: 393cb6d9c32d6f645854df56ea67cd44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,6 +153,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &5269601244145361161
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016969942708315193}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e73211041f77dc440879174961f117d7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3996122625296726331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +189,7 @@ MonoBehaviour:
   _condition: {fileID: 4571859400350778052}
   _actions:
   - {fileID: 9167161999103331385}
+  - {fileID: -6555508706648903088}
   _onCollision: 0
   _onTrigger: 1
   _state:
@@ -201,3 +225,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: Sacrifice
   _value: 0
+--- !u!114 &-6555508706648903088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016969942708315193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 503a628160c6c2f45a12e597597ec44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stateName: Death
+  _animator: {fileID: 5269601244145361161}
