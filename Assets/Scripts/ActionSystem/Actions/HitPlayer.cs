@@ -6,11 +6,11 @@ namespace RomaDoliba.ActionSystem
 {
     public class HitPlayer : GlobalEventSender
     {
-        [SerializeField] private EnemyData _enemyData;
+        [SerializeField] private EnemyStats _enemyStats;
                 
         public override void Execute()
         {
-            _value = _enemyData.Damage;
+            _value = _enemyStats.CurrentDamage;
             FireEvent(_eventName, _value);
         }
     }

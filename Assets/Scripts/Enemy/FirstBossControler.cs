@@ -26,8 +26,9 @@ namespace RomaDoliba.Enemy
         }
         private IEnumerator JumpAttack()
         {
-            Debug.Log("JumpAttack");
-            yield return new WaitForSeconds(1f);
+            _enemyStats.CurrentDamage = _enemyStats.CurrentDamage * 2f;
+            yield return new WaitForSeconds(2f);
+            _enemyStats.CurrentDamage = _enemyStats.CurrentDamage * 0.5f;
             _attackCoroutine = null;
         }
         protected override void StartFollowTarget()

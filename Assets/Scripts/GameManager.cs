@@ -171,17 +171,21 @@ namespace RomaDoliba.Manager
         
         private IEnumerator SpawnEnemiesByCoolDown()
         {
-            //yield return new WaitUntil(() => _spawnedEnemies.Count == 0);
-            //IsWaveDefeated = _spawnedEnemies.Count == 0;
             yield return new WaitForSeconds(_coolDownForSpawn);
             if (CurrentRoom.IsRoomCleared == false)
             {
-                Debug.Log($"{CurrentRoom}  {CurrentRoom.IsRoomCleared}");
                 IsWaveDefeated = false;
-                //StartCoroutine(CurrentRoom.CloseAfterDelay(0f));
-                var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), false, _enemiesCollector);
-                _spawnedEnemies.AddRange(spawnedEnemies);
-                _spawnEnemiesCoroutine = null;
+                if (!CurrentRoom.IsBossRoom)
+                {
+                    var spawnedEnemies = _enemiesSpawner.SpawnEnemies(CurrentRoom.EnemiesSpawnPoints.ToList(), false, _enemiesCollector);
+                    _spawnedEnemies.AddRange(spawnedEnemies);
+                    _spawnEnemiesCoroutine = null;
+                }
+                else
+                {
+                    var ranPos = CurrentRoom.EnemiesSpawnPoints[Random.Range(0, CurrentRoom.EnemiesSpawnPoints.Count() - 1)];
+                    _enemiesSpawner.SpawnBoss(ranPos, _enemiesCollector);
+                }
             }
             else
             {

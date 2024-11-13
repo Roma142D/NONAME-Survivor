@@ -143,7 +143,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 100
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -155,7 +155,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!114 &495640625728805163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: TakeDamage
   _value: 0
-  _enemyData: {fileID: 11400000, guid: 754735e64315b0d4fb0db41528abbb04, type: 2}
+  _enemyStats: {fileID: 1127038692964157564}
 --- !u!82 &5663773375789486287
 AudioSource:
   m_ObjectHideFlags: 0
@@ -499,7 +499,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.8694236}
@@ -518,9 +518,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _condition: {fileID: 2334457289937500204}
-  _actions: []
-  _onCollision: 1
-  _onTrigger: 0
+  _actions:
+  - {fileID: 5721157759310237709}
+  _onCollision: 0
+  _onTrigger: 1
   _state:
     _enter: 1
     _stay: 1
@@ -554,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: TakeDamage
   _value: 0
-  _enemyData: {fileID: 11400000, guid: 754735e64315b0d4fb0db41528abbb04, type: 2}
+  _enemyStats: {fileID: 1127038692964157564}
 --- !u!1 &7553963293433289851
 GameObject:
   m_ObjectHideFlags: 0

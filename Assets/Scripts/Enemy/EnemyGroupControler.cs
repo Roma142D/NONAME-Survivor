@@ -62,6 +62,10 @@ namespace RomaDoliba.Enemy
             }
             return _enemiesGroup;
         }
+        public EnemyMovement SpawnBoss(Transform spawnPoint, Transform parent)
+        {
+            return Instantiate(_enemyWavesData.Boss, spawnPoint.position, Quaternion.identity, parent);
+        }
 
     }
 }

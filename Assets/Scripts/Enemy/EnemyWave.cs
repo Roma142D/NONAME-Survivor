@@ -7,7 +7,9 @@ namespace RomaDoliba.Enemy
     public class EnemyWave : ScriptableObject
     {
         [SerializeField] private List<EnemyWaveData> _enemyWaves;
+        [SerializeField] private EnemyMovement _boss;
         private int _currentWave;
+        public EnemyMovement Boss {get => _boss;}
         
         public EnemyWaveData GetFirstWave()
         {
@@ -30,8 +32,7 @@ namespace RomaDoliba.Enemy
         {
             return _enemyWaves[Random.Range(0, _enemyWaves.Count)];
         }
-
-
+        
         [System.Serializable]
         public struct EnemyWaveData
         {

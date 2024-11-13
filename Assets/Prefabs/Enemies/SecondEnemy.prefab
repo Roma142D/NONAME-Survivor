@@ -154,7 +154,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!114 &173805913191724658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _eventName: TakeDamage
   _value: 0
-  _enemyData: {fileID: 11400000, guid: b7d765c1f01b0f34eb9509909fbb566e, type: 2}
+  _enemyStats: {fileID: 1127038692964157564}
 --- !u!82 &1457406152115451732
 AudioSource:
   m_ObjectHideFlags: 0

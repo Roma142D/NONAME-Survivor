@@ -17,10 +17,10 @@ namespace RomaDoliba.Enemy
 
         private float _currentHealth;
         private float _currentSpeed;
-        private float _currentDamage;
         private Coroutine _takingDamage;
         private Color _originColor;
         public Animator EnemyAnimator => _animator;
+        public float CurrentDamage {get; set;}
         public float CurrentHP => _currentHealth;
         public float MoveSpeed => _currentSpeed;
 
@@ -28,13 +28,13 @@ namespace RomaDoliba.Enemy
         {
             _currentHealth = _enemyData.Health;
             _currentSpeed = _enemyData.MoveSpeed;
-            _currentDamage = _enemyData.Damage;
+            CurrentDamage = _enemyData.Damage;
         }
         private void OnEnable()
         {
             _currentHealth = _enemyData.Health;
             _currentSpeed = _enemyData.MoveSpeed;
-            _currentDamage = _enemyData.Damage;
+            CurrentDamage = _enemyData.Damage;
             transform.localEulerAngles = Vector3.zero;
             _enemyRigidbody.simulated = true;
         }
@@ -54,41 +54,31 @@ namespace RomaDoliba.Enemy
             _audioSource.Play();
             while (_enemyRenderer.color != Color.red)
             {
-                _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, Color.red, 0.5f);
-                yield return new WaitForFixedUpdate();
+                _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, Color.red, 1f);
+                yield return new WaitForSeconds(0.2f);
             }
             _currentHealth -= damage;
             while(_enemyRenderer.color != _originColor)
             {
-                _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, _originColor, 0.5f);
-                yield return new WaitForFixedUpdate();
+                _enemyRenderer.color = Color.Lerp(_enemyRenderer.color, _originColor, 1f);
+                yield return new WaitForSeconds(0.2f);
             }
 
             
             if (_currentHealth <= 0)
             {
                 _animator.SetTrigger("Death");
-                yield return new WaitForSecondsRealtime(0.5f);
-                /*
-                var endRotation = new Vector3(0, 0, 90);
-                _enemyRigidbody.simulated = false;
-                
-                while (transform.localEulerAngles.z <= 90)
-                {            
-                          
-                    transform.Rotate(endRotation, 1f);
-                                       
-                    yield return new WaitForEndOfFrame();
-                }
-                */
                 var killedEnemies = PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN, 0);
                 killedEnemies += 1;
                 PlayerPrefs.SetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN, killedEnemies);
                 PlayerPrefs.Save();
                 _dropItem.DropRandomItem(transform.position);
-                this.gameObject.SetActive(false);
             }
             _takingDamage = null;
+        }
+        private void EnableEnemy()
+        {
+            gameObject.SetActive(false);
         }
     }
 }
