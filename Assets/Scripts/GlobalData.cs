@@ -13,5 +13,6 @@ namespace RomaDoliba
         public static string ENEMIES_KILLED_IN_THIS_RUN = "EnemiesKilledInThisRun";
         public static string COINS_COLLECTED_IN_THIS_RUN = "CoinsCollectedInThisRun";
         public static string LAMB_SACRIFICE = "Sacrifice";
+        public const string BOSS_DEFEATED = "BossDefeated";
     }
 }

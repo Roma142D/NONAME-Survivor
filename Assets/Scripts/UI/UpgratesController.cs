@@ -25,7 +25,7 @@ namespace RomaDoliba.Player
             _multiplierDMG = 1;
             _daggerLvl = 0;
             _auraLvl = 0;
-            CheckCurrentWeapon();
+            //CheckCurrentWeapon();
         }
         private void OnEnable()
         {

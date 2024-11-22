@@ -166,6 +166,19 @@ namespace RomaDoliba.Terrain
                 gameObject.SetActive(false);
             } 
         }
+
+        private void OnEnable()
+        {
+            GlobalEventSender.OnEvent += OnLambSacrifice;
+        }
+        private void OnDisable()
+        {
+            GlobalEventSender.OnEvent -= OnLambSacrifice;
+        }
+        private void OnDestroy()
+        {
+            GlobalEventSender.OnEvent -= OnLambSacrifice;
+        }
         [System.Serializable]
         public struct Pentagram
         {

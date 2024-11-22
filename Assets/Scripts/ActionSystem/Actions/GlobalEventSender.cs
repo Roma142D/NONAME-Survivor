@@ -14,6 +14,7 @@ namespace RomaDoliba.ActionSystem
         }
         public override void Execute()
         {
+            Debug.Log(_eventName);
             FireEvent(_eventName, _value);
         }
     }

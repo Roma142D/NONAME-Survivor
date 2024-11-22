@@ -5,6 +5,7 @@ using RomaDoliba.Enemy;
 using RomaDoliba.Player;
 using RomaDoliba.Terrain;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RomaDoliba.Manager
 {
@@ -72,6 +73,7 @@ namespace RomaDoliba.Manager
             _enemiesToPool = new List<EnemyMovement>();
             _dropedItems = new List<GameObject>();
             
+            //_enemiesSpawner.CurrentRoomsLevel = 0;
             /*
             _spawnedTiles = new List<TileBase>();
             _terrainTilesData.Init(_backgroundGrid.transform);
@@ -104,7 +106,6 @@ namespace RomaDoliba.Manager
             if (_spawnedEnemies.Count > 0) CheckEnemiesToPool();
             if (_spawnEnemiesCoroutine == null && IsWaveDefeated)
             {
-                Debug.Log($"{CurrentRoom}  {CurrentRoom.IsRoomCleared}");
                 _spawnEnemiesCoroutine = StartCoroutine(SpawnEnemiesByCoolDown());
             }
             //CheckTilesToSpawn();
@@ -184,7 +185,7 @@ namespace RomaDoliba.Manager
                 else
                 {
                     var ranPos = CurrentRoom.EnemiesSpawnPoints[Random.Range(0, CurrentRoom.EnemiesSpawnPoints.Count() - 1)];
-                    _enemiesSpawner.SpawnBoss(ranPos, _enemiesCollector);
+                    _spawnedEnemies.Add(_enemiesSpawner.SpawnBoss(ranPos, _enemiesCollector));
                 }
             }
             else
@@ -229,10 +230,13 @@ namespace RomaDoliba.Manager
         public void OnLevelCompleted()
         {
             Debug.Log("LevelCompleted");
-            Time.timeScale = 0f;
+            _enemiesSpawner.CurrentRoomsLevel += 1;
+        }
+        public void ResetRoomsLevel()
+        {
+            _enemiesSpawner.CurrentRoomsLevel = 0;
         }
         
-
         public void AddItemToPool(GameObject item)
         {
             _dropedItems.Add(item);

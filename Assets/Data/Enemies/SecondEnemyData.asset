@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711fa23a98e968441ac8957fae060d37, type: 3}
   m_Name: SecondEnemyData
   m_EditorClassIdentifier: 
-  _moveSpeed: 3
+  _moveSpeed: 2
   _health: 8
   _damage: 5

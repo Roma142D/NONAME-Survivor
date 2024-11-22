@@ -58,12 +58,13 @@ namespace RomaDoliba.Enemy
         protected virtual IEnumerator FollowTarget(float speed)
         {
             _target = PlayerControler.Instance.transform;
-            while (_enemyStats.CurrentHP > 0)
+            while (_enemyStats.CurrentHP > 0 && Mathf.Abs((transform.position - PlayerControler.Instance.transform.position).magnitude) > 0.75f)
             {
                 CheckTargetPosition();
                 this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerControler.Instance.transform.position, speed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
             }
+            _followCoroutine = null;
         }
 
         private void OnDisable()

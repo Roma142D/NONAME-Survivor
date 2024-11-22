@@ -8,16 +8,17 @@ namespace RomaDoliba.Enemy
     [CreateAssetMenu(fileName = "EnemiesGroup", menuName = "Enemy/EnemiesGroup", order = 1)]
     public class EnemyGroupControler : ScriptableObject
     {
-        [SerializeField] private EnemyWave _enemyWavesData;
+        [SerializeField] private EnemyWave[] _enemyWavesData;
         private List<EnemyMovement> _enemiesGroup;
+        public int CurrentRoomsLevel {get; set;}
                 
         public List<EnemyMovement> SpawnEnemies(List<Transform> spawnPoint, bool IsStartGame, Transform parent)
         {
-            var waveToSpawn = _enemyWavesData.GetNextWave();
+            var waveToSpawn = _enemyWavesData[CurrentRoomsLevel].GetNextWave();
             _enemiesGroup = new List<EnemyMovement>();
             if (IsStartGame)
             {
-                waveToSpawn = _enemyWavesData.GetFirstWave();
+                waveToSpawn = _enemyWavesData[CurrentRoomsLevel].GetFirstWave();
             }
             for (int i = 0; i < waveToSpawn.EnemyAmount; i++)
             {
@@ -64,7 +65,7 @@ namespace RomaDoliba.Enemy
         }
         public EnemyMovement SpawnBoss(Transform spawnPoint, Transform parent)
         {
-            return Instantiate(_enemyWavesData.Boss, spawnPoint.position, Quaternion.identity, parent);
+            return Instantiate(_enemyWavesData[CurrentRoomsLevel].Boss, spawnPoint.position, Quaternion.identity, parent);
         }
 
     }

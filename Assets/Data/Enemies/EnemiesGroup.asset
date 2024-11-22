@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a467b35e76d914ea0e0d119b3ebfaa, type: 3}
   m_Name: EnemiesGroup
   m_EditorClassIdentifier: 
-  _enemyWavesData: {fileID: 11400000, guid: 031b08d8d4a48364b9750424d413912b, type: 2}
+  _enemyWavesData:
+  - {fileID: 11400000, guid: 031b08d8d4a48364b9750424d413912b, type: 2}
+  - {fileID: 11400000, guid: ac2e827b38babd54a8c91403f85e55de, type: 2}
+  - {fileID: 11400000, guid: 031b08d8d4a48364b9750424d413912b, type: 2}

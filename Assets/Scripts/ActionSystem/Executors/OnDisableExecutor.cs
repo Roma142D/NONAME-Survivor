@@ -6,6 +6,7 @@ namespace RomaDoliba.ActionSystem
     {
         public void OnDisable()
         {
+            Debug.Log("Execute");
             Execute();
         }
     }

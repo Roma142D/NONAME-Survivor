@@ -11,6 +11,7 @@ namespace RomaDoliba.UI
         [SerializeField] private PlayerStatsUI _playerStatsUI;
         [SerializeField] private GameObject _upgratesScreen;
         [SerializeField] private GameOverUI _gameOverScreen;
+        [SerializeField] private GameOverUI _nextLevelScreen;
         private int _currentCoins;
         private int _currentLevel;
 
@@ -20,6 +21,7 @@ namespace RomaDoliba.UI
             _currentCoins = PlayerPrefs.GetInt(GlobalData.TOTAL_COINS_AMOUNT);
             _playerStatsUI.CoinsCounter.SetText(_currentCoins.ToString());
             GlobalEventSender.OnEvent += ChangeCoinValue;
+            GlobalEventSender.OnEvent += OnBossDefeat;
             SetHPBar();
             _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
             _playerStatsUI.ExpBar.maxValue = PlayerControler.Instance.PlayerStats.CurrentExpCap;
@@ -65,12 +67,27 @@ namespace RomaDoliba.UI
                 PlayerPrefs.DeleteKey(GlobalData.COINS_COLLECTED_IN_THIS_RUN);
             }
         }
+        private void OnBossDefeat(string eventName, float value)
+        {
+            if (eventName == GlobalData.BOSS_DEFEATED)
+            {
+                ToggleScreen(_nextLevelScreen.GameOverScreen);
+                _nextLevelScreen.EnemiesKilled.SetText(PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN).ToString());
+                _nextLevelScreen.CoinsCollected.SetText(PlayerPrefs.GetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN).ToString());
+            }
+        }
 
         private void OnDisable()
         {
             GlobalEventSender.OnEvent -= ChangeCoinValue;
+            GlobalEventSender.OnEvent -= OnBossDefeat;
             PlayerPrefs.DeleteKey(GlobalData.ENEMIES_KILLED_IN_THIS_RUN);
             PlayerPrefs.DeleteKey(GlobalData.COINS_COLLECTED_IN_THIS_RUN);
+        }
+        private void OnDestroy()
+        {
+            GlobalEventSender.OnEvent -= ChangeCoinValue;
+            GlobalEventSender.OnEvent -= OnBossDefeat;
         }
         
         [System.Serializable]

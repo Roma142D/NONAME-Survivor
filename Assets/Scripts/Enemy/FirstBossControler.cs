@@ -47,7 +47,7 @@ namespace RomaDoliba.Enemy
         {
             _target = PlayerControler.Instance.transform;
             _enemyStats.EnemyAnimator.SetTrigger("Walk");
-            while (Mathf.Abs((transform.position - PlayerControler.Instance.transform.position).magnitude) > 3f)
+            while (Mathf.Abs((transform.position - PlayerControler.Instance.transform.position).magnitude) > 2f)
             {
                 CheckTargetPosition();
                 this.transform.position = 

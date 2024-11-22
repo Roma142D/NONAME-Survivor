@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: -821100249709420345}
   - component: {fileID: 5663773375789486287}
   - component: {fileID: -1101863550463385051}
+  - component: {fileID: 3918494162524884178}
+  - component: {fileID: -6769722364191098024}
   m_Layer: 7
   m_Name: Boss1
   m_TagString: Enemy
@@ -92,7 +94,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!70 &7203271283584374757
 CapsuleCollider2D:
@@ -366,6 +368,35 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3918494162524884178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5b566472727af47ab527b22ca61b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _eventName: BossDefeated
+  _value: 0
+--- !u!114 &-6769722364191098024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600368467918943375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72678143a1940f94b86d9c133a375495, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _condition: {fileID: 0}
+  _actions:
+  - {fileID: 3918494162524884178}
 --- !u!1 &1255883778449166236
 GameObject:
   m_ObjectHideFlags: 0

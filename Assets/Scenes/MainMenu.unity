@@ -2522,12 +2522,40 @@ PrefabInstance:
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1754219873}
     - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2429581381340174029, guid: 7ec176842faf71e4fb30286a555ea14b, type: 3}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResetRoomsLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RomaDoliba.Manager.GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753550908404407798, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3199500499566447221, guid: 9abbf26b47adebf48969678d31e8bdf5, type: 3}
       propertyPath: m_AnchorMax.y

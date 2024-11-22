@@ -132,13 +132,13 @@ namespace RomaDoliba.Player
             _audioSource.Play();
             while (_playerRenderer.color != Color.red)
             {
-                _playerRenderer.color = Color.Lerp(_playerRenderer.color, Color.red, 0.25f);
-                yield return new WaitForEndOfFrame();
+                _playerRenderer.color = Color.Lerp(_playerRenderer.color, Color.red, 1f);
+                yield return new WaitForSeconds(0.2f);
             }
             while(_playerRenderer.color != originColor)
             {
-                _playerRenderer.color = Color.Lerp(_playerRenderer.color, originColor, 0.25f);
-                yield return new WaitForEndOfFrame();
+                _playerRenderer.color = Color.Lerp(_playerRenderer.color, originColor, 1f);
+                yield return new WaitForSeconds(0.2f);
             }
             _takingDamage = null;
         }
