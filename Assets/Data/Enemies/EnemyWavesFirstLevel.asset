@@ -15,22 +15,22 @@ MonoBehaviour:
   _enemyWaves:
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
-    EnemyAmount: 1
+    EnemyAmount: 3
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
-    EnemyAmount: 1
+    EnemyAmount: 4
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
-    EnemyAmount: 1
+    EnemyAmount: 5
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: 165fbfd9099261048beb2089075cdcf9, type: 3}
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
-    EnemyAmount: 1
+    EnemyAmount: 5
   - EnemiesToSpawn:
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
     - {fileID: 173805913191724658, guid: cc13fc3fcf9861c42b6b8cbd3daceb9f, type: 3}
-    EnemyAmount: 1
+    EnemyAmount: 5
   _boss: {fileID: 495640625728805163, guid: f7865a7dbdea265449400304ae365617, type: 3}

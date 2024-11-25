@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using RomaDoliba.Manager;
 using UnityEngine;
 
@@ -14,7 +15,15 @@ namespace RomaDoliba.Enemy
                 
         public List<EnemyMovement> SpawnEnemies(List<Transform> spawnPoint, bool IsStartGame, Transform parent)
         {
-            var waveToSpawn = _enemyWavesData[CurrentRoomsLevel].GetNextWave();
+            var waveToSpawn = _enemyWavesData[0].GetNextWave();
+            if (CurrentRoomsLevel < _enemyWavesData.Count())
+            {
+                waveToSpawn = _enemyWavesData[CurrentRoomsLevel].GetNextWave();
+            }
+            else
+            {
+                Debug.Log("AllLevelCompleted!");
+            }
             _enemiesGroup = new List<EnemyMovement>();
             if (IsStartGame)
             {

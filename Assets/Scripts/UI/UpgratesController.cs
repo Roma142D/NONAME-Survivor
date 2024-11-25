@@ -29,6 +29,10 @@ namespace RomaDoliba.Player
         }
         private void OnEnable()
         {
+            
+        }
+        public void OnLevelUp()
+        {
             _tempBtnList = new List<Button>();
             _tempBtnList.AddRange(_buttons);
             foreach (var btn in _buttons)
@@ -43,6 +47,10 @@ namespace RomaDoliba.Player
             }
             _buttons.Clear();
             _buttons.AddRange(_tempBtnList);
+        }
+        public void WeaponUpgrate()
+        {
+            
         }
         private void CheckCurrentWeapon()
         {

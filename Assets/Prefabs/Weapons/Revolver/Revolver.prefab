@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006adfc13ae0bc340976cc874f3462d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _revolverData: {fileID: 11400000, guid: 4a0ab154be49c4e48a4f78b9ebf1c93d, type: 2}
   _shootPoint: {fileID: 1420844420548936199}
   _bulletPrefab: {fileID: 7932851587322902748, guid: 7a85149f6e497be44811edf5f626be49, type: 3}
   _animator: {fileID: 608838432211686837}

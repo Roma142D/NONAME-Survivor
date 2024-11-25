@@ -7,6 +7,7 @@ namespace RomaDoliba.Weapon
 {
     public class RevolverControler : MonoBehaviour
     {
+        [SerializeField] private RevolverData _revolverData;
         [SerializeField] private Transform _shootPoint;
         [SerializeField] private BulletController _bulletPrefab;
         [SerializeField] private Animator _animator;
@@ -14,11 +15,13 @@ namespace RomaDoliba.Weapon
         private float _currentCooldown;
         private List<GameObject> _spawnedBullets;
         private Coroutine _shootingCoroutine;
+        public int BulletsPerQueue {get; set;}
         private void Start()
         {
             _spawnedBullets = new List<GameObject>();
             _currentCooldown = _bulletPrefab.WeaponData.Cooldown;
             _bulletPrefab.WeaponData.WeaponJoystick = _weaponJoystick;
+            BulletsPerQueue = _revolverData.BulletsPerQueue;
         }
         public void Init(Joystick joystick)
         {
@@ -30,7 +33,7 @@ namespace RomaDoliba.Weapon
             _currentCooldown -= Time.deltaTime;
             if (_currentCooldown <= 0 && _shootingCoroutine == null)
             {
-                _shootingCoroutine = StartCoroutine(Shoot());
+                _shootingCoroutine = StartCoroutine(Shoot(BulletsPerQueue));
             }
         }
         private void RotateGun()
@@ -38,11 +41,12 @@ namespace RomaDoliba.Weapon
             var rotZ = PlayerControler.Instance.ControlerType == ControlerType.Android 
                 ? Mathf.Atan2(_weaponJoystick.Vertical, _weaponJoystick.Horizontal) * Mathf.Rad2Deg
                 : Mathf.Atan2(PlayerControler.Instance.LastMoveDirection.y, PlayerControler.Instance.LastMoveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, 0f, rotZ); 
+            transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+            transform.localScale = Mathf.Abs(rotZ) > 90 ? new Vector3(1, -1, 1) : new Vector3(1, 1, 1);
         }
-        private IEnumerator Shoot()
+        private IEnumerator Shoot(int bulletsPerQueue)
         {
-            var bulletsToShoot = 3;
+            var bulletsToShoot = bulletsPerQueue;
             while (bulletsToShoot != 0)
             {
                 if (_spawnedBullets.Count < 12)

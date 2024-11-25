@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using RomaDoliba.Player;
@@ -17,6 +18,7 @@ namespace RomaDoliba.Enemy
         private void Update()
         {
             StartFollowTarget();
+            //CheckTargetPosition();
         }
         protected virtual void StartFollowTarget()
         {
@@ -30,6 +32,35 @@ namespace RomaDoliba.Enemy
         }
         protected virtual void CheckTargetPosition()
         {
+            var targetPos = _target.position;
+            var currentPos = transform.position;
+            var heightDif = targetPos.y - currentPos.y;
+            
+            //targetPos.x > currentPos.x ? _enemyStats.EnemyAnimator.SetTrigger("LookRight") : _enemyStats.EnemyAnimator.SetTrigger("LookLeft");
+            
+            //_enemyStats.EnemyAnimator.SetBool("LookRight",lookRight);
+
+            if (Mathf.Abs(heightDif) > 4f)
+            {
+                var lookUp = heightDif > 0;
+                _enemyStats.EnemyAnimator.SetTrigger(lookUp ? "LookUp" : "LookDown");
+            }
+            else
+            {
+                _enemyStats.EnemyAnimator.SetTrigger(targetPos.x > currentPos.x ? "LookRight" : "LookLeft");
+            }
+
+            /*
+            _enemyRenderer.sprite = targetPos.x > currentPos.x
+                ? _enemySprites.LookRight
+                : _enemySprites.LookLeft;
+            
+            if (Mathf.Abs(heightDif) > 2f)
+            {
+                _enemyRenderer.sprite = heightDif > 0 ? _enemySprites.LookUp : _enemySprites.LookDown;
+            }
+
+
             if (_target.position.x > this.transform.position.x)
             {
                 _enemyRenderer.sprite = _enemySprites.LookRight;
@@ -54,15 +85,16 @@ namespace RomaDoliba.Enemy
                     _enemyRenderer.sprite = _enemySprites.LookDown;
                 }
             }
+            */
         }
         protected virtual IEnumerator FollowTarget(float speed)
         {
             _target = PlayerControler.Instance.transform;
             while (_enemyStats.CurrentHP > 0 && Mathf.Abs((transform.position - PlayerControler.Instance.transform.position).magnitude) > 0.75f)
             {
-                CheckTargetPosition();
                 this.transform.position = Vector3.MoveTowards(this.transform.position, PlayerControler.Instance.transform.position, speed * Time.deltaTime);
                 yield return new WaitForEndOfFrame();
+                CheckTargetPosition();
             }
             _followCoroutine = null;
         }

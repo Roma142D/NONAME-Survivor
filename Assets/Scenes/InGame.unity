@@ -3389,6 +3389,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1453015400}
     - target: {fileID: 2429581381340174029, guid: 7ec176842faf71e4fb30286a555ea14b, type: 3}
+      propertyPath: _maxRooms
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429581381340174029, guid: 7ec176842faf71e4fb30286a555ea14b, type: 3}
       propertyPath: _actionAudioSource
       value: 
       objectReference: {fileID: 519420033}
@@ -3442,7 +3446,7 @@ PrefabInstance:
     - target: {fileID: 836767037355361368, guid: d57af77e1f6a9b045a4c659c0bbd7a66, type: 3}
       propertyPath: _upgratesScreen
       value: 
-      objectReference: {fileID: 2049094833}
+      objectReference: {fileID: 2049094835}
     - target: {fileID: 836767037355361368, guid: d57af77e1f6a9b045a4c659c0bbd7a66, type: 3}
       propertyPath: _changeTimeScale
       value: 1

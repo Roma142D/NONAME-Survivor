@@ -49,6 +49,7 @@ namespace RomaDoliba.Weapon
                     _allWeapon.Add(weapon);
                     break;
                 case WeaponType.gun:
+                    _allWeapon.Add(weapon);
                     var revolver = weapon.Init(this);
                     revolver.GetComponent<RevolverControler>().Init(_weaponJoystick);
                     RevolverWeapon = revolver.GetComponent<RevolverControler>();

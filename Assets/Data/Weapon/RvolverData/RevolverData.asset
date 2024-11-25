@@ -18,4 +18,4 @@ MonoBehaviour:
   _speed: 5
   _cooldown: 5
   _passThroughEnemies: 0
-  _bulletPrefab: {fileID: 7932851587322902748, guid: 7a85149f6e497be44811edf5f626be49, type: 3}
+  _bulletsPerQueue: 2

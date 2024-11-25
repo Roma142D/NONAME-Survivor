@@ -1,3 +1,4 @@
+using System.Collections;
 using RomaDoliba.ActionSystem;
 using RomaDoliba.Player;
 using TMPro;
@@ -9,7 +10,7 @@ namespace RomaDoliba.UI
     public class InGameUIController : UIController
     {
         [SerializeField] private PlayerStatsUI _playerStatsUI;
-        [SerializeField] private GameObject _upgratesScreen;
+        [SerializeField] private UpgratesController _upgratesScreen;
         [SerializeField] private GameOverUI _gameOverScreen;
         [SerializeField] private GameOverUI _nextLevelScreen;
         private int _currentCoins;
@@ -52,7 +53,8 @@ namespace RomaDoliba.UI
             _playerStatsUI.ExpBar.value = PlayerControler.Instance.PlayerStats.CurrentExp;
             if (PlayerControler.Instance.PlayerStats.CurrentLevel > _currentLevel)
             {
-                ToggleScreen(_upgratesScreen);
+                ToggleScreen(_upgratesScreen.gameObject);
+                _upgratesScreen.OnLevelUp();
                 _currentLevel = PlayerControler.Instance.PlayerStats.CurrentLevel;
             }
         }
@@ -71,10 +73,17 @@ namespace RomaDoliba.UI
         {
             if (eventName == GlobalData.BOSS_DEFEATED)
             {
-                ToggleScreen(_nextLevelScreen.GameOverScreen);
-                _nextLevelScreen.EnemiesKilled.SetText(PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN).ToString());
-                _nextLevelScreen.CoinsCollected.SetText(PlayerPrefs.GetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN).ToString());
+                StartCoroutine(OnBossDefeatCoroutine());
             }
+        }
+        private IEnumerator OnBossDefeatCoroutine()
+        {
+            ToggleScreen(_upgratesScreen.gameObject);
+            _upgratesScreen.OnLevelUp();
+            yield return new WaitUntil(() => !_upgratesScreen.gameObject.activeSelf);
+            ToggleScreen(_nextLevelScreen.GameOverScreen);
+            _nextLevelScreen.EnemiesKilled.SetText(PlayerPrefs.GetInt(GlobalData.ENEMIES_KILLED_IN_THIS_RUN).ToString());
+            _nextLevelScreen.CoinsCollected.SetText(PlayerPrefs.GetInt(GlobalData.COINS_COLLECTED_IN_THIS_RUN).ToString());
         }
 
         private void OnDisable()
